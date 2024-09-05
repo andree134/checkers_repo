@@ -48,8 +48,8 @@ public class checkersBoard : MonoBehaviour
         RaycastHit hit;
         if(Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 25.0f, LayerMask.GetMask("Board"))) //if the mouse is on board
         {
-            mouseOver.x = (int)hit.point.x - boardOffset.x; //int so it snaps to a decimal point
-            mouseOver.y = (int)hit.point.z - boardOffset.z; // on z since board is on floor not wall
+            mouseOver.x = (int)(hit.point.x - boardOffset.x); //int so it snaps to a decimal point
+            mouseOver.y = (int)(hit.point.z - boardOffset.z); // on z since board is on floor not wall
         }
         else
         {
@@ -61,7 +61,7 @@ public class checkersBoard : MonoBehaviour
     private void SelectPiece(int x, int y)
     {
         //out of bounds
-        if ( x < 0 || x >= 8 || y < 0 || y >= 8) //RAAAAAAAAAAAAAAAAAAAAAAHHHHHHHHHHHHHHHHHHHHHHHHHH
+        if ( x < 0 || x >= 8 || y < 0 || y >= 8)
             return;
 
         Piece p = pieces[x, y];
@@ -71,6 +71,10 @@ public class checkersBoard : MonoBehaviour
             startDrag = mouseOver;
             Debug.Log(selectedPiece.name);
         }
+        /*else
+        {
+            Debug.Log("AGHGHGAHGHAAHGAAHGAHAGAHGAHAGAH");
+        }*/
     }
 
     private void GenerateBoard()
@@ -112,7 +116,7 @@ public class checkersBoard : MonoBehaviour
         }
     }
 
-    private void GeneratePiece(int x, int y)
+    private void GeneratePiece(int x, int y) 
     {
         bool isPieceWhite = (y > 3) ? false : true; //if y>3 = false, else true;
         GameObject gopiece = Instantiate((isPieceWhite) ? whitePiecePrefab : blackPiecePrefab) as GameObject; //spawn whitePiece if false, else blackPiece
