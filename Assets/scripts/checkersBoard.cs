@@ -11,6 +11,9 @@ public class checkersBoard : MonoBehaviour
     private Vector3 boardOffset = new Vector3(-4.0f, 0, -4.0f);  //offset for pieces to be on board
     private Vector3 pieceOffset = new Vector3(0.5f, 0, 0.5f);   //offset for pieces to match boxes
 
+    private bool isWhite;
+    private bool isWhiteTurn;
+
     private Piece selectedPiece;
 
     private Vector2 mouseOver; // mouse pos
@@ -19,6 +22,7 @@ public class checkersBoard : MonoBehaviour
 
     private void Start()
     {
+        isWhiteTurn = true;
         GenerateBoard();
     }
 
@@ -96,7 +100,7 @@ public class checkersBoard : MonoBehaviour
         {
             selectedPiece = p;
             startDrag = mouseOver;
-            Debug.Log(selectedPiece.name);
+            //Debug.Log(selectedPiece.name);
         }
         /*else
         {
@@ -114,9 +118,8 @@ public class checkersBoard : MonoBehaviour
         if(x2<0 || x2 >= 8 || y2<0 || y2 >= 8)
         {
             if(selectedPiece != null)
-            {
                 MovePiece(selectedPiece, x1, y1);//return piece to initial pos
-            }
+            
 
             startDrag = Vector2.zero;
             selectedPiece = null;
@@ -137,6 +140,44 @@ public class checkersBoard : MonoBehaviour
         }
 
         //check if move valid
+        if(selectedPiece.ValidMove(pieces, x1, y1, x2, y2))
+        {
+            //was anything killed
+
+            //if jump
+            if(Mathf.Abs(x2-x2) == 2)
+            {
+                Piece p = pieces[(x1 + x2) / 2, (y1 + y2) / 2];
+                if (p != null)
+                {
+                    pieces[(x1 + x2) / 2, (y1 + y2) / 2] = null;
+                    Destroy(p);
+                }
+            }
+            pieces[x2, y2] = selectedPiece;
+            pieces[x1, y1]=null;
+            MovePiece(selectedPiece, x2, y2);
+
+            EndTurn();
+        }
+        else //if move is not valid, reset
+        {
+            MovePiece(selectedPiece, x1, y1);
+            startDrag = Vector2.zero;
+            selectedPiece = null;
+            return;
+        }
+    }
+    private void EndTurn()
+    {
+        selectedPiece = null;
+        startDrag = Vector2.zero;
+
+        isWhiteTurn = !isWhiteTurn;
+        CheckVictory();
+    }
+    private void CheckVictory()
+    {
 
     }
 
