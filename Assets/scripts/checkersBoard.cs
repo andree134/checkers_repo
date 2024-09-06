@@ -14,8 +14,8 @@ public class checkersBoard : MonoBehaviour
     private Piece selectedPiece;
 
     private Vector2 mouseOver; // mouse pos
-    private Vector3 startDrag; //will drag the pieces instead of point and click, might change later
-    private Vector3 endDrag;
+    private Vector2 startDrag; //will drag the pieces instead of point and click, might change later
+    private Vector2 endDrag;
 
     private void Start()
     {
@@ -32,8 +32,20 @@ public class checkersBoard : MonoBehaviour
             int x = (int)mouseOver.x;
             int y = (int)mouseOver.y;
 
-            if (Input.GetMouseButtonDown(0)) 
-                SelectPiece(x,y);
+            if(selectedPiece != null)
+            {
+                UpdatePieceDrag(selectedPiece);
+            }
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                SelectPiece(x, y);
+            }
+
+            if (Input.GetMouseButtonUp(0))
+            {
+               TryMove((int)startDrag.x,(int)startDrag.y,x,y);
+            }
         }
     }
      
@@ -57,6 +69,21 @@ public class checkersBoard : MonoBehaviour
             mouseOver.y = -1;
         }
     }
+    private void UpdatePieceDrag(Piece p) //lift up piece
+    {
+        
+        if (!Camera.main)
+        {
+            Debug.Log("No main camera found");
+            return;
+        }
+        RaycastHit hit;
+        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 25.0f, LayerMask.GetMask("Board"))) 
+        {
+            p.transform.position = hit.point + Vector3.up;
+        }
+       
+    }
 
     private void SelectPiece(int x, int y)
     {
@@ -75,6 +102,42 @@ public class checkersBoard : MonoBehaviour
         {
             Debug.Log("AGHGHGAHGHAAHGAAHGAHAGAHGAHAGAH");
         }*/
+    }
+    private void TryMove(int x1, int y1, int x2, int y2)//move, start and end position
+    {
+        //multiplayer support
+        startDrag = new Vector2(x1, y1);//redefines values for when multiplayer
+        endDrag = new Vector2(x2, y2);
+        selectedPiece = pieces[x1, y1];
+
+        //check if out of bounds
+        if(x2<0 || x2 >= 8 || y2<0 || y2 >= 8)
+        {
+            if(selectedPiece != null)
+            {
+                MovePiece(selectedPiece, x1, y1);//return piece to initial pos
+            }
+
+            startDrag = Vector2.zero;
+            selectedPiece = null;
+            return;
+        }
+        //check if selected piece
+        if(selectedPiece != null)
+        {
+            //if piece didn't move
+            if(endDrag == startDrag)
+            {
+                MovePiece(selectedPiece, x1, y1);
+
+                startDrag = Vector2.zero;
+                selectedPiece = null;
+                return;
+            }
+        }
+
+        //check if move valid
+
     }
 
     private void GenerateBoard()
