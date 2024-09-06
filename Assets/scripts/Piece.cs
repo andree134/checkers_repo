@@ -71,7 +71,7 @@ public class Piece : MonoBehaviour
         }
         return false;
     }
-    }
+    
      
     public bool ValidMove(Piece[,] board, int x1, int y1, int x2, int y2)
     {
