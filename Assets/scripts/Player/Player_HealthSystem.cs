@@ -23,11 +23,13 @@ public class Player_HealthSystem : MonoBehaviour
 
     public void TakeDamage (int healthDamage){
         currentHP = currentHP - healthDamage;
+        Debug.Log("Player is damaged.");
         CheckDealth();
     }
 
     private void CheckDealth (){
         if (currentHP <= 0){
+            Debug.Log("Player is died.");
             dealth = true;
         }
     }
