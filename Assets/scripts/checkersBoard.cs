@@ -11,7 +11,7 @@ public class checkersBoard : MonoBehaviour
     private Vector3 boardOffset = new Vector3(-4.0f, 0, -4.0f);  //offset for pieces to be on board
     private Vector3 pieceOffset = new Vector3(0.5f, 0, 0.5f);   //offset for pieces to match boxes
 
-    private bool isWhite;
+    public bool isWhite;//to start game, must check isWhite in the Inspector!!!
     private bool isWhiteTurn;
     private bool hasKilled;
 
@@ -25,6 +25,7 @@ public class checkersBoard : MonoBehaviour
     private void Start()
     {
         isWhiteTurn = true;
+        forcedPieces = new List<Piece>();
         GenerateBoard();
     }
 
@@ -33,7 +34,7 @@ public class checkersBoard : MonoBehaviour
         UpdateMouseOver();
         //Debug.Log(mouseOver); //board collider -0.08 from edges, change when replacing asset
 
-        //if player turn
+        if((isWhite)?isWhiteTurn:!isWhiteTurn)//is white and is white turn? else is black
         {
             int x = (int)mouseOver.x;
             int y = (int)mouseOver.y;
@@ -108,7 +109,12 @@ public class checkersBoard : MonoBehaviour
             }
             else
             { 
-            
+                //look for piece in forced piece list
+                if(forcedPieces.Find(fp => fp == p) == null)
+                    return;
+                
+                selectedPiece = p;
+                startDrag = mouseOver;
             }
                 
         }
@@ -157,7 +163,7 @@ public class checkersBoard : MonoBehaviour
             //was anything killed
 
             //if jump
-            if(Mathf.Abs(x2-x2) == 2)
+            if(Mathf.Abs(x2-x1) == 2)
             {
                 Piece p = pieces[(x1 + x2) / 2, (y1 + y2) / 2];
                 if (p != null)
@@ -192,18 +198,86 @@ public class checkersBoard : MonoBehaviour
     }
     private void EndTurn()
     {
+        int x = (int)endDrag.x;
+        int y = (int)endDrag.y;
+
+        if(selectedPiece != null)//becomes kingggggg
+        {
+            if(selectedPiece.isWhite && !selectedPiece.isKing && y == 7)
+            {
+                selectedPiece.isKing = true;
+                //change sprite
+
+                //selectedPiece.transform.Rotate(Vector3.right * 180);  //if rotate
+            }
+            else if(!selectedPiece.isWhite && !selectedPiece.isKing && y == 0)
+            {
+                selectedPiece.isKing = true;
+                //change sprite
+
+                //selectedPiece.transform.Rotate(Vector3.right * 180);  //if rotate
+            }
+        }
+
         selectedPiece = null;
         startDrag = Vector2.zero;
 
+        if (ScanForPossibleMove(selectedPiece, x, y).Count != 0 && hasKilled)
+        {
+            return;
+        }
+
         isWhiteTurn = !isWhiteTurn;
+        isWhite = !isWhite;  //makes game local, remove when multiplayer
         hasKilled=false;
         CheckVictory();
     }
     private void CheckVictory()
     {
-
+        var ps = FindObjectsOfType<Piece>();
+        bool hasWhite = false, hasBlack = false;
+        for(int i = 0;i < ps.Length; i++)
+        {
+            if (ps[i].isWhite)
+            {
+                hasWhite = true;
+            }
+            else
+            {
+                hasBlack = true;
+            }
+        }
+        if (!hasWhite)
+        {
+            Victory(false);
+        }
+        if (!hasBlack)
+        {
+            Victory(true);
+        }
     }
+    private void Victory(bool isWhite)
+    {
+        if (isWhite)
+        {
+            Debug.Log("White team has won");
+        }
+        else
+        {
+            Debug.Log("Black team has won");
+        }
+    }
+    private List<Piece> ScanForPossibleMove(Piece p, int x, int y)
+    {
+        forcedPieces = new List<Piece>();
 
+        if (pieces[x, y].IsForcedToMove(pieces, x, y))
+        {
+            forcedPieces.Add(pieces[x,y]);
+        }
+
+        return forcedPieces;
+    }
     private List<Piece> ScanForPossibleMove()//if force pieces
     {
         forcedPieces = new List<Piece>();
