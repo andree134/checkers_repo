@@ -209,14 +209,14 @@ public class checkersBoard : MonoBehaviour
                 selectedPiece.isKing = true;
                 //change sprite
 
-                //selectedPiece.transform.Rotate(Vector3.right * 180);  //if rotate
+                selectedPiece.transform.Rotate(Vector3.right * 180);  //if rotate
             }
             else if(!selectedPiece.isWhite && !selectedPiece.isKing && y == 0)
             {
                 selectedPiece.isKing = true;
                 //change sprite
 
-                //selectedPiece.transform.Rotate(Vector3.right * 180);  //if rotate
+                selectedPiece.transform.Rotate(Vector3.right * 180);  //if rotate
             }
         }
 
