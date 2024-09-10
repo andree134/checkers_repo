@@ -24,6 +24,7 @@ public class checkersBoard : MonoBehaviour
 
     private void Start()
     {
+        isWhite = true;
         isWhiteTurn = true;
         forcedPieces = new List<Piece>();
         GenerateBoard();
