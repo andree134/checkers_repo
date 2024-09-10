@@ -22,5 +22,12 @@ public class DamagingPlayers : MonoBehaviour
             }
 
         }
+
+        else if (other.CompareTag("LevelGround")){
+
+            //play FXs.
+            Debug.Log("Land On Ground.");
+            Destroy(gameObject);
+        }
     }
 }
