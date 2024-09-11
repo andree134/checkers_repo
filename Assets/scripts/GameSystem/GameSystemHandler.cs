@@ -63,6 +63,7 @@ public class GameSystemHandler : MonoBehaviour
         for (int i=0 ; i < spawningNumber ; i++){
             spawningObject = Instantiate(spawnableObjects[0]);
             spawningObject.transform.position = new Vector3 (6.0f + Random.Range(-15.0f,15.0f), 44.0f , 25.0f + Random.Range(-25.0f , 15.0f));
+            spawningObject.transform.rotation = Random.rotation;
             yield return new WaitForSeconds(0.5f);
         }
 
@@ -70,6 +71,7 @@ public class GameSystemHandler : MonoBehaviour
         for (int i=0 ; i < spawningNumber ; i++){
             spawningObject = Instantiate(spawnableObjects[0]);
             spawningObject.transform.position = new Vector3 (-2.0f + Random.Range(-15.0f,15.0f), 44.0f , -23.0f + Random.Range(-25.0f , 15.0f));
+            spawningObject.transform.rotation = Random.rotation;
             yield return new WaitForSeconds(0.5f);
         }
        
