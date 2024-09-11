@@ -28,6 +28,7 @@ public class Player_Movement : MonoBehaviour
       //private PlayerAnimation playerAnim;
       [SerializeField]
       private GameObject model;
+      [SerializeField]
       private Camera mainCamera;
       [SerializeField]
       private float rotateSpeed=5.0f;
@@ -36,7 +37,7 @@ public class Player_Movement : MonoBehaviour
     void Awake()
     {
         characterController=GetComponent<CharacterController>();
-        mainCamera=Camera.main;
+        
         //playerAnim=GetComponent<PlayerAnimation>();
     }
 
