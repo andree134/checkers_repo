@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class Player_HealthSystem : MonoBehaviour
 {
+    public enum characterState {Idle, KnockDown, Died};
 
-     [SerializeField]
+    [SerializeField]
     private int maxHP = 3;
     private int currentHP;
-    private bool dealth = false;
+
+    [SerializeField]
+    public characterState state = characterState.Idle;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,8 +32,7 @@ public class Player_HealthSystem : MonoBehaviour
 
     private void CheckDealth (){
         if (currentHP <= 0){
-            Debug.Log("Player is died.");
-            dealth = true;
+            state = characterState.Died;
         }
     }
 }

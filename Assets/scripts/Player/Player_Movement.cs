@@ -31,13 +31,16 @@ public class Player_Movement : MonoBehaviour
       [SerializeField]
       private Camera mainCamera;
       [SerializeField]
-      private float rotateSpeed=5.0f;
+      private float rotateSpeed=7.5f;
+
+      //private Character State;
+      private Player_HealthSystem playerSystem;
 
     // Start is called before the first frame update
     void Awake()
     {
         characterController=GetComponent<CharacterController>();
-        
+        playerSystem = GetComponent<Player_HealthSystem>();
         //playerAnim=GetComponent<PlayerAnimation>();
     }
 
@@ -69,8 +72,10 @@ public class Player_Movement : MonoBehaviour
         movementDirection=new Vector3(horizontalInput, 0, verticalInput);
         movementDirection= transform.TransformDirection(movementDirection); //calculating movement input to world space
 
-        characterController.Move(movementDirection*movementSpeed*Time.deltaTime); //do the change of position
-        RotateCharacter(horizontalInput, verticalInput);  //do the change of rotation
+        if(playerSystem.state == Player_HealthSystem.characterState.Idle){
+          characterController.Move(movementDirection*movementSpeed*Time.deltaTime); //do the change of position
+          RotateCharacter(horizontalInput, verticalInput);  //do the change of rotation
+        } 
       }
 
       void RotateCharacter(float horizontalInput, float verticalInput){
