@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/NarrativeAndTutorial.unity
+    guid: 9e10c02b70d81444db8c60068601b680
+  - enabled: 1
+    path: Assets/Scenes/CheckersDefault.unity
+    guid: 0984ec5cf6c91fd4f95019ecb97243f6
   m_configObjects: {}
