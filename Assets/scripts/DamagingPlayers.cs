@@ -14,7 +14,7 @@ public class DamagingPlayers : MonoBehaviour
 
             if(isDeathZone==true){
              player.TakeDamage(3);
-             Debug.Log("Player is death");
+             Debug.Log("Player is died");
             }
             else{
             player.TakeDamage(1);

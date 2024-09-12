@@ -34,7 +34,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6176558045195767551}
-  - {fileID: 8668807506668930131}
   - {fileID: 6325801148982897668}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -252,7 +251,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6276084289401147435}
+  m_Father: {fileID: 6176558045195767551}
   m_LocalEulerAnglesHint: {x: 6.51, y: 0, z: 0}
 --- !u!20 &5310073914291349905
 Camera:
@@ -348,6 +347,7 @@ Transform:
   - {fileID: 5532850640169745861}
   - {fileID: 6805689751639194993}
   - {fileID: 1955030323906479626}
+  - {fileID: 8668807506668930131}
   m_Father: {fileID: 6276084289401147435}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8781457753912779651

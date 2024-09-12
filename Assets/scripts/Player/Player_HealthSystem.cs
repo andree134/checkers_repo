@@ -24,10 +24,20 @@ public class Player_HealthSystem : MonoBehaviour
         
     }
 
-    public void TakeDamage (int healthDamage){
+     public void TakeDamage (int healthDamage){
         currentHP = currentHP - healthDamage;
         Debug.Log("Player is damaged.");
+        characterState state = characterState.KnockDown;
+        StartCoroutine(Recovering());
         CheckDealth();
+
+    }
+
+    IEnumerator Recovering(){
+        yield return new WaitForSeconds(3.0f);
+        if(state == characterState.KnockDown){
+            state = characterState.Idle;
+        }
     }
 
     private void CheckDealth (){
