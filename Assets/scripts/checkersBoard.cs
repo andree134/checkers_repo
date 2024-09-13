@@ -11,9 +11,11 @@ public class checkersBoard : MonoBehaviour
     private Vector3 boardOffset = new Vector3(-4.0f, 0, -4.0f);  //offset for pieces to be on board
     private Vector3 pieceOffset = new Vector3(0.5f, 0, 0.5f);   //offset for pieces to match boxes
 
-    public bool isWhite;//to start game, must check isWhite in the Inspector!!!
+    public bool isWhite;
     private bool isWhiteTurn;
     private bool hasKilled;
+
+    public Camera mainCamera; //camera ref
 
     private Piece selectedPiece;
     private List<Piece> forcedPieces;
@@ -60,13 +62,13 @@ public class checkersBoard : MonoBehaviour
     private void UpdateMouseOver()
     {
         //if player turn
-        if (!Camera.main)
+        if (!mainCamera)
         {
             Debug.Log("No main camera found");
             return;
         }
         RaycastHit hit;
-        if(Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 25.0f, LayerMask.GetMask("Board"))) //if the mouse is on board
+        if(Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition), out hit, 25.0f, LayerMask.GetMask("Board"))) //if the mouse is on board
         {
             mouseOver.x = (int)(hit.point.x - boardOffset.x); //int so it snaps to a decimal point
             mouseOver.y = (int)(hit.point.z - boardOffset.z); // on z since board is on floor not wall
@@ -80,13 +82,13 @@ public class checkersBoard : MonoBehaviour
     private void UpdatePieceDrag(Piece p) //lift up piece
     {
         
-        if (!Camera.main)
+        if (!mainCamera)
         {
             Debug.Log("No main camera found");
             return;
         }
         RaycastHit hit;
-        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 25.0f, LayerMask.GetMask("Board"))) 
+        if (Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition), out hit, 25.0f, LayerMask.GetMask("Board"))) 
         {
             p.transform.position = hit.point + Vector3.up;
         }

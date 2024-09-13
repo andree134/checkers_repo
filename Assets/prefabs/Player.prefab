@@ -538,7 +538,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6325801148982897668}
   - component: {fileID: 2493709631589226702}
-  - component: {fileID: 152451542290138005}
   m_Layer: 0
   m_Name: TopDownCam
   m_TagString: Untagged
@@ -612,14 +611,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &152451542290138005
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8881001786001013030}
-  m_Enabled: 1
 --- !u!1 &9149841880826031535
 GameObject:
   m_ObjectHideFlags: 0
