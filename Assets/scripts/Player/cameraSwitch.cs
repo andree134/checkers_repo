@@ -12,6 +12,7 @@ public class cameraSwitch : MonoBehaviour
     void Start()
     {
         secondCamera.enabled = false;
+        inFirstPersonView = true;
     }
 
     // Update is called once per frame
@@ -24,6 +25,7 @@ public class cameraSwitch : MonoBehaviour
     }
     void SwitchCamera()
     {
+        inFirstPersonView = !inFirstPersonView;
         firstCamera.enabled = !firstCamera.enabled;
         secondCamera.enabled = !secondCamera.enabled;
     }
