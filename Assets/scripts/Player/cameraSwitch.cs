@@ -6,6 +6,7 @@ public class cameraSwitch : MonoBehaviour
 {
     public Camera firstCamera;
     public Camera secondCamera;
+    public bool inFirstPersonView;
 
     // Start is called before the first frame update
     void Start()
