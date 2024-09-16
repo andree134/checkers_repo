@@ -281,6 +281,60 @@ PrefabInstance:
       addedObject: {fileID: 1843654636}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1fba377b8aed9c4f94cdd7881953bd7, type: 3}
+--- !u!1 &419844628
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 419844630}
+  - component: {fileID: 419844629}
+  m_Layer: 0
+  m_Name: Game System
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &419844629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 419844628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d540670140ae6946b953a1f2115dfa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player1Ref: {fileID: 441588462}
+  player2Ref: {fileID: 0}
+  spawnableObjects:
+  - {fileID: 9021330957266234797, guid: 1c331a9a4d09a9f4fb0bc76dbeaa6381, type: 3}
+  isAcornEvent: 0
+--- !u!4 &419844630
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 419844628}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.1728685, y: 6.0134025, z: -8.834399}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &441588462 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1225582593225238495, guid: e1fba377b8aed9c4f94cdd7881953bd7, type: 3}
+  m_PrefabInstance: {fileID: 388743848}
+  m_PrefabAsset: {fileID: 0}
 --- !u!20 &543262422 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 5310073914291349905, guid: e1fba377b8aed9c4f94cdd7881953bd7, type: 3}
@@ -677,7 +731,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4118197745093187383, guid: e1fba377b8aed9c4f94cdd7881953bd7, type: 3}
   m_PrefabInstance: {fileID: 388743848}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 441588462}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b64f87dd8f5dbe4891c9446dd4cff62, type: 3}
@@ -899,3 +953,4 @@ SceneRoots:
   - {fileID: 838303803}
   - {fileID: 125349742}
   - {fileID: 388743848}
+  - {fileID: 419844630}
