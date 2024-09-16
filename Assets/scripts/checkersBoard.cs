@@ -102,6 +102,11 @@ public class checkersBoard : MonoBehaviour
         }
        
     }
+    private void ResetMove()
+    {
+        startDrag = Vector2.zero;
+        selectedPiece = null;
+    }
 
     private void SelectPiece(int x, int y)
     {
@@ -136,7 +141,7 @@ public class checkersBoard : MonoBehaviour
     }
     private void TryMove(int x1, int y1, int x2, int y2)//move, start and end position
     {
-        forcedPieces = ScanForPossibleMove();  //if forced pieces uncomment
+        //forcedPieces = ScanForPossibleMove();  //if forced pieces uncomment
 
         //multiplayer support
         startDrag = new Vector2(x1, y1);//redefines values for when multiplayer
@@ -148,10 +153,9 @@ public class checkersBoard : MonoBehaviour
         {
             if(selectedPiece != null)
                 MovePiece(selectedPiece, x1, y1);//return piece to initial pos
-            
 
-            startDrag = Vector2.zero;
-            selectedPiece = null;
+
+            ResetMove();
             return;
         }
         //check if selected piece
@@ -162,8 +166,7 @@ public class checkersBoard : MonoBehaviour
             {
                 MovePiece(selectedPiece, x1, y1);
 
-                startDrag = Vector2.zero;
-                selectedPiece = null;
+                ResetMove();
                 return;
             }
         }
@@ -185,16 +188,9 @@ public class checkersBoard : MonoBehaviour
                 }
             }
 
-            //kill?
-            if(forcedPieces.Count != 0 && !hasKilled) //comment if no forced pieces
-            {
-                MovePiece(selectedPiece, x1, y1);
-                startDrag = Vector2.zero;
-                selectedPiece = null;
-                return;
-            }
+            // Update board state
             pieces[x2, y2] = selectedPiece;
-            pieces[x1, y1]=null;
+            pieces[x1, y1] = null;
             MovePiece(selectedPiece, x2, y2);
 
             EndTurn();
@@ -202,8 +198,7 @@ public class checkersBoard : MonoBehaviour
         else //if move is not valid, reset
         {
             MovePiece(selectedPiece, x1, y1);
-            startDrag = Vector2.zero;
-            selectedPiece = null;
+            ResetMove();
             return;
         }
     }
@@ -230,14 +225,16 @@ public class checkersBoard : MonoBehaviour
             }
         }
 
+        //clear selected piece
         selectedPiece = null;
         startDrag = Vector2.zero;
 
-        if (ScanForPossibleMove(selectedPiece, x, y).Count != 0 && hasKilled)
+       /* if (ScanForPossibleMove(selectedPiece, x, y).Count != 0 && hasKilled)
         {
             return;
-        }
+        }*/
 
+        //switch turn
         isWhiteTurn = !isWhiteTurn;
         isWhite = !isWhite;  //makes game local, remove when multiplayer
         hasKilled=false;
@@ -289,7 +286,7 @@ public class checkersBoard : MonoBehaviour
 
         return forcedPieces;
     }
-    private List<Piece> ScanForPossibleMove()//if force pieces
+    /*private List<Piece> ScanForPossibleMove()//if force pieces
     {
         forcedPieces = new List<Piece>();
         //check all pieces individually
@@ -307,7 +304,7 @@ public class checkersBoard : MonoBehaviour
             }
         }
         return forcedPieces;
-    }
+    }*/
 
     private void GenerateBoard()
     {
