@@ -51,7 +51,7 @@ public class checkersBoard : MonoBehaviour
         UpdateMouseOver();
         //Debug.Log(mouseOver); //board collider -0.08 from edges, change when replacing asset
 
-        if(gameSystem.isAcornEvent || (isWhite)?isWhiteTurn:!isWhiteTurn)//event (so both players can move) or is white? is white turn else black moves 
+        if( (isWhite)?isWhiteTurn:!isWhiteTurn)//event (so both players can move) or is white? is white turn else black moves 
         {
             int x = (int)mouseOver.x;
             int y = (int)mouseOver.y;
@@ -86,6 +86,7 @@ public class checkersBoard : MonoBehaviour
         {
             mouseOver.x = (int)(hit.point.x - boardOffset.x); //int so it snaps to a decimal point
             mouseOver.y = (int)(hit.point.z - boardOffset.z); // on z since board is on floor not wall
+            //Debug.Log("hit X: " + mouseOver.x + " hit Y: " + mouseOver.y);
         }
         else
         {
@@ -365,7 +366,7 @@ public class checkersBoard : MonoBehaviour
     //////////////////////
 
     //save state
-    private void SaveBoardState()
+   /* private void SaveBoardState()
     {
         // Create a copy of the current board state
         savedBoardState = (Piece[,])pieces.Clone();
@@ -399,5 +400,5 @@ public class checkersBoard : MonoBehaviour
             gameSystem.isAcornEvent = false;
             Debug.Log("Cheater! Board Restored");
         }
-    }
+    }*/
 }
