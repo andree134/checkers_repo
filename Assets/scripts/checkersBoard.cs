@@ -32,6 +32,13 @@ public class checkersBoard : MonoBehaviour
     private Vector2 startDrag; //will drag the pieces instead of point and click, might change later
     private Vector2 endDrag;
 
+
+    //cheating variables//
+
+    private Piece[,] savedBoardState;
+    private bool savedIsWhiteTurn;
+    private bool savedHasKilled;
+
     private void Start()
     {
         isWhite = true;
@@ -44,7 +51,7 @@ public class checkersBoard : MonoBehaviour
         UpdateMouseOver();
         //Debug.Log(mouseOver); //board collider -0.08 from edges, change when replacing asset
 
-        if((isWhite)?isWhiteTurn:!isWhiteTurn)//is white and is white turn? else is black
+        if(gameSystem.isAcornEvent || (isWhite)?isWhiteTurn:!isWhiteTurn)//event (so both players can move) or is white? is white turn else black moves 
         {
             int x = (int)mouseOver.x;
             int y = (int)mouseOver.y;
@@ -188,8 +195,7 @@ public class checkersBoard : MonoBehaviour
             return;
         }
     }
-
-    
+  
     private bool CanContinueJump(Piece p, int x, int y)
     {
         // Check all possible jump directions (diagonal moves by 2 spaces)
@@ -352,5 +358,46 @@ public class checkersBoard : MonoBehaviour
     private void MovePiece(Piece p, int x, int y)
     {
         p.transform.position = (Vector3.right * x) + (Vector3.forward * y) + boardOffset + pieceOffset;
+    }
+
+    ///////////////////////
+    //cheating mechanics
+    //////////////////////
+
+    //save state
+    private void SaveBoardState()
+    {
+        // Create a copy of the current board state
+        savedBoardState = (Piece[,])pieces.Clone();
+        savedIsWhiteTurn = isWhiteTurn;
+        savedHasKilled = hasKilled;
+    }
+    private void RestoreBoardState()
+    {
+        //restore board state
+        pieces = (Piece[,])savedBoardState.Clone();
+        isWhiteTurn = savedIsWhiteTurn;
+        hasKilled = savedHasKilled;
+
+        //visually reset board positions
+        for (int x = 0; x < 8; x++)
+        {
+            for (int y = 0; y < 8; y++)
+            {
+                if (pieces[x,y] != null)
+                {
+                    MovePiece(pieces[x,y],x,y);
+                }
+            }
+        }
+    }
+    void CallOutCheat()
+    {
+        if (gameSystem.isAcornEvent)
+        {
+            RestoreBoardState();
+            gameSystem.isAcornEvent = false;
+            Debug.Log("Cheater! Board Restored");
+        }
     }
 }
