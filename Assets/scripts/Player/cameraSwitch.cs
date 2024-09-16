@@ -7,6 +7,10 @@ public class cameraSwitch : MonoBehaviour
     public Camera firstCamera;
     public Camera secondCamera;
     public bool inFirstPersonView;
+    public bool ableToSwitchCamera = true;
+
+    [SerializeField]
+    private Player_Movement playerMovementScript; //set the Player_Movement script REF.
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +24,13 @@ public class cameraSwitch : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            SwitchCamera();
+            if(inFirstPersonView == true){
+                SwitchCamera();
+            }
+            else if(inFirstPersonView!=true && ableToSwitchCamera== true){
+                SwitchCamera();
+                playerMovementScript.SetActorToCheckerLocation(); //Call the Set Actor Location function in the Player_Movement script.
+            }
         }
     }
     void SwitchCamera()

@@ -17,6 +17,7 @@ public class Player_Movement : MonoBehaviour
       [SerializeField] private Transform groundCheckTransform;
       [SerializeField] private float groundCheckRadius=0.2f;
       [SerializeField] private LayerMask WhatIsGround;
+      [SerializeField] private bool isWhitePlayer;
 
       private Vector3 movementDirection;
       private Vector3 verticalVelocity;
@@ -35,12 +36,14 @@ public class Player_Movement : MonoBehaviour
 
       //private Character State;
       private Player_HealthSystem playerSystem;
+      private cameraSwitch cameraControlScript;
 
     // Start is called before the first frame update
     void Awake()
     {
         characterController=GetComponent<CharacterController>();
         playerSystem = GetComponent<Player_HealthSystem>();
+        cameraControlScript = GetComponent<cameraSwitch>();
         //playerAnim=GetComponent<PlayerAnimation>();
     }
 
@@ -72,7 +75,7 @@ public class Player_Movement : MonoBehaviour
         movementDirection=new Vector3(horizontalInput, 0, verticalInput);
         movementDirection= transform.TransformDirection(movementDirection); //calculating movement input to world space
 
-        if(playerSystem.state == Player_HealthSystem.characterState.Idle){
+        if(playerSystem.state == Player_HealthSystem.characterState.Idle && cameraControlScript.inFirstPersonView == false){
           characterController.Move(movementDirection*movementSpeed*Time.deltaTime); //do the change of position
           RotateCharacter(horizontalInput, verticalInput);  //do the change of rotation
         } 
@@ -97,6 +100,16 @@ public class Player_Movement : MonoBehaviour
         }
 
         characterController.Move(verticalVelocity * Time.deltaTime);
+      }
+
+      public void SetActorToCheckerLocation(){
+        if (isWhitePlayer == true){
+          this.transform.position = new Vector3 (0.22f, 4.92f , -9.2f);
+          this.transform.eulerAngles = new Vector3(0,0,0);
+        }
+        else {
+
+        }
       }
 
       void AnimatePlayer(){

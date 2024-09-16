@@ -20,7 +20,7 @@ public class GameSystemHandler : MonoBehaviour
     private float generatedProbability;
     private float totalProbability;
 
-    public bool isAcornEvent;
+    public bool isAcornEvent = false;
 
 
 
@@ -39,6 +39,7 @@ public class GameSystemHandler : MonoBehaviour
             
     }
 
+    // Try to start Acorn event if the float is >= 0.8
     IEnumerator TryCallingSpawnAcorn(){
         while (true){
              yield return new WaitForSeconds(Random.Range(6.0f , 12.0f));
@@ -60,25 +61,23 @@ public class GameSystemHandler : MonoBehaviour
         }
     }
 
+    // Acorn Event Content
     IEnumerator SpawnAcornEvent(){
+        isAcornEvent = true;  //Acorns start dropping.
+
         int spawningNumber = Random.Range(2 , 5);
         for (int i=0 ; i < spawningNumber ; i++){
             spawningObject = Instantiate(spawnableObjects[0]);
             spawningObject.transform.position = new Vector3 (6.0f + Random.Range(-15.0f,15.0f), 44.0f , 25.0f + Random.Range(-25.0f , 15.0f));
+                        spawningObject.transform.position = new Vector3 (-2.0f + Random.Range(-15.0f,15.0f), 44.0f , -23.0f + Random.Range(-25.0f , 15.0f));
             spawningObject.transform.rotation = Random.rotation;
             yield return new WaitForSeconds(0.5f);
         }
 
-        spawningNumber = Random.Range(2 , 5);
-        for (int i=0 ; i < spawningNumber ; i++){
-            spawningObject = Instantiate(spawnableObjects[0]);
-            spawningObject.transform.position = new Vector3 (-2.0f + Random.Range(-15.0f,15.0f), 44.0f , -23.0f + Random.Range(-25.0f , 15.0f));
-            spawningObject.transform.rotation = Random.rotation;
-            yield return new WaitForSeconds(0.5f);
-        }
-       
-        yield return new WaitForSeconds(10.0f);
-        StartCoroutine(TryCallingSpawnAcorn());
+        isAcornEvent = false; //Acorns stop dropping.
+
+        yield return new WaitForSeconds(10.0f); // a 10s period that no acorn event happens.
+        StartCoroutine(TryCallingSpawnAcorn());  // start to genarate float to call acorn event again.
 
 
     }
