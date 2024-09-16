@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class checkersBoard : MonoBehaviour
 {
+    //piece rotation
+    //cheating on and off
+    //controller support
+    //spliscreen
+
+
+
     public Piece[,] pieces = new Piece[8, 8];
     public GameObject whitePiecePrefab;
     public GameObject blackPiecePrefab;
@@ -16,6 +23,7 @@ public class checkersBoard : MonoBehaviour
     private bool hasKilled;
 
     public Camera mainCamera; //camera ref
+    public GameSystemHandler gameSystem;
 
     private Piece selectedPiece;
     private List<Piece> forcedPieces;

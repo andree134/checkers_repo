@@ -20,6 +20,8 @@ public class GameSystemHandler : MonoBehaviour
     private float generatedProbability;
     private float totalProbability;
 
+    public bool isAcornEvent;
+
 
 
     // Start is called before the first frame update
@@ -27,8 +29,8 @@ public class GameSystemHandler : MonoBehaviour
     {
         
         StartCoroutine(TryCallingSpawnAcorn());
-
-    }
+        isAcornEvent = false;
+}
 
     // Update is called once per frame
     void Update()
