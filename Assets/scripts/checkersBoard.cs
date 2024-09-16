@@ -23,11 +23,11 @@ public class checkersBoard : MonoBehaviour
     private bool hasKilled;
 
     public Camera mainCamera; //camera ref
+
     public GameSystemHandler gameSystem;
 
     private Piece selectedPiece;
-    private List<Piece> forcedPieces;
-
+    
     private Vector2 mouseOver; // mouse pos
     private Vector2 startDrag; //will drag the pieces instead of point and click, might change later
     private Vector2 endDrag;
@@ -36,7 +36,6 @@ public class checkersBoard : MonoBehaviour
     {
         isWhite = true;
         isWhiteTurn = true;
-        forcedPieces = new List<Piece>();
         GenerateBoard();
     }
 
@@ -117,32 +116,14 @@ public class checkersBoard : MonoBehaviour
         Piece p = pieces[x, y];
         if(p != null && p.isWhite == isWhite)
         {
-            if (forcedPieces.Count == 0)
-            {
-                selectedPiece = p;
-                startDrag = mouseOver;
-                //Debug.Log(selectedPiece.name);
-            }
-            else
-            { 
-                //look for piece in forced piece list
-                if(forcedPieces.Find(fp => fp == p) == null)
-                    return;
-                
-                selectedPiece = p;
-                startDrag = mouseOver;
-            }
-                
+            selectedPiece = p;
+            startDrag = mouseOver;
+            //Debug.Log(selectedPiece.name);
+
         }
-        /*else
-        {
-            Debug.Log("AGHGHGAHGHAAHGAAHGAHAGAHGAHAGAH");
-        }*/
     }
     private void TryMove(int x1, int y1, int x2, int y2)//move, start and end position
     {
-        //forcedPieces = ScanForPossibleMove();  //if forced pieces uncomment
-
         //multiplayer support
         startDrag = new Vector2(x1, y1);//redefines values for when multiplayer
         endDrag = new Vector2(x2, y2);
@@ -154,7 +135,6 @@ public class checkersBoard : MonoBehaviour
             if(selectedPiece != null)
                 MovePiece(selectedPiece, x1, y1);//return piece to initial pos
 
-
             ResetMove();
             return;
         }
@@ -165,7 +145,6 @@ public class checkersBoard : MonoBehaviour
             if(endDrag == startDrag)
             {
                 MovePiece(selectedPiece, x1, y1);
-
                 ResetMove();
                 return;
             }
@@ -175,8 +154,7 @@ public class checkersBoard : MonoBehaviour
         if(selectedPiece.ValidMove(pieces, x1, y1, x2, y2))
         {
             //was anything killed
-
-            //if jump
+            //if the move involves a capture
             if(Mathf.Abs(x2-x1) == 2)
             {
                 Piece p = pieces[(x1 + x2) / 2, (y1 + y2) / 2];
@@ -193,7 +171,15 @@ public class checkersBoard : MonoBehaviour
             pieces[x1, y1] = null;
             MovePiece(selectedPiece, x2, y2);
 
-            EndTurn();
+            if(hasKilled && CanContinueJump(selectedPiece, x2, y2))
+            {
+                startDrag = new Vector2(x2, y2); //update start pos
+                return;
+            }
+            else
+            {
+                EndTurn();
+            }
         }
         else //if move is not valid, reset
         {
@@ -202,6 +188,51 @@ public class checkersBoard : MonoBehaviour
             return;
         }
     }
+
+    
+    private bool CanContinueJump(Piece p, int x, int y)
+    {
+        // Check all possible jump directions (diagonal moves by 2 spaces)
+        if (p.isWhite || p.isKing) // White or King
+        {
+            // Check top-left
+            if (x >= 2 && y <= 5)
+            {
+                Piece target = pieces[x - 1, y + 1];
+                if (target != null && target.isWhite != p.isWhite && pieces[x - 2, y + 2] == null)
+                    return true;
+            }
+            // Check top-right
+            if (x <= 5 && y <= 5)
+            {
+                Piece target = pieces[x + 1, y + 1];
+                if (target != null && target.isWhite != p.isWhite && pieces[x + 2, y + 2] == null)
+                    return true;
+            }
+        }
+
+        if (!p.isWhite || p.isKing) // Black or King
+        {
+            // Check bottom-left
+            if (x >= 2 && y >= 2)
+            {
+                Piece target = pieces[x - 1, y - 1];
+                if (target != null && target.isWhite != p.isWhite && pieces[x - 2, y - 2] == null)
+                    return true;
+            }
+            // Check bottom-right
+            if (x <= 5 && y >= 2)
+            {
+                Piece target = pieces[x + 1, y - 1];
+                if (target != null && target.isWhite != p.isWhite && pieces[x + 2, y - 2] == null)
+                    return true;
+            }
+        }
+
+        // No more jumps available
+        return false;
+    }
+
     private void EndTurn()
     {
         int x = (int)endDrag.x;
@@ -228,11 +259,6 @@ public class checkersBoard : MonoBehaviour
         //clear selected piece
         selectedPiece = null;
         startDrag = Vector2.zero;
-
-       /* if (ScanForPossibleMove(selectedPiece, x, y).Count != 0 && hasKilled)
-        {
-            return;
-        }*/
 
         //switch turn
         isWhiteTurn = !isWhiteTurn;
@@ -275,36 +301,6 @@ public class checkersBoard : MonoBehaviour
             Debug.Log("Black team has won");
         }
     }
-    private List<Piece> ScanForPossibleMove(Piece p, int x, int y)
-    {
-        forcedPieces = new List<Piece>();
-
-        if (pieces[x, y].IsForcedToMove(pieces, x, y))
-        {
-            forcedPieces.Add(pieces[x,y]);
-        }
-
-        return forcedPieces;
-    }
-    /*private List<Piece> ScanForPossibleMove()//if force pieces
-    {
-        forcedPieces = new List<Piece>();
-        //check all pieces individually
-        for(int i=0; i < 8; i++)
-        {
-            for(int j = 0; j < 8;j++)
-            {
-                if (pieces[i,j] != null && pieces[i,j].isWhite == isWhiteTurn)
-                {
-                    if (pieces[i,j].IsForcedToMove(pieces, i, j))
-                    {
-                        forcedPieces.Add(pieces[i,j]);
-                    }
-                }
-            }
-        }
-        return forcedPieces;
-    }*/
 
     private void GenerateBoard()
     {
