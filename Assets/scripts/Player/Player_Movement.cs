@@ -25,8 +25,8 @@ public class Player_Movement : MonoBehaviour
       private bool _isFalling;
       public bool IsFalling{ get {return _isFalling;} set {_isFalling=value;} }
       public bool IsGrounded = false;
+      private Player_Animation playerAnim;
 
-      //private PlayerAnimation playerAnim;
       [SerializeField]
       private GameObject model;
       [SerializeField]
@@ -44,7 +44,7 @@ public class Player_Movement : MonoBehaviour
         characterController=GetComponent<CharacterController>();
         playerSystem = GetComponent<Player_HealthSystem>();
         cameraControlScript = GetComponent<cameraSwitch>();
-        //playerAnim=GetComponent<PlayerAnimation>();
+        playerAnim=GetComponent<Player_Animation>();
     }
 
     // Update is called once per frame
@@ -113,6 +113,6 @@ public class Player_Movement : MonoBehaviour
       }
 
       void AnimatePlayer(){
-
+        playerAnim.Play_Run(Mathf.Abs(movementDirection.x)+Mathf.Abs(movementDirection.z));
       }
 }
