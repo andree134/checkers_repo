@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Player_Movement : MonoBehaviour
 {
-
     private CharacterController characterController;
 
       [SerializeField] private float movementSpeed=5.0f;

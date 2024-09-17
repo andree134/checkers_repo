@@ -24,10 +24,10 @@ public class cameraSwitch : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            if(inFirstPersonView == true){
+            if(inFirstPersonView){
                 SwitchCamera();
             }
-            else if(inFirstPersonView!=true && ableToSwitchCamera== true){
+            else if(!inFirstPersonView && ableToSwitchCamera){
                 SwitchCamera();
                 playerMovementScript.SetActorToCheckerLocation(); //Call the Set Actor Location function in the Player_Movement script.
             }

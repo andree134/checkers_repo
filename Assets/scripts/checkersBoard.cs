@@ -22,7 +22,8 @@ public class checkersBoard : MonoBehaviour
     private bool isWhiteTurn;
     private bool hasKilled;
 
-    public Camera mainCamera; //camera ref
+    public Camera p1Camera; //camera ref
+    public Camera p2Camera; //camera ref
 
     public GameSystemHandler gameSystem;
 
@@ -51,7 +52,7 @@ public class checkersBoard : MonoBehaviour
         UpdateMouseOver();
         //Debug.Log(mouseOver); //board collider -0.08 from edges, change when replacing asset
 
-        if( (isWhite)?isWhiteTurn:!isWhiteTurn)//event (so both players can move) or is white? is white turn else black moves 
+        if(gameSystem.isAcornEvent || (isWhite)?isWhiteTurn:!isWhiteTurn)//event (so both players can move) or is white? is white turn else black moves 
         {
             int x = (int)mouseOver.x;
             int y = (int)mouseOver.y;
@@ -76,13 +77,13 @@ public class checkersBoard : MonoBehaviour
     private void UpdateMouseOver()
     {
         //if player turn
-        if (!mainCamera)
+        if (!p1Camera)
         {
             Debug.Log("No main camera found");
             return;
         }
         RaycastHit hit;
-        if(Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition), out hit, 25.0f, LayerMask.GetMask("Board"))) //if the mouse is on board
+        if(Physics.Raycast(p1Camera.ScreenPointToRay(Input.mousePosition), out hit, 25.0f, LayerMask.GetMask("Board"))) //if the mouse is on board
         {
             mouseOver.x = (int)(hit.point.x - boardOffset.x); //int so it snaps to a decimal point
             mouseOver.y = (int)(hit.point.z - boardOffset.z); // on z since board is on floor not wall
@@ -97,13 +98,13 @@ public class checkersBoard : MonoBehaviour
     private void UpdatePieceDrag(Piece p) //lift up piece
     {
         
-        if (!mainCamera)
+        if (!p1Camera)
         {
             Debug.Log("No main camera found");
             return;
         }
         RaycastHit hit;
-        if (Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition), out hit, 25.0f, LayerMask.GetMask("Board"))) 
+        if (Physics.Raycast(p1Camera.ScreenPointToRay(Input.mousePosition), out hit, 25.0f, LayerMask.GetMask("Board"))) 
         {
             p.transform.position = hit.point + Vector3.up;
         }
@@ -366,7 +367,7 @@ public class checkersBoard : MonoBehaviour
     //////////////////////
 
     //save state
-   /* private void SaveBoardState()
+    private void SaveBoardState()
     {
         // Create a copy of the current board state
         savedBoardState = (Piece[,])pieces.Clone();
@@ -385,9 +386,9 @@ public class checkersBoard : MonoBehaviour
         {
             for (int y = 0; y < 8; y++)
             {
-                if (pieces[x,y] != null)
+                if (pieces[x, y] != null)
                 {
-                    MovePiece(pieces[x,y],x,y);
+                    MovePiece(pieces[x, y], x, y);
                 }
             }
         }
@@ -400,5 +401,5 @@ public class checkersBoard : MonoBehaviour
             gameSystem.isAcornEvent = false;
             Debug.Log("Cheater! Board Restored");
         }
-    }*/
+    }
 }
