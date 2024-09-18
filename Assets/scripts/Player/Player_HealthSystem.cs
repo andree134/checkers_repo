@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player_HealthSystem : MonoBehaviour
 {
-    public enum characterState {Idle = 0, KnockDown = 1, Died =2};
+    public enum characterState {Idle, KnockDown, Died};
 
     [SerializeField]
     private int maxHP = 3;
@@ -12,19 +12,16 @@ public class Player_HealthSystem : MonoBehaviour
 
     [SerializeField]
     public characterState state = characterState.Idle;
-
-    private Player_Animation playerAnim;
     // Start is called before the first frame update
     void Start()
     {
-        playerAnim=GetComponent<Player_Animation>();
         currentHP = maxHP;
     }
 
     // Update is called once per frame
     void Update()
     {
-        AnimatePlayer();
+        
     }
 
      public void TakeDamage (int healthDamage){
@@ -48,8 +45,4 @@ public class Player_HealthSystem : MonoBehaviour
             state = characterState.Died;
         }
     }
-
-     void AnimatePlayer(){
-        playerAnim.Play_State((int)state);
-      }
 }
