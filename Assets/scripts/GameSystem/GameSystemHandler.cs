@@ -20,7 +20,7 @@ public class GameSystemHandler : MonoBehaviour
     private float generatedProbability;
     private float totalProbability;
 
-    public bool isAcornEvent = false;
+    public bool isAcornEvent;
 
 
 
@@ -74,6 +74,7 @@ public class GameSystemHandler : MonoBehaviour
             spawningObject.transform.position = new Vector3 (6.0f + Random.Range(-15.0f,15.0f), 44.0f , 25.0f + Random.Range(-25.0f , 15.0f));
                         spawningObject.transform.position = new Vector3 (-2.0f + Random.Range(-15.0f,15.0f), 44.0f , -23.0f + Random.Range(-25.0f , 15.0f));
             spawningObject.transform.rotation = Random.rotation;
+            Destroy(spawningObject, 5f);
             yield return new WaitForSeconds(0.5f);
         }
 

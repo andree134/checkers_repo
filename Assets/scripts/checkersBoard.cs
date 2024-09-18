@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class checkersBoard : MonoBehaviour
 {
-    //piece rotation
-    //cheating on and off
+    //spliscreen camera integration done
     //controller support
-    //spliscreen
-
-
+    //piece rotation make game object, switch
+    //cheating on and off handle turn end
+    //change cheating to skill check for one player
 
     public Piece[,] pieces = new Piece[8, 8];
     public GameObject whitePiecePrefab;
@@ -22,8 +21,10 @@ public class checkersBoard : MonoBehaviour
     private bool isWhiteTurn;
     private bool hasKilled;
 
-    public Camera p1Camera; //camera ref
-    public Camera p2Camera; //camera ref
+    //camera references
+    public Camera mainCamera; 
+    public Camera p1Camera; //Player 1
+    public Camera p2Camera; //Player 2
 
     public GameSystemHandler gameSystem;
 
@@ -51,39 +52,43 @@ public class checkersBoard : MonoBehaviour
     {
         UpdateMouseOver();
         //Debug.Log(mouseOver); //board collider -0.08 from edges, change when replacing asset
-
-        if(gameSystem.isAcornEvent || (isWhite)?isWhiteTurn:!isWhiteTurn)//event (so both players can move) or is white? is white turn else black moves 
+        if((isWhite) ? isWhiteTurn : !isWhiteTurn)
         {
-            int x = (int)mouseOver.x;
-            int y = (int)mouseOver.y;
+            /*if (gameSystem.isAcornEvent)//event (so both players can move) or is white? is white turn else black moves 
+            {*/
+                //Debug.Log("Select");
+                int x = (int)mouseOver.x;
+                int y = (int)mouseOver.y;
 
-            if(selectedPiece != null)
-            {
-                UpdatePieceDrag(selectedPiece);
-            }
+                if (selectedPiece != null)
+                {
+                    UpdatePieceDrag(selectedPiece);
+                }
 
-            if (Input.GetMouseButtonDown(0))
-            {
-                SelectPiece(x, y);
-            }
+                if (Input.GetMouseButtonDown(0))
+                {
+                    SelectPiece(x, y);
+                }
 
-            if (Input.GetMouseButtonUp(0))
-            {
-               TryMove((int)startDrag.x,(int)startDrag.y,x,y);
-            }
+                if (Input.GetMouseButtonUp(0))
+                {
+                    TryMove((int)startDrag.x, (int)startDrag.y, x, y);
+                }
+            //}
         }
+        
     }
      
     private void UpdateMouseOver()
     {
         //if player turn
-        if (!p1Camera)
+        if (!mainCamera)
         {
             Debug.Log("No main camera found");
             return;
         }
         RaycastHit hit;
-        if(Physics.Raycast(p1Camera.ScreenPointToRay(Input.mousePosition), out hit, 25.0f, LayerMask.GetMask("Board"))) //if the mouse is on board
+        if(Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition), out hit, 25.0f, LayerMask.GetMask("Board"))) //if the mouse is on board
         {
             mouseOver.x = (int)(hit.point.x - boardOffset.x); //int so it snaps to a decimal point
             mouseOver.y = (int)(hit.point.z - boardOffset.z); // on z since board is on floor not wall
@@ -98,13 +103,13 @@ public class checkersBoard : MonoBehaviour
     private void UpdatePieceDrag(Piece p) //lift up piece
     {
         
-        if (!p1Camera)
+        if (!mainCamera)
         {
             Debug.Log("No main camera found");
             return;
         }
         RaycastHit hit;
-        if (Physics.Raycast(p1Camera.ScreenPointToRay(Input.mousePosition), out hit, 25.0f, LayerMask.GetMask("Board"))) 
+        if (Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition), out hit, 25.0f, LayerMask.GetMask("Board"))) 
         {
             p.transform.position = hit.point + Vector3.up;
         }
@@ -127,7 +132,6 @@ public class checkersBoard : MonoBehaviour
         {
             selectedPiece = p;
             startDrag = mouseOver;
-            //Debug.Log(selectedPiece.name);
 
         }
     }
@@ -160,42 +164,45 @@ public class checkersBoard : MonoBehaviour
         }
 
         //check if move valid
-        if(selectedPiece.ValidMove(pieces, x1, y1, x2, y2))
-        {
-            //was anything killed
-            //if the move involves a capture
-            if(Mathf.Abs(x2-x1) == 2)
+        
+            if (selectedPiece.ValidMove(pieces, x1, y1, x2, y2))
             {
-                Piece p = pieces[(x1 + x2) / 2, (y1 + y2) / 2];
-                if (p != null)
+                //was anything killed
+                //if the move involves a capture
+                if (Mathf.Abs(x2 - x1) == 2)
                 {
-                    pieces[(x1 + x2) / 2, (y1 + y2) / 2] = null;
-                    Destroy(p.gameObject);
-                    hasKilled = true;
+                    Piece p = pieces[(x1 + x2) / 2, (y1 + y2) / 2];
+                    if (p != null)
+                    {
+                        pieces[(x1 + x2) / 2, (y1 + y2) / 2] = null;
+                        Destroy(p.gameObject);
+                        hasKilled = true;
+                    }
+                }
+
+                // Update board state
+                pieces[x2, y2] = selectedPiece;
+                pieces[x1, y1] = null;
+                MovePiece(selectedPiece, x2, y2);
+
+                if (hasKilled && CanContinueJump(selectedPiece, x2, y2)|| gameSystem.isAcornEvent)//Does not end turn
+                {
+                    startDrag = new Vector2(x2, y2); //update start pos
+                    return;
+                }
+                else
+                {
+                    EndTurn();
                 }
             }
-
-            // Update board state
-            pieces[x2, y2] = selectedPiece;
-            pieces[x1, y1] = null;
-            MovePiece(selectedPiece, x2, y2);
-
-            if(hasKilled && CanContinueJump(selectedPiece, x2, y2))
+            else //if move is not valid, reset
             {
-                startDrag = new Vector2(x2, y2); //update start pos
+                MovePiece(selectedPiece, x1, y1);
+                ResetMove();
                 return;
             }
-            else
-            {
-                EndTurn();
-            }
-        }
-        else //if move is not valid, reset
-        {
-            MovePiece(selectedPiece, x1, y1);
-            ResetMove();
-            return;
-        }
+        
+        
     }
   
     private bool CanContinueJump(Piece p, int x, int y)
@@ -272,6 +279,14 @@ public class checkersBoard : MonoBehaviour
         isWhiteTurn = !isWhiteTurn;
         isWhite = !isWhite;  //makes game local, remove when multiplayer
         hasKilled=false;
+        if (mainCamera == p1Camera)
+        {
+            mainCamera = p2Camera;
+        }
+        else
+        {
+            mainCamera = p1Camera;
+        }
         CheckVictory();
     }
     private void CheckVictory()

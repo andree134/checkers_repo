@@ -7,7 +7,8 @@ public class Piece : MonoBehaviour
     public bool isWhite;
     public bool isKing;
 
-    public bool IsForcedToMove(Piece[,] board, int x, int y) //feature to force the player to kill an enemy if it can do so, remove if not used
+
+   /* public bool IsForcedToMove(Piece[,] board, int x, int y) //feature to force the player to kill an enemy if it can do so, remove if not used
     {
         if (isWhite)
         {
@@ -53,9 +54,9 @@ public class Piece : MonoBehaviour
                         return true;
                     }
                 }
-            }
+            }*/
 
-            //bottom right
+          /*  //bottom right
             if (x <= 5 && y >= 2)
             {
                 Piece p = board[x + 1, y - 1];
@@ -69,12 +70,13 @@ public class Piece : MonoBehaviour
                 }
             }
         }
-        return false;
-    }
+             
+    }*/
     
      
     public bool ValidMove(Piece[,] board, int x1, int y1, int x2, int y2)
     {
+
         //if on top of another piece
         if (board[x2,y2] != null)
         {
@@ -130,7 +132,14 @@ public class Piece : MonoBehaviour
                 }
             }
         }
-        return false;
+        if (FindObjectOfType<GameSystemHandler>().isAcornEvent)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
 
     }
 }
