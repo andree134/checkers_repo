@@ -10,10 +10,12 @@ public class GameSystemHandler : MonoBehaviour
     [SerializeField]
     private GameObject player2Ref;
 
-    [SerializeField]
-    private GameObject[] spawnableObjects;
-
-    private GameObject spawningObject;
+    [Header("Acorn Event")]
+    [SerializeField] private GameObject[] spawnableObjects;
+    [SerializeField] private GameObject[] whiteSideSpawningREF;
+    [SerializeField] private GameObject[] blackSideSpawningREF;
+     private GameObject spawningObject;
+     private GameObject spawningLocRef;
 
     //Values of AcornFallingEvent;
     private float bonusProbabilityStack;
@@ -27,25 +29,22 @@ public class GameSystemHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
-        StartCoroutine(TryCallingSpawnAcorn());
+        bonusProbabilityStack = 0.0f;
         isAcornEvent = false;
+        StartCoroutine(TryCallingSpawnAcorn());
+        
 }
 
     // Update is called once per frame
     void Update()
     {
-         if (Input.GetKeyDown(KeyCode.P)){
-            StartCoroutine(SpawnAcornEvent());
-         }
 
             
     }
 
     // Try to start Acorn event if the float is >= 0.8
     IEnumerator TryCallingSpawnAcorn(){
-        while (true){
-             yield return new WaitForSeconds(Random.Range(6.0f , 12.0f));
+             //yield return new WaitForSeconds(Random.Range(6.0f , 12.0f));
 
             generatedProbability = Random.Range(0.0f , 1.0f);
             totalProbability = generatedProbability + bonusProbabilityStack;
@@ -53,29 +52,35 @@ public class GameSystemHandler : MonoBehaviour
             if(totalProbability >= 0.8f){
                 bonusProbabilityStack = 0.0f;
                 StartCoroutine(SpawnAcornEvent());
-                StopCoroutine(TryCallingSpawnAcorn());
             }
 
             else{
                 bonusProbabilityStack = bonusProbabilityStack + 0.2f;
+                yield return new WaitForSeconds(Random.Range(5.0f , 10.0f));
+                StartCoroutine(TryCallingSpawnAcorn());
             }
-
-            
-        }
     }
 
     // Acorn Event Content
     IEnumerator SpawnAcornEvent(){
         isAcornEvent = true;  //Acorns start dropping.
 
-        int spawningNumber = Random.Range(2 , 5);
+        int spawningNumber = Random.Range(3 , 6);
         for (int i=0 ; i < spawningNumber ; i++){
+
             spawningObject = Instantiate(spawnableObjects[0]);
-            spawningObject.transform.position = new Vector3 (6.0f + Random.Range(-15.0f,15.0f), 44.0f , 25.0f + Random.Range(-25.0f , 15.0f));
-                        spawningObject.transform.position = new Vector3 (-2.0f + Random.Range(-15.0f,15.0f), 44.0f , -23.0f + Random.Range(-25.0f , 15.0f));
+            spawningLocRef = whiteSideSpawningREF[Random.Range(0,10)];
+            spawningObject.transform.position = spawningLocRef.transform.position;
             spawningObject.transform.rotation = Random.rotation;
             Destroy(spawningObject, 5f);
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(Random.Range(0.2f,0.6f));
+
+            spawningObject = Instantiate(spawnableObjects[0]);
+            spawningLocRef = blackSideSpawningREF[Random.Range(0,10)];
+            spawningObject.transform.position = spawningLocRef.transform.position;
+            spawningObject.transform.rotation = Random.rotation;
+            Destroy(spawningObject, 5f);
+            yield return new WaitForSeconds(Random.Range(0.2f,0.6f));
         }
 
         isAcornEvent = false; //Acorns stop dropping.
