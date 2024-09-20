@@ -185,6 +185,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &100268966 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1225582593225238495, guid: e1fba377b8aed9c4f94cdd7881953bd7, type: 3}
+  m_PrefabInstance: {fileID: 2020987678}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &129673938
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -358,7 +363,7 @@ Transform:
   m_GameObject: {fileID: 227896675}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16, y: 60, z: 14}
+  m_LocalPosition: {x: 9.4, y: 60, z: 14}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -429,8 +434,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d540670140ae6946b953a1f2115dfa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player1Ref: {fileID: 0}
-  player2Ref: {fileID: 0}
+  player1Ref: {fileID: 100268966}
+  player2Ref: {fileID: 1732707609}
   spawnableObjects:
   - {fileID: 9021330957266234797, guid: 1c331a9a4d09a9f4fb0bc76dbeaa6381, type: 3}
   whiteSideSpawningREF:
@@ -538,7 +543,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4118197745093187383, guid: e1fba377b8aed9c4f94cdd7881953bd7, type: 3}
   m_PrefabInstance: {fileID: 2020987678}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 100268966}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b64f87dd8f5dbe4891c9446dd4cff62, type: 3}
@@ -964,7 +969,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4118197745093187383, guid: e1fba377b8aed9c4f94cdd7881953bd7, type: 3}
   m_PrefabInstance: {fileID: 129673938}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1732707609}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b64f87dd8f5dbe4891c9446dd4cff62, type: 3}
@@ -1192,6 +1197,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1732707609 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1225582593225238495, guid: e1fba377b8aed9c4f94cdd7881953bd7, type: 3}
+  m_PrefabInstance: {fileID: 129673938}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1744551790
 GameObject:
   m_ObjectHideFlags: 0
@@ -1524,6 +1534,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 164414f339ef3684483c13069073c64f, type: 3}
       propertyPath: m_Name
       value: TestTree02
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 164414f339ef3684483c13069073c64f, type: 3}
+      propertyPath: m_TagString
+      value: LevelGround
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

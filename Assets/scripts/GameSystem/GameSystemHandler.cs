@@ -68,7 +68,24 @@ public class GameSystemHandler : MonoBehaviour
         int spawningNumber = Random.Range(3 , 6);
         for (int i=0 ; i < spawningNumber ; i++){
 
+            if(i%2 == 0){
+                spawningObject = Instantiate(spawnableObjects[0]);
+            spawningLocRef = whiteSideSpawningREF[Random.Range(0,4)];
+            spawningObject.transform.position = spawningLocRef.transform.position;
+            spawningObject.transform.rotation = Random.rotation;
+            Destroy(spawningObject, 5f);
+            yield return new WaitForSeconds(Random.Range(0.2f,0.6f));
+
             spawningObject = Instantiate(spawnableObjects[0]);
+            spawningLocRef = blackSideSpawningREF[Random.Range(0,4)];
+            spawningObject.transform.position = spawningLocRef.transform.position;
+            spawningObject.transform.rotation = Random.rotation;
+            Destroy(spawningObject, 5f);
+            yield return new WaitForSeconds(Random.Range(0.2f,0.6f));
+            }
+
+            else{
+                spawningObject = Instantiate(spawnableObjects[0]);
             spawningLocRef = whiteSideSpawningREF[Random.Range(0,10)];
             spawningObject.transform.position = spawningLocRef.transform.position;
             spawningObject.transform.rotation = Random.rotation;
@@ -81,6 +98,8 @@ public class GameSystemHandler : MonoBehaviour
             spawningObject.transform.rotation = Random.rotation;
             Destroy(spawningObject, 5f);
             yield return new WaitForSeconds(Random.Range(0.2f,0.6f));
+            }
+            
         }
 
         isAcornEvent = false; //Acorns stop dropping.

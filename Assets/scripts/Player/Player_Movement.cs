@@ -50,7 +50,10 @@ public class Player_Movement : MonoBehaviour
     void Update()
     {
         GroundCheck();
-        HorizontalMovement();
+        if(playerSystem.state == Player_HealthSystem.characterState.Idle && cameraControlScript.inFirstPersonView == false){
+            HorizontalMovement();
+        }
+        
         VerticalMovement();
         AnimatePlayer();
     }
