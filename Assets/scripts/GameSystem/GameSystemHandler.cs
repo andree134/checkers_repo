@@ -70,34 +70,50 @@ public class GameSystemHandler : MonoBehaviour
 
             if(i%2 == 0){
                 spawningObject = Instantiate(spawnableObjects[0]);
-            spawningLocRef = whiteSideSpawningREF[Random.Range(0,4)];
-            spawningObject.transform.position = spawningLocRef.transform.position;
-            spawningObject.transform.rotation = Random.rotation;
-            Destroy(spawningObject, 5f);
-            yield return new WaitForSeconds(Random.Range(0.2f,0.6f));
+                spawningLocRef = whiteSideSpawningREF[Random.Range(0,7)];
+                spawningObject.transform.position = spawningLocRef.transform.position;
+                spawningObject.transform.rotation = Random.rotation;
+                Destroy(spawningObject, 5f);
+                yield return new WaitForSeconds(Random.Range(0.2f,0.6f));
 
-            spawningObject = Instantiate(spawnableObjects[0]);
-            spawningLocRef = blackSideSpawningREF[Random.Range(0,4)];
-            spawningObject.transform.position = spawningLocRef.transform.position;
-            spawningObject.transform.rotation = Random.rotation;
-            Destroy(spawningObject, 5f);
-            yield return new WaitForSeconds(Random.Range(0.2f,0.6f));
+                spawningObject = Instantiate(spawnableObjects[0]);
+                spawningLocRef = blackSideSpawningREF[Random.Range(0,7)];
+                spawningObject.transform.position = spawningLocRef.transform.position;
+                spawningObject.transform.rotation = Random.rotation;
+                Destroy(spawningObject, 5f);
+                yield return new WaitForSeconds(Random.Range(0.2f,0.6f));
+            }
+
+            else if(i%4 == 0){
+                spawningObject = Instantiate(spawnableObjects[0]);
+                spawningLocRef = whiteSideSpawningREF[Random.Range(10,13)];
+                spawningObject.transform.position = spawningLocRef.transform.position;
+                spawningObject.transform.rotation = Random.rotation;
+                Destroy(spawningObject, 5f);
+                yield return new WaitForSeconds(Random.Range(0.2f,0.6f));
+
+                spawningObject = Instantiate(spawnableObjects[0]);
+                spawningLocRef = blackSideSpawningREF[Random.Range(10,13)];
+                spawningObject.transform.position = spawningLocRef.transform.position;
+                spawningObject.transform.rotation = Random.rotation;
+                Destroy(spawningObject, 5f);
+                yield return new WaitForSeconds(Random.Range(0.2f,0.6f));
             }
 
             else{
                 spawningObject = Instantiate(spawnableObjects[0]);
-            spawningLocRef = whiteSideSpawningREF[Random.Range(0,10)];
-            spawningObject.transform.position = spawningLocRef.transform.position;
-            spawningObject.transform.rotation = Random.rotation;
-            Destroy(spawningObject, 5f);
-            yield return new WaitForSeconds(Random.Range(0.2f,0.6f));
+                spawningLocRef = whiteSideSpawningREF[Random.Range(0,10)];
+                spawningObject.transform.position = spawningLocRef.transform.position;
+                spawningObject.transform.rotation = Random.rotation;
+                Destroy(spawningObject, 5f);
+                yield return new WaitForSeconds(Random.Range(0.2f,0.6f));
 
-            spawningObject = Instantiate(spawnableObjects[0]);
-            spawningLocRef = blackSideSpawningREF[Random.Range(0,10)];
-            spawningObject.transform.position = spawningLocRef.transform.position;
-            spawningObject.transform.rotation = Random.rotation;
-            Destroy(spawningObject, 5f);
-            yield return new WaitForSeconds(Random.Range(0.2f,0.6f));
+                spawningObject = Instantiate(spawnableObjects[0]);
+                spawningLocRef = blackSideSpawningREF[Random.Range(0,10)];
+                spawningObject.transform.position = spawningLocRef.transform.position;
+                spawningObject.transform.rotation = Random.rotation;
+                Destroy(spawningObject, 5f);
+                yield return new WaitForSeconds(Random.Range(0.2f,0.6f));
             }
             
         }
