@@ -6,73 +6,7 @@ public class Piece : MonoBehaviour
 {
     public bool isWhite;
     public bool isKing;
-
-
-   /* public bool IsForcedToMove(Piece[,] board, int x, int y) //feature to force the player to kill an enemy if it can do so, remove if not used
-    {
-        if (isWhite)
-        {
-            //top left
-            if(x>=2  && y<=5)
-            {
-                Piece p = board[x - 1, y + 1];
-
-                if (p != null && p.isWhite != isWhite)//if there is a piece and is not the same color
-                {
-                    if (board[x-2, y +2] == null)//if posible to land after jump
-                    {
-                        return true;
-                    }
-                }
-            }
-
-            //top right
-            if (x <= 5 && y <= 5)
-            {
-                Piece p = board[x + 1, y + 1];
-
-                if (p != null && p.isWhite != isWhite)//if there is a piece and is not the same color
-                {
-                    if (board[x + 2, y + 2] == null)//if posible to land after jump
-                    {
-                        return true;
-                    }
-                }
-            }
-        }
-        if(!isWhite || isKing) //black team
-        {
-            //bottom left
-            if (x >= 2 && y >= 2)
-            {
-                Piece p = board[x - 1, y - 1];
-
-                if (p != null && p.isWhite != isWhite)//if there is a piece and is not the same color
-                {
-                    if (board[x - 2, y - 2] == null)//if posible to land after jump
-                    {
-                        return true;
-                    }
-                }
-            }*/
-
-          /*  //bottom right
-            if (x <= 5 && y >= 2)
-            {
-                Piece p = board[x + 1, y - 1];
-
-                if (p != null && p.isWhite != isWhite)//if there is a piece and is not the same color
-                {
-                    if (board[x + 2, y - 2] == null)//if posible to land after jump
-                    {
-                        return true;
-                    }
-                }
-            }
-        }
-             
-    }*/
-    
+       
      
     public bool ValidMove(Piece[,] board, int x1, int y1, int x2, int y2)
     {
@@ -141,5 +75,71 @@ public class Piece : MonoBehaviour
             return false;
         }
 
+
     }
+    /* public bool IsForcedToMove(Piece[,] board, int x, int y) //feature to force the player to kill an enemy if it can do so, remove if not used
+    {
+        if (isWhite)
+        {
+            //top left
+            if(x>=2  && y<=5)
+            {
+                Piece p = board[x - 1, y + 1];
+
+                if (p != null && p.isWhite != isWhite)//if there is a piece and is not the same color
+                {
+                    if (board[x-2, y +2] == null)//if posible to land after jump
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            //top right
+            if (x <= 5 && y <= 5)
+            {
+                Piece p = board[x + 1, y + 1];
+
+                if (p != null && p.isWhite != isWhite)//if there is a piece and is not the same color
+                {
+                    if (board[x + 2, y + 2] == null)//if posible to land after jump
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+        if(!isWhite || isKing) //black team
+        {
+            //bottom left
+            if (x >= 2 && y >= 2)
+            {
+                Piece p = board[x - 1, y - 1];
+
+                if (p != null && p.isWhite != isWhite)//if there is a piece and is not the same color
+                {
+                    if (board[x - 2, y - 2] == null)//if posible to land after jump
+                    {
+                        return true;
+                    }
+                }
+            }*/
+
+    /*  //bottom right
+      if (x <= 5 && y >= 2)
+      {
+          Piece p = board[x + 1, y - 1];
+
+          if (p != null && p.isWhite != isWhite)//if there is a piece and is not the same color
+          {
+              if (board[x + 2, y - 2] == null)//if posible to land after jump
+              {
+                  return true;
+              }
+          }
+      }
+  }
+
+}*/
+
 }
