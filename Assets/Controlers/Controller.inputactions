@@ -1,0 +1,122 @@
+{
+    "name": "Controller",
+    "maps": [
+        {
+            "name": "Checkers",
+            "id": "dac32f00-44e9-4d83-a1e7-d16b935123f0",
+            "actions": [
+                {
+                    "name": "Action",
+                    "type": "Button",
+                    "id": "fdcaa73d-3c42-46fd-9c98-6c2187f7fc18",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "3791d2cd-2fb4-4f95-bef2-31b49b4c503c",
+                    "expectedControlType": "Stick",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "ModeSwitch",
+                    "type": "Button",
+                    "id": "b11f3c01-8f91-47e5-a3de-0356dacd6b75",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "cbeeb06b-f93e-45a5-905d-7fb0d4fdcf8c",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "34ec6707-7986-4194-89f3-bd046dedc96a",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "18a66f3c-99b0-4e09-b01e-38146a373f9c",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ModeSwitch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "3rdPerson",
+            "id": "7b89b859-c292-4b27-8b64-c0a2ad93702d",
+            "actions": [
+                {
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "c21c5194-ff72-406a-bb55-6caa4cea3486",
+                    "expectedControlType": "Stick",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "ModeSwitch",
+                    "type": "Button",
+                    "id": "d2c9d700-cd7f-4cc4-bb90-b2b8f10dba81",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "06870d21-1c6a-44ca-8b1e-5e443c9aac59",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4e576c71-a319-4ad0-ba83-1ddc31d534dc",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ModeSwitch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

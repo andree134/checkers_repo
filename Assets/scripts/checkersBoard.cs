@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class checkersBoard : MonoBehaviour
 {
@@ -34,6 +35,14 @@ public class checkersBoard : MonoBehaviour
     private Vector2 startDrag; //will drag the pieces instead of point and click, might change later
     private Vector2 endDrag;
 
+    //controller support
+   /* private Controller currentControls;
+    private Controller player1Controls;
+    private Controller player2Controls;
+
+    //player specific controls
+    public bool isPlayer1Active = true; //player 1 turn*/ //i want to cry
+
 
     //cheating variables//
 
@@ -46,6 +55,8 @@ public class checkersBoard : MonoBehaviour
         isWhite = true;
         isWhiteTurn = true;
         GenerateBoard();
+
+        
     }
 
     private void Update()
