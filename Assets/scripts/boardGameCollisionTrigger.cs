@@ -10,11 +10,13 @@ public class boardGameCollisionTrigger : MonoBehaviour
         if(other.CompareTag("Player")){
             handlingPlayer = other.gameObject.GetComponent<cameraSwitch>();
             handlingPlayer. ableToSwitchCamera = true;
+            Debug.Log("Colide");
         }
     }
 
     private void OnTriggerExit(Collider other){
         if(other.CompareTag("Player")){
+            Debug.Log("No Col");
             handlingPlayer = other.gameObject.GetComponent<cameraSwitch>();
             handlingPlayer. ableToSwitchCamera = false;
         }
