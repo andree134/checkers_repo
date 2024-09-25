@@ -72,10 +72,21 @@ public class Player_Movement : MonoBehaviour
       }
 
       void HorizontalMovement(){
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput= Input.GetAxis("Vertical");
+        float horizontalInput=0f;
+        float verticalInput=0f;
 
-        movementDirection=new Vector3(horizontalInput, 0, verticalInput);
+        if (isWhitePlayer)
+        {
+            horizontalInput = Input.GetAxis("P1Horizontal");
+            verticalInput = -Input.GetAxis("P1Vertical");
+        }
+        else
+        {
+            horizontalInput = Input.GetAxis("P2Horizontal");
+            verticalInput = -Input.GetAxis("P2Vertical");
+        }
+
+        movementDirection =new Vector3(horizontalInput, 0, verticalInput);
         movementDirection= transform.TransformDirection(movementDirection); //calculating movement input to world space
 
         if(playerSystem.state == Player_HealthSystem.characterState.Idle && cameraControlScript.inFirstPersonView == false){

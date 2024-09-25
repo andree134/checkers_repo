@@ -10,6 +10,7 @@ public class checkersBoard : MonoBehaviour
     //piece rotation make game object, switch
     //cheating on and off handle turn end
     //change cheating to skill check for one player
+    //line 362 mesh change
 
     public Piece[,] pieces = new Piece[8, 8];
     public GameObject whitePiecePrefab;
@@ -22,6 +23,9 @@ public class checkersBoard : MonoBehaviour
     private bool isWhiteTurn;
     private bool hasKilled;
 
+    [SerializeField] Transform cursor1;
+    [SerializeField] Transform cursor2;
+
     //camera references
     public Camera mainCamera; 
     public Camera p1Camera; //Player 1
@@ -31,7 +35,8 @@ public class checkersBoard : MonoBehaviour
 
     private Piece selectedPiece;
     
-    private Vector2 mouseOver; // mouse pos
+    private Vector2 mouseOver1; // mouse pos
+    private Vector2 mouseOver2; // mouse pos
     private Vector2 startDrag; //will drag the pieces instead of point and click, might change later
     private Vector2 endDrag;
 
@@ -68,29 +73,55 @@ public class checkersBoard : MonoBehaviour
             /*if (gameSystem.isAcornEvent)//event (so both players can move) or is white? is white turn else black moves 
             {*/
                 //Debug.Log("Select");
-                int x = (int)mouseOver.x;
-                int y = (int)mouseOver.y;
+                
+            if (isWhiteTurn)
+            {
+                int x = (int)mouseOver1.x;
+                int y = (int)mouseOver1.y;
 
                 if (selectedPiece != null)
                 {
                     UpdatePieceDrag(selectedPiece);
                 }
 
-                if (Input.GetMouseButtonDown(0))
+                if (Input.GetButtonDown("Fire1"))
                 {
                     SelectPiece(x, y);
+                   // Debug.Log("Pressed");
                 }
 
-                if (Input.GetMouseButtonUp(0))
+                if (Input.GetButtonUp("Fire1"))
                 {
                     TryMove((int)startDrag.x, (int)startDrag.y, x, y);
                 }
+            }
+            else
+            {
+                int x = (int)mouseOver2.x;
+                int y = (int)mouseOver2.y;
+
+                if (selectedPiece != null)
+                {
+                    UpdatePieceDrag(selectedPiece);
+                }
+
+                if (Input.GetButtonDown("Fire2"))
+                {
+                    SelectPiece(x, y);
+                    Debug.Log("Pressed");
+                }
+
+                if (Input.GetButtonUp("Fire2"))
+                {
+                    TryMove((int)startDrag.x, (int)startDrag.y, x, y);
+                }
+            }
             //}
         }
         
     }
-     
-    private void UpdateMouseOver()
+
+    /*private void UpdateMouseOver()
     {
         //if player turn
         if (!mainCamera)
@@ -110,6 +141,46 @@ public class checkersBoard : MonoBehaviour
             mouseOver.x = -1;
             mouseOver.y = -1;
         }
+    }*/
+    private void UpdateMouseOver()
+    {
+        //if player turn
+        if (!mainCamera)
+        {
+            Debug.Log("No main camera found");
+            return;
+        }
+        if (isWhiteTurn)
+        {
+
+            RaycastHit hit;
+            if (Physics.Raycast(cursor1.position, -Vector3.up, out hit, 25.0f, LayerMask.GetMask("Board"))) //if the mouse is on board
+            {
+                mouseOver1.x = (int)(hit.point.x - boardOffset.x); //int so it snaps to a decimal point
+                mouseOver1.y = (int)(hit.point.z - boardOffset.z); // on z since board is on floor not wall
+                //Debug.Log("hit X: " + mouseOver.x + " hit Y: " + mouseOver.y);
+            }
+            else
+            {
+                mouseOver1.x = -1;
+                mouseOver1.y = -1;
+            }
+        }
+        else
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(cursor2.position, -Vector3.up, out hit, 25.0f, LayerMask.GetMask("Board"))) //if the mouse is on board
+            {
+                mouseOver2.x = (int)(hit.point.x - boardOffset.x); //int so it snaps to a decimal point
+                mouseOver2.y = (int)(hit.point.z - boardOffset.z); // on z since board is on floor not wall
+                //Debug.Log("hit X: " + mouseOver.x + " hit Y: " + mouseOver.y);
+            }
+            else
+            {
+                mouseOver2.x = -1;
+                mouseOver2.y = -1;
+            }
+        }
     }
     private void UpdatePieceDrag(Piece p) //lift up piece
     {
@@ -119,12 +190,23 @@ public class checkersBoard : MonoBehaviour
             Debug.Log("No main camera found");
             return;
         }
-        RaycastHit hit;
-        if (Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition), out hit, 25.0f, LayerMask.GetMask("Board"))) 
+        if (isWhiteTurn)
         {
-            p.transform.position = hit.point + Vector3.up;
+
+            RaycastHit hit;
+            if (Physics.Raycast(cursor1.position, -Vector3.up, out hit, 25.0f, LayerMask.GetMask("Board")))
+            {
+                p.transform.position = hit.point + Vector3.up;
+            }
         }
-       
+        else
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(cursor2.position, -Vector3.up, out hit, 25.0f, LayerMask.GetMask("Board")))
+            {
+                p.transform.position = hit.point + Vector3.up;
+            }
+        }
     }
     private void ResetMove()
     {
@@ -141,8 +223,19 @@ public class checkersBoard : MonoBehaviour
         Piece p = pieces[x, y];
         if(p != null && p.isWhite == isWhite)
         {
+            if(isWhiteTurn)
+            {
             selectedPiece = p;
-            startDrag = mouseOver;
+            startDrag = mouseOver1;
+
+            }
+            else
+            {
+                selectedPiece = p;
+                startDrag = mouseOver2;
+
+
+            }
 
         }
     }
@@ -215,7 +308,6 @@ public class checkersBoard : MonoBehaviour
         
         
     }
-  
     private bool CanContinueJump(Piece p, int x, int y)
     {
         // Check all possible jump directions (diagonal moves by 2 spaces)
@@ -269,14 +361,14 @@ public class checkersBoard : MonoBehaviour
             if(selectedPiece.isWhite && !selectedPiece.isKing && y == 7)
             {
                 selectedPiece.isKing = true;
-                //change sprite
+                //change mesh
 
                 selectedPiece.transform.Rotate(Vector3.right * 180);  //if rotate
             }
             else if(!selectedPiece.isWhite && !selectedPiece.isKing && y == 0)
             {
                 selectedPiece.isKing = true;
-                //change sprite
+                //change mesh
 
                 selectedPiece.transform.Rotate(Vector3.right * 180);  //if rotate
             }
