@@ -8,7 +8,7 @@ public class Player_HealthSystem : MonoBehaviour
 
     [SerializeField]
     private int maxHP = 3;
-    private int currentHP;
+    public int currentHP;
 
     [SerializeField]
     public characterState state = characterState.Idle;

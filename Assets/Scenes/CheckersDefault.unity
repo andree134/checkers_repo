@@ -872,6 +872,7 @@ GameObject:
   - component: {fileID: 419844630}
   - component: {fileID: 419844629}
   - component: {fileID: 419844631}
+  - component: {fileID: 419844632}
   m_Layer: 0
   m_Name: Game System
   m_TagString: Untagged
@@ -951,6 +952,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cb980bb0675e0f4391f31c581fd0c83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &419844632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 419844628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c0fd69f48f064f4abdb147b1a75033d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whitePlayerScore: {fileID: 0}
+  blackPlayerScore: {fileID: 0}
+  player1Health1: {fileID: 2061834617}
+  player1Health2: {fileID: 1950734944}
+  player1Health3: {fileID: 580732777}
+  player2Health1: {fileID: 2143712091}
+  player2Health2: {fileID: 2011372263}
+  player2Health3: {fileID: 1687262152}
+  whitePlayer: {fileID: 100268966}
+  blackPlayer: {fileID: 1732707609}
 --- !u!1 &559588483
 GameObject:
   m_ObjectHideFlags: 0
