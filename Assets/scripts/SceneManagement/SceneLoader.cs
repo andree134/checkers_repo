@@ -7,7 +7,7 @@ public class SceneLoader : MonoBehaviour
 {
     void OnEnable()
     {
-        // Load the Scene in the Build Index called CheckersDefault
-        SceneManager.LoadScene("CheckersDefault", LoadSceneMode.Single);
+        // Load the Scene in the Build Index called MainMenu
+        SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
     }
 }
