@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1269827701097428096}
   - component: {fileID: 4118197745093187383}
   - component: {fileID: 982313998228179084}
+  - component: {fileID: 8115396454237062043}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -118,6 +119,19 @@ MonoBehaviour:
   inFirstPersonView: 0
   ableToSwitchCamera: 1
   playerMovementScript: {fileID: 0}
+--- !u!114 &8115396454237062043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1225582593225238495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7941f946eff3334429b23349aa472f28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 4704985383294053310}
 --- !u!1 &2888890562868464438
 GameObject:
   m_ObjectHideFlags: 0
@@ -556,7 +570,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5691f5e6c1e3def459002d6f33ba0663, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7931539998857316701}
+      addedObject: {fileID: 4704985383294053310}
   m_SourcePrefab: {fileID: 100100000, guid: 5691f5e6c1e3def459002d6f33ba0663, type: 3}
 --- !u!4 &4710218554328669872 stripped
 Transform:
@@ -568,7 +582,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5691f5e6c1e3def459002d6f33ba0663, type: 3}
   m_PrefabInstance: {fileID: 5103906230293477723}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &7931539998857316701
+--- !u!95 &4704985383294053310
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -577,8 +591,8 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5338417563305411594}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 0547073e8bf114b409bacf82607da2e5, type: 3}
-  m_Controller: {fileID: 9100000, guid: 6dfdf203ac75c2548b07dfbfea7d67c2, type: 2}
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 01a848c806e93ec448866791fbadc9ac, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
