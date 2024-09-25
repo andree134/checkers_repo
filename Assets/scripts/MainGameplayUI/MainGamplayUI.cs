@@ -7,9 +7,6 @@ using System;
 
 public class MainGamplayUI : MonoBehaviour
 {
-    [SerializeField] private TMP_Text whitePlayerScore;
-    [SerializeField] private TMP_Text blackPlayerScore;
-
     [SerializeField] private Image player1Health1;
     [SerializeField] private Image player1Health2;
     [SerializeField] private Image player1Health3;
@@ -90,13 +87,4 @@ public class MainGamplayUI : MonoBehaviour
         }
     }
 
-    void UpdateWhitePlayerScore(int score)
-    {
-        whitePlayerScore.text = ToString(score);
-    }
-
-    void UpdateBlackPlayerScore(int score)
-    {
-        blackPlayerScore.text = ToString(score);
-    }
-}
+   
