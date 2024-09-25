@@ -86,5 +86,6 @@ public class MainGamplayUI : MonoBehaviour
                 break;
         }
     }
+}
 
    
