@@ -6,9 +6,12 @@ public class Player_Animation : MonoBehaviour
 {
     [SerializeField]
     private Animator anim;
+    private float playerSpeed;
+    private int playerState;
 
     public void Play_Run (float speed){
         anim.SetFloat("Speed", speed);
+        playerSpeed = speed;
     }
 
     public void Play_MovePiece (bool isMovingPiece){
@@ -17,6 +20,7 @@ public class Player_Animation : MonoBehaviour
 
     public void Play_State (int characterState){
         anim.SetInteger("CharacterState", characterState);
+        playerState = characterState;
     }
 
     // Start is called before the first frame update
@@ -28,7 +32,8 @@ public class Player_Animation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+       // Debug.Log(playerSpeed);
+       //Debug.Log(playerState);
     }
 }
 

@@ -29,7 +29,7 @@ public class Player_HealthSystem : MonoBehaviour
 
      public void TakeDamage (int healthDamage){
         currentHP = currentHP - healthDamage;
-        Debug.Log("Player is damaged.");
+        //Debug.Log("Player is damaged.");
         state = characterState.KnockDown;
         StartCoroutine(Recovering());
         CheckDealth();
