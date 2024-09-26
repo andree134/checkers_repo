@@ -10,6 +10,9 @@ public class GameSystemHandler : MonoBehaviour
     [SerializeField]
     private GameObject player2Ref;
 
+    [Header("Checker")]
+    [SerializeField] private checkersBoard checkerData; 
+
     [Header("Acorn Event")]
     [SerializeField] private GameObject[] spawnableObjects;
     [SerializeField] private GameObject[] whiteSideSpawningREF;
@@ -61,10 +64,40 @@ public class GameSystemHandler : MonoBehaviour
             }
 
             else{
-                bonusProbabilityStack = bonusProbabilityStack + 0.2f;
+                bonusProbabilityStack = bonusProbabilityStack + 0.15f;
                 //Depends on how many piece left, the timer should be adjust (the closer to the endgame, the lesser it is)
-                yield return new WaitForSeconds(Random.Range(5.0f , 10.0f));
-                StartCoroutine(TryCallingSpawnAcorn(0.0f));
+                if (checkerData.whitePieceLeft==0 || checkerData.blackPieceLeft ==0)
+                {
+
+                }
+
+                else if (checkerData.whitePieceLeft<=3 || checkerData.blackPieceLeft <=3)
+                {
+                    suceeseProbability = 0.5f;
+                    yield return new WaitForSeconds(Random.Range(6.0f , 8.0f));
+                    StartCoroutine(TryCallingSpawnAcorn(0.0f));
+                }
+
+                else if (checkerData.whitePieceLeft<=6 || checkerData.blackPieceLeft <=6)
+                {
+                    suceeseProbability = 0.65f;
+                    yield return new WaitForSeconds(Random.Range(5.0f , 8.0f));
+                    StartCoroutine(TryCallingSpawnAcorn(0.0f));
+                }
+
+                else if (checkerData.whitePieceLeft<=9 || checkerData.blackPieceLeft <=9)
+                {
+                    suceeseProbability = 0.7f;
+                    yield return new WaitForSeconds(Random.Range(7.0f , 8.0f));
+                    StartCoroutine(TryCallingSpawnAcorn(0.0f));
+                }
+
+                else
+                {
+                    yield return new WaitForSeconds(Random.Range(7.0f , 10.0f));
+                    StartCoroutine(TryCallingSpawnAcorn(0.0f));
+                }
+                
             }
     }
 
@@ -242,14 +275,14 @@ public class GameSystemHandler : MonoBehaviour
                     spawningObject.transform.position = spawningLocRef.transform.position;
                     spawningObject.transform.rotation = Random.rotation;
                     Destroy(spawningObject, 5f);
-                    yield return new WaitForSeconds(Random.Range(0.3f,0.6f));
+                    yield return new WaitForSeconds(Random.Range(0.4f,0.6f));
 
                     spawningObject = Instantiate(spawnableObjects[0]);
                     spawningLocRef = blackSideSpawningREF[Random.Range(0,7)];
                     spawningObject.transform.position = spawningLocRef.transform.position;
                     spawningObject.transform.rotation = Random.rotation;
                     Destroy(spawningObject, 5f);
-                    yield return new WaitForSeconds(Random.Range(0.3f,0.6f));
+                    yield return new WaitForSeconds(Random.Range(0.4f,0.6f));
                 }
 
                 else if(i%4 == 0){
@@ -258,14 +291,14 @@ public class GameSystemHandler : MonoBehaviour
                     spawningObject.transform.position = spawningLocRef.transform.position;
                     spawningObject.transform.rotation = Random.rotation;
                     Destroy(spawningObject, 5f);
-                    yield return new WaitForSeconds(Random.Range(0.3f,0.6f));
+                    yield return new WaitForSeconds(Random.Range(0.4f,0.6f));
 
                     spawningObject = Instantiate(spawnableObjects[0]);
                     spawningLocRef = blackSideSpawningREF[Random.Range(10,13)];
                     spawningObject.transform.position = spawningLocRef.transform.position;
                     spawningObject.transform.rotation = Random.rotation;
                     Destroy(spawningObject, 5f);
-                    yield return new WaitForSeconds(Random.Range(0.3f,0.6f));
+                    yield return new WaitForSeconds(Random.Range(0.4f,0.6f));
                 }
 
                 else{
@@ -274,14 +307,14 @@ public class GameSystemHandler : MonoBehaviour
                     spawningObject.transform.position = spawningLocRef.transform.position;
                     spawningObject.transform.rotation = Random.rotation;
                     Destroy(spawningObject, 5f);
-                    yield return new WaitForSeconds(Random.Range(0.3f,0.6f));
+                    yield return new WaitForSeconds(Random.Range(0.4f,0.6f));
 
                     spawningObject = Instantiate(spawnableObjects[0]);
                     spawningLocRef = blackSideSpawningREF[Random.Range(0,10)];
                     spawningObject.transform.position = spawningLocRef.transform.position;
                     spawningObject.transform.rotation = Random.rotation;
                     Destroy(spawningObject, 5f);
-                    yield return new WaitForSeconds(Random.Range(0.3f,0.6f));
+                    yield return new WaitForSeconds(Random.Range(0.4f,0.6f));
                 }
             
             }
@@ -292,14 +325,45 @@ public class GameSystemHandler : MonoBehaviour
 
 
         //Depends on how many piece left, the timer should be adjust (the closer to the endgame, the lesser it is)
-            
-        //yield return new WaitForSeconds(10.0f); // a 10s period that no acorn event happens.
-        Debug.Log("Are you ready?");
- 
-        StartCoroutine(TryCallingSpawnAcorn(10.0f));  // start to genarate float to call acorn event again.
+        if (checkerData.whitePieceLeft==0 || checkerData.blackPieceLeft ==0)
+        {
 
-        Debug.Log("Yes!");
+        }
 
+        else if (checkerData.whitePieceLeft<=3 || checkerData.blackPieceLeft <=3)
+        {
+            suceeseProbability = 0.5f;
+            //yield return new WaitForSeconds(5.0f); // a 10s period that no acorn event happens.
+            Debug.Log("Are you ready?");
+            StartCoroutine(TryCallingSpawnAcorn(5.0f));  // start to genarate float to call acorn event again.
+            Debug.Log("Yes!");
+        }
 
+        else if(checkerData.whitePieceLeft<=6 || checkerData.blackPieceLeft <=6)
+        {
+            suceeseProbability = 0.65f;
+             //yield return new WaitForSeconds(10.0f); // a 10s period that no acorn event happens.
+            Debug.Log("Are you ready?");
+            StartCoroutine(TryCallingSpawnAcorn(6.0f));  // start to genarate float to call acorn event again.
+            Debug.Log("Yes!");
+        }
+
+        else if(checkerData.whitePieceLeft<=9 || checkerData.blackPieceLeft <=9)
+        {
+            suceeseProbability = 0.7f;
+            //yield return new WaitForSeconds(10.0f); // a 10s period that no acorn event happens.
+            Debug.Log("Are you ready?");
+            StartCoroutine(TryCallingSpawnAcorn(8.0f));  // start to genarate float to call acorn event again.
+            Debug.Log("Yes!");
+        }
+
+        else
+        {
+            //yield return new WaitForSeconds(10.0f); // a 10s period that no acorn event happens.
+            Debug.Log("Are you ready?");
+            StartCoroutine(TryCallingSpawnAcorn(10.0f));  // start to genarate float to call acorn event again.
+            Debug.Log("Yes!");
+        }           
+        
     }
 }

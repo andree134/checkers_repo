@@ -16,6 +16,10 @@ public class checkersBoard : MonoBehaviour
     public GameObject whitePiecePrefab;
     public GameObject blackPiecePrefab;
 
+    //Jason's edit for recording the remain pieces
+    public int whitePieceLeft;
+    public int blackPieceLeft;
+
     private Vector3 boardOffset = new Vector3(-4.0f, 0, -4.0f);  //offset for pieces to be on board
     private Vector3 pieceOffset = new Vector3(0.5f, 0, 0.5f);   //offset for pieces to match boxes
 
@@ -59,6 +63,8 @@ public class checkersBoard : MonoBehaviour
     {
         isWhite = true;
         isWhiteTurn = true;
+        whitePieceLeft = 12;
+        blackPieceLeft = 12;
         GenerateBoard();
 
         
@@ -278,6 +284,14 @@ public class checkersBoard : MonoBehaviour
                     Piece p = pieces[(x1 + x2) / 2, (y1 + y2) / 2];
                     if (p != null)
                     {
+                        if(p.isWhite == true)  //jason's edit starts
+                        {
+                            whitePieceLeft--;
+                        }
+                        else
+                        {
+                            blackPieceLeft--;
+                        }                      //jason's edit ends
                         pieces[(x1 + x2) / 2, (y1 + y2) / 2] = null;
                         Destroy(p.gameObject);
                         hasKilled = true;
