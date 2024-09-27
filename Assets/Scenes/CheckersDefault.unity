@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43975514, g: 0.48817998, b: 0.5683994, a: 1}
+  m_IndirectSpecularColor: {r: 0.439207, g: 0.48748994, b: 0.56774044, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -718,6 +718,18 @@ MonoBehaviour:
   - {fileID: 1506655826}
   - {fileID: 27278508}
   - {fileID: 1909813878}
+  maxTimerForStartGame: 8
+  minTimerForStartGame: 6
+  maxTimerForEarlyGame: 6
+  minTimerForEarlyGame: 4
+  maxTimerForMidGame: 8
+  minTimerForMidGame: 3
+  maxTimerForLateGame: 4
+  minTimerForLateGame: 3
+  successRateForStartGame: 0.9
+  successRateForEarlyGame: 0.75
+  successRateForMidGame: 0.67
+  successRateForLateGame: 0.5
   isAcornEvent: 0
 --- !u!4 &419844630
 Transform:
@@ -1419,13 +1431,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 875658431}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.5735764, y: 0, z: 0, w: 0.8191521}
+  m_LocalRotation: {x: 0.58778524, y: 0, z: 0, w: 0.809017}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 70, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 72, y: 0, z: 0}
 --- !u!1 &877219401
 GameObject:
   m_ObjectHideFlags: 0

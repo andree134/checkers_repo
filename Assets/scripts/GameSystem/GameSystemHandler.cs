@@ -21,6 +21,23 @@ public class GameSystemHandler : MonoBehaviour
      private GameObject spawningLocRef;
 
     //Values of AcornFallingEvent;
+    [Header("Timer Values")]
+    [SerializeField] private float maxTimerForStartGame = 10.0f;
+    [SerializeField] private float minTimerForStartGame = 7.0f;
+    [SerializeField] private float maxTimerForEarlyGame = 8.0f;
+    [SerializeField] private float minTimerForEarlyGame = 7.0f;
+    [SerializeField] private float maxTimerForMidGame = 8.0f;
+    [SerializeField] private float minTimerForMidGame = 5.0f;
+    [SerializeField] private float maxTimerForLateGame = 8.0f;
+    [SerializeField] private float minTimerForLateGame = 6.0f;
+
+    [Header("Success Rates")]
+    [SerializeField] private float successRateForStartGame = 1.2f;
+    [SerializeField] private float successRateForEarlyGame = 0.9f;
+    [SerializeField] private float successRateForMidGame = 0.65f;
+    [SerializeField] private float successRateForLateGame = 0.5f;
+
+
     private float bonusProbabilityStack;
     private float generatedProbability;
     private float totalProbability;
@@ -34,11 +51,11 @@ public class GameSystemHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        bonusProbabilityStack = 0.0f;
+        bonusProbabilityStack = 1.2f;
         acornEventHappenedTime = 0;
-        suceeseProbability = 0.85f;
+        suceeseProbability = successRateForStartGame;
         isAcornEvent = false;
-        StartCoroutine(TryCallingSpawnAcorn(20.0f));
+        StartCoroutine(TryCallingSpawnAcorn(Random.Range(20.0f,30.0f)));
         
         
     }
@@ -50,7 +67,6 @@ public class GameSystemHandler : MonoBehaviour
             
     }
 
-    // Try to start Acorn event if the float is >= 0.8
     IEnumerator TryCallingSpawnAcorn(float delay){
             if (delay != 0)
                 yield return new WaitForSeconds(delay);
@@ -64,7 +80,7 @@ public class GameSystemHandler : MonoBehaviour
             }
 
             else{
-                bonusProbabilityStack = bonusProbabilityStack + 0.15f;
+                bonusProbabilityStack = bonusProbabilityStack + 0.1f;
                 //Depends on how many piece left, the timer should be adjust (the closer to the endgame, the lesser it is)
                 if (checkerData.whitePieceLeft==0 || checkerData.blackPieceLeft ==0)
                 {
@@ -73,28 +89,28 @@ public class GameSystemHandler : MonoBehaviour
 
                 else if (checkerData.whitePieceLeft<=3 || checkerData.blackPieceLeft <=3)
                 {
-                    suceeseProbability = 0.5f;
-                    yield return new WaitForSeconds(Random.Range(6.0f , 8.0f));
+                    suceeseProbability = successRateForLateGame;
+                    yield return new WaitForSeconds(Random.Range(minTimerForLateGame , maxTimerForLateGame));
                     StartCoroutine(TryCallingSpawnAcorn(0.0f));
                 }
 
                 else if (checkerData.whitePieceLeft<=6 || checkerData.blackPieceLeft <=6)
                 {
-                    suceeseProbability = 0.65f;
-                    yield return new WaitForSeconds(Random.Range(5.0f , 8.0f));
+                    suceeseProbability = successRateForMidGame;
+                    yield return new WaitForSeconds(Random.Range(minTimerForMidGame , maxTimerForMidGame));
                     StartCoroutine(TryCallingSpawnAcorn(0.0f));
                 }
 
                 else if (checkerData.whitePieceLeft<=9 || checkerData.blackPieceLeft <=9)
                 {
-                    suceeseProbability = 0.7f;
-                    yield return new WaitForSeconds(Random.Range(7.0f , 8.0f));
+                    suceeseProbability = successRateForEarlyGame;
+                    yield return new WaitForSeconds(Random.Range(minTimerForEarlyGame , maxTimerForEarlyGame));
                     StartCoroutine(TryCallingSpawnAcorn(0.0f));
                 }
 
                 else
                 {
-                    yield return new WaitForSeconds(Random.Range(7.0f , 10.0f));
+                    yield return new WaitForSeconds(Random.Range(minTimerForStartGame , maxTimerForStartGame));
                     StartCoroutine(TryCallingSpawnAcorn(0.0f));
                 }
                 
@@ -105,10 +121,11 @@ public class GameSystemHandler : MonoBehaviour
     IEnumerator SpawnAcornEvent(){
         isAcornEvent = true;  //Acorns start dropping. Camera shake required. shake for 1~2s max
         acornEventHappenedTime ++;
+        Debug.Log("Acorn Event" + acornEventHappenedTime.ToString()+" happened");
 
         if (acornEventHappenedTime <= 2)
         {
-            int spawningNumber = Random.Range(2 , 3);
+            int spawningNumber = 2;
             for (int i=0 ; i < spawningNumber ; i++){
 
                 if(i%2 == 0){
@@ -148,9 +165,9 @@ public class GameSystemHandler : MonoBehaviour
             isAcornEvent = false;
         }
 
-        else if (acornEventHappenedTime > 2 && acornEventHappenedTime <= 4)
+        else if (acornEventHappenedTime > 2 && acornEventHappenedTime <= 8)
         {
-            int spawningNumber = Random.Range(2 , 4);
+            int spawningNumber = Random.Range(2 , 3);
             for (int i=0 ; i < spawningNumber ; i++){
 
                 if(i%2 == 0){
@@ -206,9 +223,9 @@ public class GameSystemHandler : MonoBehaviour
             isAcornEvent = false;
         }
 
-        else if (acornEventHappenedTime > 4 && acornEventHappenedTime <= 10)
+        else if (acornEventHappenedTime > 8 && acornEventHappenedTime <= 15)
         {
-            int spawningNumber = Random.Range(3 , 5);
+            int spawningNumber = Random.Range(3 , 4);
             for (int i=0 ; i < spawningNumber ; i++){
 
                 if(i%2 == 0){
@@ -266,7 +283,7 @@ public class GameSystemHandler : MonoBehaviour
 
         else 
         {
-            int spawningNumber = Random.Range(4 , 6);
+            int spawningNumber = Random.Range(3 , 5);
             for (int i=0 ; i < spawningNumber ; i++){
 
                 if(i%2 == 0){
@@ -332,37 +349,25 @@ public class GameSystemHandler : MonoBehaviour
 
         else if (checkerData.whitePieceLeft<=3 || checkerData.blackPieceLeft <=3)
         {
-            suceeseProbability = 0.5f;
-            //yield return new WaitForSeconds(5.0f); // a 10s period that no acorn event happens.
-            Debug.Log("Are you ready?");
-            StartCoroutine(TryCallingSpawnAcorn(5.0f));  // start to genarate float to call acorn event again.
-            Debug.Log("Yes!");
+            suceeseProbability = successRateForLateGame;
+            StartCoroutine(TryCallingSpawnAcorn(Random.Range(8.0f,12.0f)));  // start to genarate float to call acorn event again.
         }
 
         else if(checkerData.whitePieceLeft<=6 || checkerData.blackPieceLeft <=6)
         {
-            suceeseProbability = 0.65f;
-             //yield return new WaitForSeconds(10.0f); // a 10s period that no acorn event happens.
-            Debug.Log("Are you ready?");
-            StartCoroutine(TryCallingSpawnAcorn(6.0f));  // start to genarate float to call acorn event again.
-            Debug.Log("Yes!");
+            suceeseProbability = successRateForMidGame;
+            StartCoroutine(TryCallingSpawnAcorn(Random.Range(12.0f,17.0f)));  // start to genarate float to call acorn event again.
         }
 
         else if(checkerData.whitePieceLeft<=9 || checkerData.blackPieceLeft <=9)
         {
-            suceeseProbability = 0.7f;
-            //yield return new WaitForSeconds(10.0f); // a 10s period that no acorn event happens.
-            Debug.Log("Are you ready?");
+            suceeseProbability = successRateForEarlyGame;
             StartCoroutine(TryCallingSpawnAcorn(8.0f));  // start to genarate float to call acorn event again.
-            Debug.Log("Yes!");
         }
 
         else
         {
-            //yield return new WaitForSeconds(10.0f); // a 10s period that no acorn event happens.
-            Debug.Log("Are you ready?");
-            StartCoroutine(TryCallingSpawnAcorn(10.0f));  // start to genarate float to call acorn event again.
-            Debug.Log("Yes!");
+            StartCoroutine(TryCallingSpawnAcorn(8.0f));  // start to genarate float to call acorn event again.
         }           
         
     }

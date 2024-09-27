@@ -87,7 +87,9 @@ public class Player_Movement : MonoBehaviour
         }
 
         movementDirection =new Vector3(horizontalInput, 0, verticalInput);
+        movementDirection.Normalize();
         movementDirection= transform.TransformDirection(movementDirection); //calculating movement input to world space
+
 
         if(playerSystem.state == Player_HealthSystem.characterState.Idle && cameraControlScript.inFirstPersonView == false){
           characterController.Move(movementDirection*movementSpeed*Time.deltaTime); //do the change of position
