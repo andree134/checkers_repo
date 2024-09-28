@@ -19,6 +19,7 @@ public class GameSystemHandler : MonoBehaviour
     [SerializeField] private GameObject[] blackSideSpawningREF;
      private GameObject spawningObject;
      private GameObject spawningLocRef;
+    private ShakeController shakeController;
 
     //Values of AcornFallingEvent;
     [Header("Timer Values")]
@@ -51,6 +52,7 @@ public class GameSystemHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        shakeController = GetComponent<ShakeController>();
         bonusProbabilityStack = 1.2f;
         acornEventHappenedTime = 0;
         suceeseProbability = successRateForStartGame;
@@ -121,6 +123,7 @@ public class GameSystemHandler : MonoBehaviour
     IEnumerator SpawnAcornEvent(){
         isAcornEvent = true;  //Acorns start dropping. Camera shake required. shake for 1~2s max
         acornEventHappenedTime ++;
+        shakeController.StartShaking(); 
         Debug.Log("Acorn Event" + acornEventHappenedTime.ToString()+" happened");
 
         if (acornEventHappenedTime <= 2)

@@ -17,6 +17,8 @@ public class Player_Movement : MonoBehaviour
       [SerializeField] private float groundCheckRadius=0.2f;
       [SerializeField] private LayerMask WhatIsGround;
       [SerializeField] private bool isWhitePlayer;
+      [SerializeField] private Transform startPos;
+      bool isResetting = false; 
 
       private Vector3 movementDirection;
       private Vector3 verticalVelocity;
@@ -40,23 +42,28 @@ public class Player_Movement : MonoBehaviour
 
     // Start is called before the first frame update
     void Awake()
-    {
+    {        
         characterController=GetComponent<CharacterController>();
         playerSystem = GetComponent<Player_HealthSystem>();
         cameraControlScript = GetComponent<cameraSwitch>();
         playerAnim=GetComponent<Player_Animation>();
+        startPos = this.GetComponentInParent<Transform>(); 
     }
 
     // Update is called once per frame
     void Update()
     {
-        GroundCheck();
-        if(playerSystem.state == Player_HealthSystem.characterState.Idle && cameraControlScript.inFirstPersonView == false){
-            HorizontalMovement();
+        if (!isResetting)
+        {
+            GroundCheck();
+            if (playerSystem.state == Player_HealthSystem.characterState.Idle && cameraControlScript.inFirstPersonView == false)
+            {
+                HorizontalMovement();
+            }
+
+            VerticalMovement();
+            AnimatePlayer();
         }
-        
-        VerticalMovement();
-        AnimatePlayer();
     }
 
     void GroundCheck(){
@@ -92,7 +99,8 @@ public class Player_Movement : MonoBehaviour
 
 
         if(playerSystem.state == Player_HealthSystem.characterState.Idle && cameraControlScript.inFirstPersonView == false){
-          characterController.Move(movementDirection*movementSpeed*Time.deltaTime); //do the change of position
+            
+            characterController.Move(movementDirection*movementSpeed*Time.deltaTime); //do the change of position
           RotateCharacter(horizontalInput, verticalInput);  //do the change of rotation
         } 
       }
@@ -114,19 +122,27 @@ public class Player_Movement : MonoBehaviour
         else{
             verticalVelocity.y+=gravityScale * Time.deltaTime;
         }
-
+        
         characterController.Move(verticalVelocity * Time.deltaTime);
       }
 
       public void SetActorToCheckerLocation(){
-        if (isWhitePlayer == true){
-          this.transform.position = new Vector3 (0.22f, 4.92f , -9.2f);
-          this.transform.eulerAngles = new Vector3(0,0,0);
+        if (isWhitePlayer == true)
+        {
+            this.transform.position = new Vector3(0.22f, 4.92f, -9.2f);
+            this.transform.eulerAngles = new Vector3(0, 0, 0);
         }
-        else {
+        else
+        {
 
         }
-      }
+        //isResetting = true;
+        //characterController.enabled = false;
+        //characterController.transform.position = startPos.position;
+        //characterController.transform.rotation = startPos.rotation;
+        //characterController.enabled = true;
+        //isResetting = false; 
+    }
 
       void AnimatePlayer(){
           playerAnim.Play_Run(Mathf.Abs(movementDirection.x)+Mathf.Abs(movementDirection.z));

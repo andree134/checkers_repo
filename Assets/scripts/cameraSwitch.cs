@@ -28,8 +28,9 @@ public class cameraSwitch : MonoBehaviour
                 SwitchCamera();
             }
             else if(!inFirstPersonView && ableToSwitchCamera){
-                SwitchCamera();
+                
                 playerMovementScript.SetActorToCheckerLocation(); //Call the Set Actor Location function in the Player_Movement script.
+                SwitchCamera();
             }
         }
     }
