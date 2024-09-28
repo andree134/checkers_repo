@@ -5,11 +5,9 @@ using UnityEngine.InputSystem;
 
 public class checkersBoard : MonoBehaviour
 {
-    //spliscreen camera integration done
-    //controller support
+    
     //piece rotation make game object, switch
     //cheating on and off handle turn end
-    //change cheating to skill check for one player
     //line 362 mesh change
 
     public Piece[,] pieces = new Piece[8, 8];
@@ -27,6 +25,7 @@ public class checkersBoard : MonoBehaviour
     private bool isWhiteTurn;
     private bool hasKilled;
 
+    //controller
     [SerializeField] Transform cursor1;
     [SerializeField] Transform cursor2;
 
@@ -80,7 +79,7 @@ public class checkersBoard : MonoBehaviour
             {*/
                 //Debug.Log("Select");
                 
-            if (isWhiteTurn)
+            //if (isWhiteTurn)
             {
                 int x = (int)mouseOver1.x;
                 int y = (int)mouseOver1.y;
@@ -101,7 +100,7 @@ public class checkersBoard : MonoBehaviour
                     TryMove((int)startDrag.x, (int)startDrag.y, x, y);
                 }
             }
-            else
+            /*else
             {
                 int x = (int)mouseOver2.x;
                 int y = (int)mouseOver2.y;
@@ -121,7 +120,7 @@ public class checkersBoard : MonoBehaviour
                 {
                     TryMove((int)startDrag.x, (int)startDrag.y, x, y);
                 }
-            }
+            }*/
             //}
         }
         
@@ -156,7 +155,7 @@ public class checkersBoard : MonoBehaviour
             Debug.Log("No main camera found");
             return;
         }
-        if (isWhiteTurn)
+        //if (isWhiteTurn)
         {
 
             RaycastHit hit;
@@ -172,7 +171,7 @@ public class checkersBoard : MonoBehaviour
                 mouseOver1.y = -1;
             }
         }
-        else
+       /* else
         {
             RaycastHit hit;
             if (Physics.Raycast(cursor2.position, -Vector3.up, out hit, 25.0f, LayerMask.GetMask("Board"))) //if the mouse is on board
@@ -186,7 +185,7 @@ public class checkersBoard : MonoBehaviour
                 mouseOver2.x = -1;
                 mouseOver2.y = -1;
             }
-        }
+        }*/
     }
     private void UpdatePieceDrag(Piece p) //lift up piece
     {
@@ -196,7 +195,7 @@ public class checkersBoard : MonoBehaviour
             Debug.Log("No main camera found");
             return;
         }
-        if (isWhiteTurn)
+        //if (isWhiteTurn)
         {
 
             RaycastHit hit;
@@ -205,14 +204,14 @@ public class checkersBoard : MonoBehaviour
                 p.transform.position = hit.point + Vector3.up;
             }
         }
-        else
+       /* else
         {
             RaycastHit hit;
             if (Physics.Raycast(cursor2.position, -Vector3.up, out hit, 25.0f, LayerMask.GetMask("Board")))
             {
                 p.transform.position = hit.point + Vector3.up;
             }
-        }
+        }*/
     }
     private void ResetMove()
     {
@@ -229,19 +228,19 @@ public class checkersBoard : MonoBehaviour
         Piece p = pieces[x, y];
         if(p != null && p.isWhite == isWhite)
         {
-            if(isWhiteTurn)
+            //if(isWhiteTurn)
             {
             selectedPiece = p;
             startDrag = mouseOver1;
 
             }
-            else
+           /* else
             {
                 selectedPiece = p;
                 startDrag = mouseOver2;
 
 
-            }
+            }*/
 
         }
     }
