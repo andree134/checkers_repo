@@ -50,6 +50,7 @@ public class Player_Movement : MonoBehaviour
         startPos = this.GetComponentInParent<Transform>(); 
     }
 
+
     // Update is called once per frame
     void Update()
     {
@@ -63,6 +64,25 @@ public class Player_Movement : MonoBehaviour
 
             VerticalMovement();
             AnimatePlayer();
+        }
+
+        if (Input.GetKeyDown(KeyCode.T)) // debug only
+        {
+            float x = startPos.position.x;
+            float y = startPos.position.y;
+            float z = startPos.position.z;
+            this.GetComponentInParent<Transform>().SetPositionAndRotation(new Vector3(x, y, z) , startPos.rotation);
+            Debug.Log(this.GetComponentInParent<Transform>().position);
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (characterController.enabled == false)
+        {
+            if (this.GetComponentInParent<Transform>().position == startPos.position)
+            characterController.enabled = true;
+            isResetting = false;
         }
     }
 
@@ -127,21 +147,20 @@ public class Player_Movement : MonoBehaviour
       }
 
       public void SetActorToCheckerLocation(){
-        if (isWhitePlayer == true)
-        {
-            this.transform.position = new Vector3(0.22f, 4.92f, -9.2f);
-            this.transform.eulerAngles = new Vector3(0, 0, 0);
-        }
-        else
-        {
+        //if (isWhitePlayer == true)
+        //{
+        //    this.transform.position = new Vector3(0.22f, 4.92f, -9.2f);
+        //    this.transform.eulerAngles = new Vector3(0, 0, 0);
+        //}
+        //else
+        //{
 
-        }
-        //isResetting = true;
-        //characterController.enabled = false;
-        //characterController.transform.position = startPos.position;
-        //characterController.transform.rotation = startPos.rotation;
-        //characterController.enabled = true;
-        //isResetting = false; 
+        //}
+        characterController.enabled = false;
+        isResetting = true; 
+        this.GetComponentInParent<Transform>().SetPositionAndRotation(startPos.position, startPos.rotation);
+        Debug.Log(this.GetComponentInParent<Transform>().position);
+        
     }
 
       void AnimatePlayer(){

@@ -34,17 +34,17 @@ public class ScreenShake : MonoBehaviour
 
     IEnumerator Shaking()
     {
-        Vector3 startPosition = transform.position;
+        Vector3 startPosition = transform.localPosition;
         float elaspsedTime = 0f;
 
         while (elaspsedTime < duration)
         {
             elaspsedTime += Time.deltaTime;
             float strength = curve.Evaluate(elaspsedTime / duration);
-            transform.position = startPosition + Random.insideUnitSphere * strength;
+            transform.localPosition = startPosition + Random.insideUnitSphere * strength;
             yield return null;
         }
 
-        transform.position = startPosition;
+        transform.localPosition = startPosition;
     }
 }
