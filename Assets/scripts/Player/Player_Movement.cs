@@ -17,12 +17,12 @@ public class Player_Movement : MonoBehaviour
       [SerializeField] private float groundCheckRadius=0.2f;
       [SerializeField] private LayerMask WhatIsGround;
       [SerializeField] private bool isWhitePlayer;
-      [SerializeField] private Transform startPos;
+      [SerializeField] public Transform startPos;
       bool isResetting = false; 
 
       private Vector3 movementDirection;
       private Vector3 verticalVelocity;
-
+    
       private bool _isFalling;
       public bool IsFalling{ get {return _isFalling;} set {_isFalling=value;} }
       public bool IsGrounded = false;
@@ -47,7 +47,6 @@ public class Player_Movement : MonoBehaviour
         playerSystem = GetComponent<Player_HealthSystem>();
         cameraControlScript = GetComponent<cameraSwitch>();
         playerAnim=GetComponent<Player_Animation>();
-        startPos = this.GetComponentInParent<Transform>(); 
     }
 
 
@@ -68,21 +67,8 @@ public class Player_Movement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.T)) // debug only
         {
-            float x = startPos.position.x;
-            float y = startPos.position.y;
-            float z = startPos.position.z;
-            this.GetComponentInParent<Transform>().SetPositionAndRotation(new Vector3(x, y, z) , startPos.rotation);
+            this.GetComponentInParent<Transform>().SetPositionAndRotation(startPos.position , startPos.rotation);
             Debug.Log(this.GetComponentInParent<Transform>().position);
-        }
-    }
-
-    private void FixedUpdate()
-    {
-        if (characterController.enabled == false)
-        {
-            if (this.GetComponentInParent<Transform>().position == startPos.position)
-            characterController.enabled = true;
-            isResetting = false;
         }
     }
 
@@ -147,20 +133,11 @@ public class Player_Movement : MonoBehaviour
       }
 
       public void SetActorToCheckerLocation(){
-        //if (isWhitePlayer == true)
-        //{
-        //    this.transform.position = new Vector3(0.22f, 4.92f, -9.2f);
-        //    this.transform.eulerAngles = new Vector3(0, 0, 0);
-        //}
-        //else
-        //{
 
-        //}
-        characterController.enabled = false;
-        isResetting = true; 
+
         this.GetComponentInParent<Transform>().SetPositionAndRotation(startPos.position, startPos.rotation);
-        Debug.Log(this.GetComponentInParent<Transform>().position);
-        
+        model.transform.rotation = startPos.rotation; 
+
     }
 
       void AnimatePlayer(){
