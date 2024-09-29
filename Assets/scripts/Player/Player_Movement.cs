@@ -18,7 +18,6 @@ public class Player_Movement : MonoBehaviour
       [SerializeField] private LayerMask WhatIsGround;
       [SerializeField] private bool isWhitePlayer;
       [SerializeField] public Transform startPos;
-      bool isResetting = false; 
 
       private Vector3 movementDirection;
       private Vector3 verticalVelocity;
@@ -53,23 +52,14 @@ public class Player_Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isResetting)
+        GroundCheck();
+        if (playerSystem.state == Player_HealthSystem.characterState.Idle && cameraControlScript.inFirstPersonView == false)
         {
-            GroundCheck();
-            if (playerSystem.state == Player_HealthSystem.characterState.Idle && cameraControlScript.inFirstPersonView == false)
-            {
-                HorizontalMovement();
-            }
-
-            VerticalMovement();
-            AnimatePlayer();
+            HorizontalMovement();
         }
 
-        if (Input.GetKeyDown(KeyCode.T)) // debug only
-        {
-            this.GetComponentInParent<Transform>().SetPositionAndRotation(startPos.position , startPos.rotation);
-            Debug.Log(this.GetComponentInParent<Transform>().position);
-        }
+        VerticalMovement();
+        AnimatePlayer();
     }
 
     void GroundCheck(){
@@ -133,12 +123,9 @@ public class Player_Movement : MonoBehaviour
       }
 
       public void SetActorToCheckerLocation(){
-
-
-        this.GetComponentInParent<Transform>().SetPositionAndRotation(startPos.position, startPos.rotation);
-        model.transform.rotation = startPos.rotation; 
-
-    }
+           this.GetComponentInParent<Transform>().SetPositionAndRotation(startPos.position, startPos.rotation);
+           model.transform.rotation = startPos.rotation; 
+      }
 
       void AnimatePlayer(){
           playerAnim.Play_Run(Mathf.Abs(movementDirection.x)+Mathf.Abs(movementDirection.z));

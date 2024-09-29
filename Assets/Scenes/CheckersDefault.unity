@@ -292,6 +292,10 @@ PrefabInstance:
       propertyPath: m_NormalizedViewPortRect.width
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 2493709631589226702, guid: e1fba377b8aed9c4f94cdd7881953bd7, type: 3}
+      propertyPath: m_NormalizedViewPortRect.height
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4118197745093187383, guid: e1fba377b8aed9c4f94cdd7881953bd7, type: 3}
       propertyPath: startPos
       value: 
@@ -712,6 +716,7 @@ GameObject:
   - component: {fileID: 419844631}
   - component: {fileID: 419844632}
   - component: {fileID: 419844633}
+  - component: {fileID: 419844634}
   m_Layer: 0
   m_Name: Game System
   m_TagString: Untagged
@@ -861,6 +866,20 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &419844634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 419844628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f22e5a9465823642a70227a1ae5abaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timer: 0
+  timerLength: 20
 --- !u!1 &445316314 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8881001786001013030, guid: e1fba377b8aed9c4f94cdd7881953bd7, type: 3}

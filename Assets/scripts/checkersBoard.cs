@@ -58,6 +58,14 @@ public class checkersBoard : MonoBehaviour
     private bool savedIsWhiteTurn;
     private bool savedHasKilled;
 
+    //timer
+    private GameTimer gameTimer;
+
+    private void Awake()
+    {
+        gameTimer = FindAnyObjectByType<GameTimer>(); 
+    }
+
     private void Start()
     {
         isWhite = true;
@@ -65,8 +73,6 @@ public class checkersBoard : MonoBehaviour
         whitePieceLeft = 12;
         blackPieceLeft = 12;
         GenerateBoard();
-
-        
     }
 
     private void Update()
@@ -75,14 +81,15 @@ public class checkersBoard : MonoBehaviour
         //Debug.Log(mouseOver); //board collider -0.08 from edges, change when replacing asset
         if((isWhite) ? isWhiteTurn : !isWhiteTurn)
         {
+            int x = (int)mouseOver1.x;
+            int y = (int)mouseOver1.y;
             /*if (gameSystem.isAcornEvent)//event (so both players can move) or is white? is white turn else black moves 
             {*/
-                //Debug.Log("Select");
-                
+            //Debug.Log("Select");
+
             //if (isWhiteTurn)
             {
-                int x = (int)mouseOver1.x;
-                int y = (int)mouseOver1.y;
+                
 
                 if (selectedPiece != null)
                 {
@@ -122,6 +129,17 @@ public class checkersBoard : MonoBehaviour
                 }
             }*/
             //}
+
+            //timer stuff
+            if (gameTimer.GetTimer() <= 0)
+            {
+                if (selectedPiece != null)
+                {
+                    TryMove((int)startDrag.x, (int)startDrag.y, x, y);
+                    return;
+                }
+                EndTurn();
+            }
         }
         
     }
@@ -404,6 +422,7 @@ public class checkersBoard : MonoBehaviour
             mainCamera = p1Camera;
         }
         CheckVictory();
+        gameTimer.ResetTimer(); 
     }
     private void CheckVictory()
     {
