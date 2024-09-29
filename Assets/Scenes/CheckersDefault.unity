@@ -245,6 +245,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Opponent
       objectReference: {fileID: 0}
+    - target: {fileID: 1225582593225238495, guid: e1fba377b8aed9c4f94cdd7881953bd7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2493709631589226702, guid: e1fba377b8aed9c4f94cdd7881953bd7, type: 3}
       propertyPath: far clip plane
       value: 2000
@@ -3745,6 +3749,10 @@ PrefabInstance:
       propertyPath: isWhitePlayer
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4183640275070166891, guid: e1fba377b8aed9c4f94cdd7881953bd7, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4449907433901525923, guid: e1fba377b8aed9c4f94cdd7881953bd7, type: 3}
       propertyPath: m_TagString
       value: MainCamera
@@ -3804,6 +3812,10 @@ PrefabInstance:
     - target: {fileID: 7931539998857316701, guid: e1fba377b8aed9c4f94cdd7881953bd7, type: 3}
       propertyPath: m_CullingMode
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8115396454237062043, guid: e1fba377b8aed9c4f94cdd7881953bd7, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8726500885693375992, guid: e1fba377b8aed9c4f94cdd7881953bd7, type: 3}
       propertyPath: m_Materials.Array.data[0]
