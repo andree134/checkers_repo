@@ -179,7 +179,7 @@ Transform:
   m_GameObject: {fileID: 42251397}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0.02, y: 3.0738306, z: 11.5}
+  m_LocalPosition: {x: 0.02, y: 3.0738306, z: 7.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -280,6 +280,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1729899160853213968, guid: e1fba377b8aed9c4f94cdd7881953bd7, type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 56341316955ab0f4fb26560187bc39e8, type: 2}
     - target: {fileID: 2493709631589226702, guid: e1fba377b8aed9c4f94cdd7881953bd7, type: 3}
       propertyPath: far clip plane
       value: 2000
@@ -304,6 +308,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FirstPersonCamP2
       objectReference: {fileID: 0}
+    - target: {fileID: 4705348565328891809, guid: e1fba377b8aed9c4f94cdd7881953bd7, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5310073914291349905, guid: e1fba377b8aed9c4f94cdd7881953bd7, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
       value: 0.5
@@ -322,7 +330,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6276084289401147435, guid: e1fba377b8aed9c4f94cdd7881953bd7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 11.5
+      value: 7.5
       objectReference: {fileID: 0}
     - target: {fileID: 6276084289401147435, guid: e1fba377b8aed9c4f94cdd7881953bd7, type: 3}
       propertyPath: m_LocalRotation.w
@@ -769,8 +777,8 @@ MonoBehaviour:
   - {fileID: 1506655826}
   - {fileID: 27278508}
   - {fileID: 1909813878}
-  maxTimerForStartGame: 8
-  minTimerForStartGame: 6
+  maxTimerForStartGame: 10
+  minTimerForStartGame: 8
   maxTimerForEarlyGame: 6
   minTimerForEarlyGame: 4
   maxTimerForMidGame: 8
@@ -778,7 +786,7 @@ MonoBehaviour:
   maxTimerForLateGame: 4
   minTimerForLateGame: 3
   successRateForStartGame: 0.9
-  successRateForEarlyGame: 0.75
+  successRateForEarlyGame: 0.85
   successRateForMidGame: 0.67
   successRateForLateGame: 0.5
   isAcornEvent: 0
@@ -1922,7 +1930,7 @@ Transform:
   m_GameObject: {fileID: 998310590}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.02, y: 3.0738306, z: -11.5}
+  m_LocalPosition: {x: 0.02, y: 3.0738306, z: -7.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3814,6 +3822,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1729899160853213968, guid: e1fba377b8aed9c4f94cdd7881953bd7, type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 57564e3122703de439e690bccb8c9dfe, type: 2}
     - target: {fileID: 2493709631589226702, guid: e1fba377b8aed9c4f94cdd7881953bd7, type: 3}
       propertyPath: orthographic
       value: 0
@@ -3850,6 +3862,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4705348565328891809, guid: e1fba377b8aed9c4f94cdd7881953bd7, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5310073914291349905, guid: e1fba377b8aed9c4f94cdd7881953bd7, type: 3}
       propertyPath: orthographic
       value: 1
@@ -3868,7 +3884,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6276084289401147435, guid: e1fba377b8aed9c4f94cdd7881953bd7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -11.5
+      value: -7.5
       objectReference: {fileID: 0}
     - target: {fileID: 6276084289401147435, guid: e1fba377b8aed9c4f94cdd7881953bd7, type: 3}
       propertyPath: m_LocalRotation.w

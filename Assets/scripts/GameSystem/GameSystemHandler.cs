@@ -124,7 +124,6 @@ public class GameSystemHandler : MonoBehaviour
         isAcornEvent = true;  //Acorns start dropping. Camera shake required. shake for 1~2s max
         acornEventHappenedTime ++;
         shakeController.StartShaking(); 
-        Debug.Log("Acorn Event" + acornEventHappenedTime.ToString()+" happened");
 
         if (acornEventHappenedTime <= 2)
         {
@@ -136,14 +135,14 @@ public class GameSystemHandler : MonoBehaviour
                     spawningLocRef = whiteSideSpawningREF[Random.Range(0,7)];
                     spawningObject.transform.position = spawningLocRef.transform.position;
                     spawningObject.transform.rotation = Random.rotation;
-                    Destroy(spawningObject, 5f);
+                    Destroy(spawningObject, 6f);
                     yield return new WaitForSeconds(Random.Range(0.3f,0.6f));
 
                     spawningObject = Instantiate(spawnableObjects[0]);
                     spawningLocRef = blackSideSpawningREF[Random.Range(0,7)];
                     spawningObject.transform.position = spawningLocRef.transform.position;
                     spawningObject.transform.rotation = Random.rotation;
-                    Destroy(spawningObject, 5f);
+                    Destroy(spawningObject, 6f);
                     yield return new WaitForSeconds(Random.Range(0.3f,0.6f));
                 }
 
@@ -152,14 +151,14 @@ public class GameSystemHandler : MonoBehaviour
                     spawningLocRef = whiteSideSpawningREF[Random.Range(0,10)];
                     spawningObject.transform.position = spawningLocRef.transform.position;
                     spawningObject.transform.rotation = Random.rotation;
-                    Destroy(spawningObject, 5f);
+                    Destroy(spawningObject, 6f);
                     yield return new WaitForSeconds(Random.Range(0.3f,0.6f));
 
                     spawningObject = Instantiate(spawnableObjects[0]);
                     spawningLocRef = blackSideSpawningREF[Random.Range(0,10)];
                     spawningObject.transform.position = spawningLocRef.transform.position;
                     spawningObject.transform.rotation = Random.rotation;
-                    Destroy(spawningObject, 5f);
+                    Destroy(spawningObject, 6f);
                     yield return new WaitForSeconds(Random.Range(0.3f,0.6f));
                 }
             
@@ -178,14 +177,14 @@ public class GameSystemHandler : MonoBehaviour
                     spawningLocRef = whiteSideSpawningREF[Random.Range(0,7)];
                     spawningObject.transform.position = spawningLocRef.transform.position;
                     spawningObject.transform.rotation = Random.rotation;
-                    Destroy(spawningObject, 5f);
+                    Destroy(spawningObject, 6f);
                     yield return new WaitForSeconds(Random.Range(0.3f,0.6f));
 
                     spawningObject = Instantiate(spawnableObjects[0]);
                     spawningLocRef = blackSideSpawningREF[Random.Range(0,7)];
                     spawningObject.transform.position = spawningLocRef.transform.position;
                     spawningObject.transform.rotation = Random.rotation;
-                    Destroy(spawningObject, 5f);
+                    Destroy(spawningObject, 6f);
                     yield return new WaitForSeconds(Random.Range(0.3f,0.6f));
                 }
 
@@ -194,14 +193,14 @@ public class GameSystemHandler : MonoBehaviour
                     spawningLocRef = whiteSideSpawningREF[Random.Range(10,13)];
                     spawningObject.transform.position = spawningLocRef.transform.position;
                     spawningObject.transform.rotation = Random.rotation;
-                    Destroy(spawningObject, 5f);
+                    Destroy(spawningObject, 6f);
                     yield return new WaitForSeconds(Random.Range(0.3f,0.6f));
 
                     spawningObject = Instantiate(spawnableObjects[0]);
                     spawningLocRef = blackSideSpawningREF[Random.Range(10,13)];
                     spawningObject.transform.position = spawningLocRef.transform.position;
                     spawningObject.transform.rotation = Random.rotation;
-                    Destroy(spawningObject, 5f);
+                    Destroy(spawningObject, 6f);
                     yield return new WaitForSeconds(Random.Range(0.3f,0.6f));
                 }
 
@@ -210,14 +209,14 @@ public class GameSystemHandler : MonoBehaviour
                     spawningLocRef = whiteSideSpawningREF[Random.Range(0,10)];
                     spawningObject.transform.position = spawningLocRef.transform.position;
                     spawningObject.transform.rotation = Random.rotation;
-                    Destroy(spawningObject, 5f);
+                    Destroy(spawningObject, 6f);
                     yield return new WaitForSeconds(Random.Range(0.3f,0.6f));
 
                     spawningObject = Instantiate(spawnableObjects[0]);
                     spawningLocRef = blackSideSpawningREF[Random.Range(0,10)];
                     spawningObject.transform.position = spawningLocRef.transform.position;
                     spawningObject.transform.rotation = Random.rotation;
-                    Destroy(spawningObject, 5f);
+                    Destroy(spawningObject, 6f);
                     yield return new WaitForSeconds(Random.Range(0.3f,0.6f));
                 }
             
@@ -236,14 +235,14 @@ public class GameSystemHandler : MonoBehaviour
                     spawningLocRef = whiteSideSpawningREF[Random.Range(0,7)];
                     spawningObject.transform.position = spawningLocRef.transform.position;
                     spawningObject.transform.rotation = Random.rotation;
-                    Destroy(spawningObject, 5f);
+                    Destroy(spawningObject, 6f);
                     yield return new WaitForSeconds(Random.Range(0.3f,0.6f));
 
                     spawningObject = Instantiate(spawnableObjects[0]);
                     spawningLocRef = blackSideSpawningREF[Random.Range(0,7)];
                     spawningObject.transform.position = spawningLocRef.transform.position;
                     spawningObject.transform.rotation = Random.rotation;
-                    Destroy(spawningObject, 5f);
+                    Destroy(spawningObject, 6f);
                     yield return new WaitForSeconds(Random.Range(0.3f,0.6f));
                 }
 
@@ -252,14 +251,14 @@ public class GameSystemHandler : MonoBehaviour
                     spawningLocRef = whiteSideSpawningREF[Random.Range(10,13)];
                     spawningObject.transform.position = spawningLocRef.transform.position;
                     spawningObject.transform.rotation = Random.rotation;
-                    Destroy(spawningObject, 5f);
+                    Destroy(spawningObject, 6f);
                     yield return new WaitForSeconds(Random.Range(0.3f,0.6f));
 
                     spawningObject = Instantiate(spawnableObjects[0]);
                     spawningLocRef = blackSideSpawningREF[Random.Range(10,13)];
                     spawningObject.transform.position = spawningLocRef.transform.position;
                     spawningObject.transform.rotation = Random.rotation;
-                    Destroy(spawningObject, 5f);
+                    Destroy(spawningObject, 6f);
                     yield return new WaitForSeconds(Random.Range(0.3f,0.6f));
                 }
 
@@ -268,14 +267,14 @@ public class GameSystemHandler : MonoBehaviour
                     spawningLocRef = whiteSideSpawningREF[Random.Range(0,10)];
                     spawningObject.transform.position = spawningLocRef.transform.position;
                     spawningObject.transform.rotation = Random.rotation;
-                    Destroy(spawningObject, 5f);
+                    Destroy(spawningObject, 6f);
                     yield return new WaitForSeconds(Random.Range(0.3f,0.6f));
 
                     spawningObject = Instantiate(spawnableObjects[0]);
                     spawningLocRef = blackSideSpawningREF[Random.Range(0,10)];
                     spawningObject.transform.position = spawningLocRef.transform.position;
                     spawningObject.transform.rotation = Random.rotation;
-                    Destroy(spawningObject, 5f);
+                    Destroy(spawningObject, 6f);
                     yield return new WaitForSeconds(Random.Range(0.3f,0.6f));
                 }
             
@@ -294,14 +293,14 @@ public class GameSystemHandler : MonoBehaviour
                     spawningLocRef = whiteSideSpawningREF[Random.Range(0,7)];
                     spawningObject.transform.position = spawningLocRef.transform.position;
                     spawningObject.transform.rotation = Random.rotation;
-                    Destroy(spawningObject, 5f);
+                    Destroy(spawningObject, 6f);
                     yield return new WaitForSeconds(Random.Range(0.4f,0.6f));
 
                     spawningObject = Instantiate(spawnableObjects[0]);
                     spawningLocRef = blackSideSpawningREF[Random.Range(0,7)];
                     spawningObject.transform.position = spawningLocRef.transform.position;
                     spawningObject.transform.rotation = Random.rotation;
-                    Destroy(spawningObject, 5f);
+                    Destroy(spawningObject, 6f);
                     yield return new WaitForSeconds(Random.Range(0.4f,0.6f));
                 }
 
@@ -310,14 +309,14 @@ public class GameSystemHandler : MonoBehaviour
                     spawningLocRef = whiteSideSpawningREF[Random.Range(10,13)];
                     spawningObject.transform.position = spawningLocRef.transform.position;
                     spawningObject.transform.rotation = Random.rotation;
-                    Destroy(spawningObject, 5f);
+                    Destroy(spawningObject, 6f);
                     yield return new WaitForSeconds(Random.Range(0.4f,0.6f));
 
                     spawningObject = Instantiate(spawnableObjects[0]);
                     spawningLocRef = blackSideSpawningREF[Random.Range(10,13)];
                     spawningObject.transform.position = spawningLocRef.transform.position;
                     spawningObject.transform.rotation = Random.rotation;
-                    Destroy(spawningObject, 5f);
+                    Destroy(spawningObject, 6f);
                     yield return new WaitForSeconds(Random.Range(0.4f,0.6f));
                 }
 
@@ -326,14 +325,14 @@ public class GameSystemHandler : MonoBehaviour
                     spawningLocRef = whiteSideSpawningREF[Random.Range(0,10)];
                     spawningObject.transform.position = spawningLocRef.transform.position;
                     spawningObject.transform.rotation = Random.rotation;
-                    Destroy(spawningObject, 5f);
+                    Destroy(spawningObject, 6f);
                     yield return new WaitForSeconds(Random.Range(0.4f,0.6f));
 
                     spawningObject = Instantiate(spawnableObjects[0]);
                     spawningLocRef = blackSideSpawningREF[Random.Range(0,10)];
                     spawningObject.transform.position = spawningLocRef.transform.position;
                     spawningObject.transform.rotation = Random.rotation;
-                    Destroy(spawningObject, 5f);
+                    Destroy(spawningObject, 6f);
                     yield return new WaitForSeconds(Random.Range(0.4f,0.6f));
                 }
             
@@ -365,12 +364,12 @@ public class GameSystemHandler : MonoBehaviour
         else if(checkerData.whitePieceLeft<=9 || checkerData.blackPieceLeft <=9)
         {
             suceeseProbability = successRateForEarlyGame;
-            StartCoroutine(TryCallingSpawnAcorn(8.0f));  // start to genarate float to call acorn event again.
+            StartCoroutine(TryCallingSpawnAcorn(15.0f));  // start to genarate float to call acorn event again.
         }
 
         else
         {
-            StartCoroutine(TryCallingSpawnAcorn(8.0f));  // start to genarate float to call acorn event again.
+            StartCoroutine(TryCallingSpawnAcorn(20.0f));  // start to genarate float to call acorn event again.
         }           
         
     }

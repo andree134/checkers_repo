@@ -304,9 +304,11 @@ public class checkersBoard : MonoBehaviour
                         if(p.isWhite == true)  //jason's edit starts
                         {
                             whitePieceLeft--;
+                            Debug.Log("White Piece" + whitePieceLeft.ToString()+" left");
                         }
                         else
                         {
+                            Debug.Log("Black Piece" + blackPieceLeft.ToString()+" left");
                             blackPieceLeft--;
                         }                      //jason's edit ends
                         pieces[(x1 + x2) / 2, (y1 + y2) / 2] = null;
