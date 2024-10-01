@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player_HealthSystem : MonoBehaviour
 {
     public enum characterState {Idle = 0, KnockDown = 1, Died = 2};
+    public enum winOrLose {Draw = 0, Win = 1, Lose = 2};
 
     [SerializeField]
     private int maxHP = 3;
@@ -12,6 +13,9 @@ public class Player_HealthSystem : MonoBehaviour
 
     [SerializeField]
     public characterState state = characterState.Idle;
+    public winOrLose winState = winOrLose.Draw;
+
+    public bool isMovingPiece = false;
 
     private Player_Animation playerAnim;
     // Start is called before the first frame update
@@ -51,6 +55,8 @@ public class Player_HealthSystem : MonoBehaviour
 
     void AnimatePlayer(){
         playerAnim.Play_State((int)state);
+        playerAnim.Play_MovePiece(isMovingPiece);
+        playerAnim.Play_WinOrLose((int)winState);
       }
 
 }

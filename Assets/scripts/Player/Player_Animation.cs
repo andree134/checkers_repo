@@ -23,6 +23,10 @@ public class Player_Animation : MonoBehaviour
         playerState = characterState;
     }
 
+    public void Play_WinOrLose (int winOrLose){
+        anim.SetInteger("WinOrLose", winOrLose);
+    }
+
     // Start is called before the first frame update
     void Start()
     {

@@ -34,6 +34,10 @@ public class checkersBoard : MonoBehaviour
     public Camera p1Camera; //Player 1
     public Camera p2Camera; //Player 2
 
+    //players' System REF
+    [SerializeField] private Player_HealthSystem whitePlayerSystem;
+    [SerializeField] private Player_HealthSystem blackPlayerSystem;
+
     public GameSystemHandler gameSystem;
 
     private Piece selectedPiece;
@@ -455,10 +459,14 @@ public class checkersBoard : MonoBehaviour
         if (isWhite)
         {
             Debug.Log("White team has won");
+            whitePlayerSystem.winState = Player_HealthSystem.winOrLose.Win;
+            blackPlayerSystem.winState = Player_HealthSystem.winOrLose.Lose;
         }
         else
         {
             Debug.Log("Black team has won");
+            whitePlayerSystem.winState = Player_HealthSystem.winOrLose.Lose;
+            blackPlayerSystem.winState = Player_HealthSystem.winOrLose.Win;
         }
     }
 
@@ -512,6 +520,16 @@ public class checkersBoard : MonoBehaviour
     private void MovePiece(Piece p, int x, int y)
     {
         p.transform.position = (Vector3.right * x) + (Vector3.forward * y) + boardOffset + pieceOffset;
+
+        if(p.isWhite == true)
+        {
+            StartCoroutine(WhiteIsMoveing());
+        }
+
+        else
+        {
+            StartCoroutine(BlackIsMoveing());
+        }
     }
 
     ///////////////////////
@@ -553,5 +571,21 @@ public class checkersBoard : MonoBehaviour
             gameSystem.isAcornEvent = false;
             Debug.Log("Cheater! Board Restored");
         }
+    }
+
+
+    //Calling Player "MovePiece" Animations//
+    IEnumerator WhiteIsMoveing(){
+        whitePlayerSystem.isMovingPiece = true;
+        yield return new WaitForSeconds(2.0f);
+        whitePlayerSystem.isMovingPiece = false;
+
+    }
+
+    IEnumerator BlackIsMoveing(){
+        blackPlayerSystem.isMovingPiece = true;
+        yield return new WaitForSeconds(2.0f);
+        blackPlayerSystem.isMovingPiece = false;
+
     }
 }
