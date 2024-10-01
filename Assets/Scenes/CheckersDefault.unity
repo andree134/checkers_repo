@@ -269,6 +269,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1177386919}
     - target: {fileID: 982313998228179084, guid: e1fba377b8aed9c4f94cdd7881953bd7, type: 3}
+      propertyPath: checkersBoard
+      value: 
+      objectReference: {fileID: 1369893384}
+    - target: {fileID: 982313998228179084, guid: e1fba377b8aed9c4f94cdd7881953bd7, type: 3}
       propertyPath: playerMovementScript
       value: 
       objectReference: {fileID: 1355872079}
@@ -3834,6 +3838,10 @@ PrefabInstance:
       propertyPath: secondCamera
       value: 
       objectReference: {fileID: 160921710}
+    - target: {fileID: 982313998228179084, guid: e1fba377b8aed9c4f94cdd7881953bd7, type: 3}
+      propertyPath: checkersBoard
+      value: 
+      objectReference: {fileID: 1369893384}
     - target: {fileID: 982313998228179084, guid: e1fba377b8aed9c4f94cdd7881953bd7, type: 3}
       propertyPath: p1FirstCamera
       value: 

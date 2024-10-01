@@ -532,6 +532,14 @@ public class checkersBoard : MonoBehaviour
         }
     }
 
+    public bool IsPieceSelected()
+    {
+        if (selectedPiece == null)
+            return false;
+        else
+            return true;
+    }
+
     ///////////////////////
     //cheating mechanics
     //////////////////////

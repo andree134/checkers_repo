@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class cameraSwitch : MonoBehaviour
 {
+    public checkersBoard checkersBoard; 
     public Camera firstCamera;
     public Camera secondCamera;
     public bool inFirstPersonView;
@@ -24,7 +25,8 @@ public class cameraSwitch : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            if(inFirstPersonView){
+            if(inFirstPersonView && !checkersBoard.IsPieceSelected())
+            {
                 SwitchCamera();
             }
             else if(!inFirstPersonView && ableToSwitchCamera){
