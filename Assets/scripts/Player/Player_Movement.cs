@@ -53,7 +53,7 @@ public class Player_Movement : MonoBehaviour
     void Update()
     {
         GroundCheck();
-        if (playerSystem.state == Player_HealthSystem.characterState.Idle && cameraControlScript.inFirstPersonView == false)
+        if (playerSystem.state == Player_HealthSystem.characterState.Idle && cameraControlScript.inFirstPersonView == false && playerSystem.winState == Player_HealthSystem.winOrLose.Draw)
         {
             HorizontalMovement();
         }

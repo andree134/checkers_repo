@@ -11,9 +11,11 @@ public class Player_HealthSystem : MonoBehaviour
     private int maxHP = 3;
     public int currentHP;
 
-    [SerializeField]
     public characterState state = characterState.Idle;
     public winOrLose winState = winOrLose.Draw;
+
+    [SerializeField]
+    public Player_HealthSystem opponentSystem;
 
     public bool isMovingPiece = false;
 
@@ -50,6 +52,8 @@ public class Player_HealthSystem : MonoBehaviour
     private void CheckDealth (){
         if (currentHP <= 0){
             state = characterState.Died;
+            winState = winOrLose.Lose;
+            opponentSystem.winState = Player_HealthSystem.winOrLose.Win;
         }
     }
 

@@ -280,6 +280,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1269827701097428096, guid: e1fba377b8aed9c4f94cdd7881953bd7, type: 3}
+      propertyPath: opponentSystem
+      value: 
+      objectReference: {fileID: 809395786}
     - target: {fileID: 1729899160853213968, guid: e1fba377b8aed9c4f94cdd7881953bd7, type: 3}
       propertyPath: m_Materials.Array.data[2]
       value: 
@@ -785,7 +789,7 @@ MonoBehaviour:
   minTimerForMidGame: 3
   maxTimerForLateGame: 4
   minTimerForLateGame: 3
-  successRateForStartGame: 0.9
+  successRateForStartGame: 1.1
   successRateForEarlyGame: 0.85
   successRateForMidGame: 0.67
   successRateForLateGame: 0.5
@@ -3846,6 +3850,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1269827701097428096, guid: e1fba377b8aed9c4f94cdd7881953bd7, type: 3}
+      propertyPath: opponentSystem
+      value: 
+      objectReference: {fileID: 1732707616}
     - target: {fileID: 1729899160853213968, guid: e1fba377b8aed9c4f94cdd7881953bd7, type: 3}
       propertyPath: m_Materials.Array.data[2]
       value: 
@@ -4208,11 +4216,11 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 164414f339ef3684483c13069073c64f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: -1444460858095362738, guid: 2289ccc92450116478cb69a5f978ec46, type: 3}
+      objectReference: {fileID: 3535187320743644074, guid: 05e86da7e6256224595c1be8c580ead8, type: 3}
     - target: {fileID: -7511558181221131132, guid: 164414f339ef3684483c13069073c64f, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 7650267187344067039, guid: 2289ccc92450116478cb69a5f978ec46, type: 3}
+      objectReference: {fileID: 3535187320743644074, guid: 05e86da7e6256224595c1be8c580ead8, type: 3}
     - target: {fileID: 919132149155446097, guid: 164414f339ef3684483c13069073c64f, type: 3}
       propertyPath: m_Name
       value: TestTree02

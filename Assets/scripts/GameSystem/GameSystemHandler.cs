@@ -123,6 +123,7 @@ public class GameSystemHandler : MonoBehaviour
     IEnumerator SpawnAcornEvent(){
         isAcornEvent = true;  //Acorns start dropping. Camera shake required. shake for 1~2s max
         acornEventHappenedTime ++;
+        Debug.Log("Acorn event happens the" + acornEventHappenedTime.ToString()+" times");
         shakeController.StartShaking(); 
 
         if (acornEventHappenedTime <= 2)
@@ -169,7 +170,7 @@ public class GameSystemHandler : MonoBehaviour
 
         else if (acornEventHappenedTime > 2 && acornEventHappenedTime <= 8)
         {
-            int spawningNumber = Random.Range(2 , 3);
+            int spawningNumber = Random.Range(2 , 4);
             for (int i=0 ; i < spawningNumber ; i++){
 
                 if(i%2 == 0){
@@ -227,7 +228,7 @@ public class GameSystemHandler : MonoBehaviour
 
         else if (acornEventHappenedTime > 8 && acornEventHappenedTime <= 15)
         {
-            int spawningNumber = Random.Range(3 , 4);
+            int spawningNumber = Random.Range(3 , 5);
             for (int i=0 ; i < spawningNumber ; i++){
 
                 if(i%2 == 0){
@@ -285,7 +286,7 @@ public class GameSystemHandler : MonoBehaviour
 
         else 
         {
-            int spawningNumber = Random.Range(3 , 5);
+            int spawningNumber = Random.Range(3 , 6);
             for (int i=0 ; i < spawningNumber ; i++){
 
                 if(i%2 == 0){
@@ -352,7 +353,7 @@ public class GameSystemHandler : MonoBehaviour
         else if (checkerData.whitePieceLeft<=3 || checkerData.blackPieceLeft <=3)
         {
             suceeseProbability = successRateForLateGame;
-            StartCoroutine(TryCallingSpawnAcorn(Random.Range(8.0f,12.0f)));  // start to genarate float to call acorn event again.
+            StartCoroutine(TryCallingSpawnAcorn(Random.Range(10.0f,15.0f)));  // start to genarate float to call acorn event again.
         }
 
         else if(checkerData.whitePieceLeft<=6 || checkerData.blackPieceLeft <=6)

@@ -29,7 +29,7 @@ public class DamagingPlayers : MonoBehaviour
 
             playerHealth = other.gameObject.GetComponent<Player_HealthSystem>();
 
-            if (playerHealth.state == Player_HealthSystem.characterState.Idle)
+            if (playerHealth.state == Player_HealthSystem.characterState.Idle && playerHealth.winState == Player_HealthSystem.winOrLose.Draw)
             {
                 if (isDeathZone == true)
                 {
