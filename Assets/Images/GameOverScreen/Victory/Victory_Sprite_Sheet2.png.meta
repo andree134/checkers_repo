@@ -1,0 +1,492 @@
+fileFormatVersion: 2
+guid: d15b70e1754b7544c997988bda24804c
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Victory_Sprite_Sheet2_0
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 1104
+        width: 156
+        height: 198
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c88faf072eccdf43b4ac91642c1ad08
+      internalID: 213803677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Victory_Sprite_Sheet2_1
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 1141
+        width: 131
+        height: 187
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0cdc3d9db0e3164cad774d4a0a1d3e5
+      internalID: 456401352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Victory_Sprite_Sheet2_2
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 1120
+        width: 179
+        height: 172
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdc016dd64166c14bb1b5c344949f30f
+      internalID: 348898577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Victory_Sprite_Sheet2_3
+      rect:
+        serializedVersion: 2
+        x: 676
+        y: 1098
+        width: 254
+        height: 246
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1cbde162460d64d4ca6afad2f88c9b88
+      internalID: -1913820182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Victory_Sprite_Sheet2_4
+      rect:
+        serializedVersion: 2
+        x: 1025
+        y: 984
+        width: 179
+        height: 177
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b02b4ffcea8990c4fa277ab48524feb6
+      internalID: 549089090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Victory_Sprite_Sheet2_5
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 843
+        width: 119
+        height: 211
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0c0e7a3a95ce7f40b9e6128dc82aa0b
+      internalID: 2023149099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Victory_Sprite_Sheet2_6
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 839
+        width: 213
+        height: 227
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71b0139110b5d384ab5de7674b215292
+      internalID: -1020852084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Victory_Sprite_Sheet2_7
+      rect:
+        serializedVersion: 2
+        x: 543
+        y: 779
+        width: 96
+        height: 245
+      alignment: 9
+      pivot: {x: 0.07374319, y: 0.9523535}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa1494fa16244be47b28948acb72b069
+      internalID: -1678131979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Victory_Sprite_Sheet2_8
+      rect:
+        serializedVersion: 2
+        x: 724
+        y: 398
+        width: 526
+        height: 480
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d6b94153bf2ff24d855e4d29c82e7aa
+      internalID: 240458966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Victory_Sprite_Sheet2_9
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 594
+        width: 110
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0fba17a9877dcba47b70866a3022ea97
+      internalID: -2041620976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Victory_Sprite_Sheet2_10
+      rect:
+        serializedVersion: 2
+        x: 283
+        y: 627
+        width: 156
+        height: 142
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27041a41bbffa75418a77a4a99939015
+      internalID: 1695756821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Victory_Sprite_Sheet2_11
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 48
+        width: 355
+        height: 474
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: adffb995ba8c8ca409c88cc690587b60
+      internalID: -1173880456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Victory_Sprite_Sheet2_12
+      rect:
+        serializedVersion: 2
+        x: 511
+        y: 366
+        width: 141
+        height: 261
+      alignment: 9
+      pivot: {x: 0.56046116, y: 0.9572861}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc0e2d352075a894f807d0ad49c28783
+      internalID: -521966962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Victory_Sprite_Sheet2_13
+      rect:
+        serializedVersion: 2
+        x: 517
+        y: 52
+        width: 289
+        height: 265
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f40ab4e9ddcdb26498db6669e5fdf001
+      internalID: -1397658659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Victory_Sprite_Sheet2_14
+      rect:
+        serializedVersion: 2
+        x: 1006
+        y: 76
+        width: 31
+        height: 227
+      alignment: 9
+      pivot: {x: 0.49999607, y: 0.9807117}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0d4ee496a4c4f945b25f5bd97b0324f
+      internalID: 786546530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Victory_Sprite_Sheet2_15
+      rect:
+        serializedVersion: 2
+        x: 1157
+        y: 85
+        width: 30
+        height: 209
+      alignment: 9
+      pivot: {x: 0.67050374, y: 0.96500653}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63b165b64629dca4885bdcef3d1cc653
+      internalID: 1290553345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: ced9128ee3949b44f884512e71f41b5f
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Victory_Sprite_Sheet2_0: 213803677
+      Victory_Sprite_Sheet2_1: 456401352
+      Victory_Sprite_Sheet2_10: 1695756821
+      Victory_Sprite_Sheet2_11: -1173880456
+      Victory_Sprite_Sheet2_12: -521966962
+      Victory_Sprite_Sheet2_13: -1397658659
+      Victory_Sprite_Sheet2_14: 786546530
+      Victory_Sprite_Sheet2_15: 1290553345
+      Victory_Sprite_Sheet2_2: 348898577
+      Victory_Sprite_Sheet2_3: -1913820182
+      Victory_Sprite_Sheet2_4: 549089090
+      Victory_Sprite_Sheet2_5: 2023149099
+      Victory_Sprite_Sheet2_6: -1020852084
+      Victory_Sprite_Sheet2_7: -1678131979
+      Victory_Sprite_Sheet2_8: 240458966
+      Victory_Sprite_Sheet2_9: -2041620976
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
