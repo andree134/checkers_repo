@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameSystemHandler : MonoBehaviour
 {
@@ -47,7 +48,7 @@ public class GameSystemHandler : MonoBehaviour
     public bool isAcornEvent;
     private int acornEventHappenedTime;
 
-
+    public static PlayerInputManager inputManager; 
 
     // Start is called before the first frame update
     void Start()
@@ -58,8 +59,8 @@ public class GameSystemHandler : MonoBehaviour
         suceeseProbability = successRateForStartGame;
         isAcornEvent = false;
         StartCoroutine(TryCallingSpawnAcorn(Random.Range(20.0f,30.0f)));
-        
-        
+
+        inputManager = GetComponent<PlayerInputManager>();
     }
 
     // Update is called once per frame
@@ -122,6 +123,7 @@ public class GameSystemHandler : MonoBehaviour
     // Acorn Event Content
     IEnumerator SpawnAcornEvent(){
         isAcornEvent = true;  //Acorns start dropping. Camera shake required. shake for 1~2s max
+        Debug.Log("Acorn Event is true");
         acornEventHappenedTime ++;
         Debug.Log("Acorn event happens the" + acornEventHappenedTime.ToString()+" times");
         shakeController.StartShaking(); 
@@ -166,6 +168,7 @@ public class GameSystemHandler : MonoBehaviour
             }
 
             isAcornEvent = false;
+            Debug.Log("Acorn event false");
         }
 
         else if (acornEventHappenedTime > 2 && acornEventHappenedTime <= 8)

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShakeController : MonoBehaviour
 {
-    private ScreenShake[] shakers;
+    [SerializeField] private ScreenShake[] shakers;
     public float duration = 2f;
     public AnimationCurve curve;
 
@@ -24,6 +24,20 @@ public class ShakeController : MonoBehaviour
         foreach (ScreenShake shaker in shakers)
         {
             shaker.Shake(); 
+        }
+    }
+
+    private void Update()
+    {
+        if (shakers.Length < 4)
+        {
+            shakers = (ScreenShake[])FindObjectsOfType(typeof(ScreenShake));
+
+            foreach (ScreenShake shaker in shakers)
+            {
+                shaker.SetDuration(duration);
+                shaker.SetCurve(curve);
+            }
         }
     }
 }

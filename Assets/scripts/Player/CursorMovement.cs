@@ -13,6 +13,13 @@ public class CursorMovement : MonoBehaviour
 
     [SerializeField] bool isWhitePlayer;
 
+    [SerializeField] PlayerInput playerInput;
+
+
+    private void Awake()
+    {
+        playerInput = GetComponentInParent<PlayerInput>();
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -26,19 +33,25 @@ public class CursorMovement : MonoBehaviour
         {
            Inputs();            
         }
-        transform.Translate(horizontalInput * speed * Time.deltaTime, -verticalInput * speed * Time.deltaTime, 0f);
+        transform.Translate(horizontalInput * speed * Time.deltaTime, verticalInput * speed * Time.deltaTime, 0f);
     }
     void Inputs()
     {
         if (isWhitePlayer)
         {
-            horizontalInput = Input.GetAxis("P1Horizontal");
-            verticalInput = Input.GetAxis("P1Vertical");
+            //horizontalInput = Input.GetAxis("P1Horizontal");
+            //verticalInput = Input.GetAxis("P1Vertical");
+
+            horizontalInput = playerInput.actions["Move"].ReadValue<Vector2>().x;
+            verticalInput = playerInput.actions["Move"].ReadValue<Vector2>().y;
         }
         else
         {
-            horizontalInput = Input.GetAxis("P2Horizontal");
-            verticalInput = Input.GetAxis("P2Vertical");
+            //horizontalInput = Input.GetAxis("P2Horizontal");
+            //verticalInput = Input.GetAxis("P2Vertical");
+
+            horizontalInput = playerInput.actions["Move"].ReadValue<Vector2>().x;
+            verticalInput = playerInput.actions["Move"].ReadValue<Vector2>().y;
         }
     }
 }

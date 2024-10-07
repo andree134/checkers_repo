@@ -65,6 +65,14 @@ public class checkersBoard : MonoBehaviour
     //timer
     private GameTimer gameTimer;
 
+    [SerializeField] private PlayerInput playerInput;
+    [SerializeField] private PlayerInput playerInput2;
+
+    private void OnValidate()
+    {
+        playerInput = GameObject.Find("Player").GetComponent<PlayerInput>();  
+    }
+
     private void Awake()
     {
         gameTimer = FindAnyObjectByType<GameTimer>(); 
@@ -91,7 +99,7 @@ public class checkersBoard : MonoBehaviour
             {*/
             //Debug.Log("Select");
 
-            //if (isWhiteTurn)
+            if (isWhiteTurn)
             {
                 
 
@@ -100,42 +108,64 @@ public class checkersBoard : MonoBehaviour
                     UpdatePieceDrag(selectedPiece);
                 }
 
-                if (Input.GetButtonDown("Fire1"))
+                //if (Input.GetButtonDown("Fire1"))
+                //{
+                //    SelectPiece(x, y);
+                //}
+
+                //if (Input.GetButtonUp("Fire1"))
+                //{
+                //    TryMove((int)startDrag.x, (int)startDrag.y, x, y);
+                //}
+
+                if (playerInput.actions["Action"].IsPressed())
                 {
                     SelectPiece(x, y);
-                   // Debug.Log("Pressed");
                 }
 
-                if (Input.GetButtonUp("Fire1"))
+                if (playerInput.actions["Action"].WasReleasedThisFrame())
                 {
                     TryMove((int)startDrag.x, (int)startDrag.y, x, y);
                 }
             }
-            /*else
+            else
             {
-                int x = (int)mouseOver2.x;
-                int y = (int)mouseOver2.y;
+                if (playerInput2 == null)
+                    playerInput2 = GameObject.Find("Opponent(Clone)").GetComponent<PlayerInput>();
+
+                int x2 = (int)mouseOver2.x;
+                int y2 = (int)mouseOver2.y;
 
                 if (selectedPiece != null)
                 {
                     UpdatePieceDrag(selectedPiece);
                 }
 
-                if (Input.GetButtonDown("Fire2"))
+                //if (Input.GetButtonDown("Fire2"))
+                //{
+                //    SelectPiece(x, y);
+                //    Debug.Log("Pressed");
+                //}
+
+                //if (Input.GetButtonUp("Fire2"))
+                //{
+                //    TryMove((int)startDrag.x, (int)startDrag.y, x, y);
+                //}
+
+                if (playerInput2.actions["Action"].IsPressed())
                 {
-                    SelectPiece(x, y);
-                    Debug.Log("Pressed");
+                    SelectPiece(x2, y2);
                 }
 
-                if (Input.GetButtonUp("Fire2"))
+                if (playerInput2.actions["Action"].WasReleasedThisFrame())
                 {
-                    TryMove((int)startDrag.x, (int)startDrag.y, x, y);
+                    TryMove((int)startDrag.x, (int)startDrag.y, x2, y2);
                 }
-            }*/
-            //}
+            }
+        //}
 
-            //timer stuff
-            if (gameTimer.GetTimer() <= 0)
+        //timer stuff
+        if (gameTimer.GetTimer() <= 0)
             {
                 if (selectedPiece != null)
                 {
@@ -169,15 +199,22 @@ public class checkersBoard : MonoBehaviour
             mouseOver.y = -1;
         }
     }*/
+
+    
     private void UpdateMouseOver()
     {
+        if (cursor2 == null) //todo change this to stop exceptions
+        {
+            cursor2 = GameObject.Find("Opponent(Clone)").GetComponentInChildren<CursorMovement>().gameObject.transform;
+        }
+
         //if player turn
         if (!mainCamera)
         {
             Debug.Log("No main camera found");
             return;
         }
-        //if (isWhiteTurn)
+        if (isWhiteTurn)
         {
 
             RaycastHit hit;
@@ -193,7 +230,7 @@ public class checkersBoard : MonoBehaviour
                 mouseOver1.y = -1;
             }
         }
-       /* else
+        else
         {
             RaycastHit hit;
             if (Physics.Raycast(cursor2.position, -Vector3.up, out hit, 25.0f, LayerMask.GetMask("Board"))) //if the mouse is on board
@@ -207,7 +244,7 @@ public class checkersBoard : MonoBehaviour
                 mouseOver2.x = -1;
                 mouseOver2.y = -1;
             }
-        }*/
+        }
     }
     private void UpdatePieceDrag(Piece p) //lift up piece
     {
@@ -217,7 +254,7 @@ public class checkersBoard : MonoBehaviour
             Debug.Log("No main camera found");
             return;
         }
-        //if (isWhiteTurn)
+        if (isWhiteTurn)
         {
 
             RaycastHit hit;
@@ -226,14 +263,14 @@ public class checkersBoard : MonoBehaviour
                 p.transform.position = hit.point + Vector3.up;
             }
         }
-       /* else
+        else
         {
             RaycastHit hit;
             if (Physics.Raycast(cursor2.position, -Vector3.up, out hit, 25.0f, LayerMask.GetMask("Board")))
             {
                 p.transform.position = hit.point + Vector3.up;
             }
-        }*/
+        }
     }
     private void ResetMove()
     {
@@ -248,21 +285,21 @@ public class checkersBoard : MonoBehaviour
             return;
 
         Piece p = pieces[x, y];
-        if(p != null && p.isWhite == isWhite)
+        if (p != null && p.isWhite == isWhite)
         {
-            //if(isWhiteTurn)
-            {
+         if(isWhiteTurn)
+               {
             selectedPiece = p;
             startDrag = mouseOver1;
 
             }
-           /* else
+            else
             {
                 selectedPiece = p;
                 startDrag = mouseOver2;
 
 
-            }*/
+            }
 
         }
     }
@@ -329,6 +366,7 @@ public class checkersBoard : MonoBehaviour
                 if (hasKilled && CanContinueJump(selectedPiece, x2, y2)|| gameSystem.isAcornEvent)//Does not end turn
                 {
                     startDrag = new Vector2(x2, y2); //update start pos
+                    selectedPiece = null; 
                     return;
                 }
                 else
@@ -428,7 +466,8 @@ public class checkersBoard : MonoBehaviour
             mainCamera = p1Camera;
         }
         CheckVictory();
-        gameTimer.ResetTimer(); 
+        gameTimer.ResetTimer();
+        Debug.Log("Turn Ended");
     }
     private void CheckVictory()
     {

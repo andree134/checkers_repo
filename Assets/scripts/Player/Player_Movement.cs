@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Player_Movement : MonoBehaviour
 {
@@ -39,6 +40,13 @@ public class Player_Movement : MonoBehaviour
       private Player_HealthSystem playerSystem;
       private cameraSwitch cameraControlScript;
 
+      [SerializeField] private PlayerInput playerInput;
+
+    private void OnValidate()
+    {
+        playerInput = GetComponent<PlayerInput>();
+    }
+
     // Start is called before the first frame update
     void Awake()
     {        
@@ -46,6 +54,8 @@ public class Player_Movement : MonoBehaviour
         playerSystem = GetComponent<Player_HealthSystem>();
         cameraControlScript = GetComponent<cameraSwitch>();
         playerAnim=GetComponent<Player_Animation>();
+
+        
     }
 
 
@@ -80,13 +90,20 @@ public class Player_Movement : MonoBehaviour
 
         if (isWhitePlayer)
         {
-            horizontalInput = Input.GetAxis("P1Horizontal");
-            verticalInput = -Input.GetAxis("P1Vertical");
+            //horizontalInput = Input.GetAxis("P1Horizontal");
+            //verticalInput = -Input.GetAxis("P1Vertical");
+
+            horizontalInput = playerInput.actions["Move"].ReadValue<Vector2>().x;
+            verticalInput = playerInput.actions["Move"].ReadValue<Vector2>().y;
         }
         else
         {
-            horizontalInput = Input.GetAxis("P2Horizontal");
-            verticalInput = -Input.GetAxis("P2Vertical");
+            //horizontalInput = Input.GetAxis("P2Horizontal");
+            //verticalInput = -Input.GetAxis("P2Vertical");
+
+            horizontalInput = playerInput.actions["Move"].ReadValue<Vector2>().x;
+            verticalInput = playerInput.actions["Move"].ReadValue<Vector2>().y;
+
         }
 
         movementDirection =new Vector3(horizontalInput, 0, verticalInput);
@@ -102,9 +119,10 @@ public class Player_Movement : MonoBehaviour
       }
 
       void RotateCharacter(float horizontalInput, float verticalInput){
-        if(horizontalInput!=0||verticalInput!=0){
-            transform.rotation=Quaternion.Euler(0.0f, mainCamera.transform.rotation.eulerAngles.y,0.0f);
-            model.transform.rotation=Quaternion.Slerp(
+            if(horizontalInput!=0||verticalInput!=0)
+        {
+                transform.rotation=Quaternion.Euler(0.0f, mainCamera.transform.rotation.eulerAngles.y,0.0f);
+                model.transform.rotation=Quaternion.Slerp(
                 model.transform.rotation,
                 Quaternion.LookRotation(new Vector3(movementDirection.x,0.0f,movementDirection.z)),
                 rotateSpeed*Time.deltaTime);
