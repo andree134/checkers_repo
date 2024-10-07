@@ -14,8 +14,9 @@ public class Player_HealthSystem : MonoBehaviour
     public characterState state = characterState.Idle;
     public winOrLose winState = winOrLose.Draw;
 
-    [SerializeField]
-    public Player_HealthSystem opponentSystem;
+    [SerializeField] public Player_HealthSystem opponentSystem;
+
+    [SerializeField] private GameSystemHandler gameSystemREF;
 
     public bool isMovingPiece = false;
 
@@ -38,7 +39,10 @@ public class Player_HealthSystem : MonoBehaviour
         //Debug.Log("Player is damaged.");
         state = characterState.KnockDown;
         StartCoroutine(Recovering());
-        CheckDealth();
+        if(currentHP<=1){
+            gameSystemREF.PlayEndgamePhase();
+        }
+        StartCoroutine(CheckDealth()); 
 
     }
 
@@ -49,11 +53,16 @@ public class Player_HealthSystem : MonoBehaviour
         }
     }
 
-    private void CheckDealth (){
+    IEnumerator CheckDealth (){
         if (currentHP <= 0){
+
+
             state = characterState.Died;
             winState = winOrLose.Lose;
             opponentSystem.winState = Player_HealthSystem.winOrLose.Win;
+            yield return new WaitForSeconds(2.0f);
+            // shows gameover UI
+            gameSystemREF.PlayGameoverPhase();
         }
     }
 

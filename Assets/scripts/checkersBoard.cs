@@ -38,7 +38,7 @@ public class checkersBoard : MonoBehaviour
     [SerializeField] private Player_HealthSystem whitePlayerSystem;
     [SerializeField] private Player_HealthSystem blackPlayerSystem;
 
-    public GameSystemHandler gameSystem;
+    [SerializeField] public GameSystemHandler gameSystem;
 
     private Piece selectedPiece;
     
@@ -314,7 +314,7 @@ public class checkersBoard : MonoBehaviour
         if(x2<0 || x2 >= 8 || y2<0 || y2 >= 8)
         {
             if(selectedPiece != null)
-                MovePiece(selectedPiece, x1, y1);//return piece to initial pos
+                MovePiece(selectedPiece, x1, y1, false);//return piece to initial pos
 
             ResetMove();
             return;
@@ -325,7 +325,7 @@ public class checkersBoard : MonoBehaviour
             //if piece didn't move
             if(endDrag == startDrag)
             {
-                MovePiece(selectedPiece, x1, y1);
+                MovePiece(selectedPiece, x1, y1, false);
                 ResetMove();
                 return;
             }
@@ -337,20 +337,29 @@ public class checkersBoard : MonoBehaviour
             {
                 //was anything killed
                 //if the move involves a capture
+
                 if (Mathf.Abs(x2 - x1) == 2)
                 {
                     Piece p = pieces[(x1 + x2) / 2, (y1 + y2) / 2];
                     if (p != null)
                     {
+                        
                         if(p.isWhite == true)  //jason's edit starts
                         {
                             whitePieceLeft--;
+                             if (whitePieceLeft<=3){
+                                gameSystem.PlayEndgamePhase();
+                            }
+
                             //Debug.Log("White Piece" + whitePieceLeft.ToString()+" left");
                         }
                         else
                         {
                             //Debug.Log("Black Piece" + blackPieceLeft.ToString()+" left");
                             blackPieceLeft--;
+                             if(blackPieceLeft<=3){
+                                gameSystem.PlayEndgamePhase();
+                            }
                         }                      //jason's edit ends
                         pieces[(x1 + x2) / 2, (y1 + y2) / 2] = null;
                         Destroy(p.gameObject);
@@ -361,7 +370,7 @@ public class checkersBoard : MonoBehaviour
                 // Update board state
                 pieces[x2, y2] = selectedPiece;
                 pieces[x1, y1] = null;
-                MovePiece(selectedPiece, x2, y2);
+                MovePiece(selectedPiece, x2, y2, true);
 
                 if (hasKilled && CanContinueJump(selectedPiece, x2, y2)|| gameSystem.isAcornEvent)//Does not end turn
                 {
@@ -376,7 +385,7 @@ public class checkersBoard : MonoBehaviour
             }
             else //if move is not valid, reset
             {
-                MovePiece(selectedPiece, x1, y1);
+                MovePiece(selectedPiece, x1, y1, false);
                 ResetMove();
                 return;
             }
@@ -486,26 +495,32 @@ public class checkersBoard : MonoBehaviour
         }
         if (!hasWhite)
         {
-            Victory(false);
+            StartCoroutine(Victory(false));
         }
         if (!hasBlack)
         {
-            Victory(true);
+            StartCoroutine(Victory(true));
         }
     }
-    private void Victory(bool isWhite)
+    IEnumerator Victory(bool isWhite)
     {
         if (isWhite)
         {
             Debug.Log("White team has won");
             whitePlayerSystem.winState = Player_HealthSystem.winOrLose.Win;
             blackPlayerSystem.winState = Player_HealthSystem.winOrLose.Lose;
+            yield return new WaitForSeconds(2.0f);
+            // shows gameover UI
+            gameSystem.PlayGameoverPhase();
         }
         else
         {
             Debug.Log("Black team has won");
             whitePlayerSystem.winState = Player_HealthSystem.winOrLose.Lose;
             blackPlayerSystem.winState = Player_HealthSystem.winOrLose.Win;
+            yield return new WaitForSeconds(2.0f);
+            // shows gameover UI
+            gameSystem.PlayGameoverPhase();
         }
     }
 
@@ -554,21 +569,22 @@ public class checkersBoard : MonoBehaviour
         gopiece.transform.SetParent(transform);
         Piece p = gopiece.GetComponent<Piece>();
         pieces[x, y] = p;
-        MovePiece(p,x,y);
+        MovePiece(p,x,y,false);
     }
-    private void MovePiece(Piece p, int x, int y)
+    private void MovePiece(Piece p, int x, int y, bool anim)
     {
         p.transform.position = (Vector3.right * x) + (Vector3.forward * y) + boardOffset + pieceOffset;
 
-        if(p.isWhite == true)
+        if(p.isWhite == true && anim ==true)
         {
             StartCoroutine(WhiteIsMoveing());
         }
 
-        else
+        else if(p.isWhite == false && anim ==true)
         {
-            StartCoroutine(BlackIsMoveing());
+             StartCoroutine(BlackIsMoveing());
         }
+
     }
 
     public bool IsPieceSelected()
@@ -605,7 +621,7 @@ public class checkersBoard : MonoBehaviour
             {
                 if (pieces[x, y] != null)
                 {
-                    MovePiece(pieces[x, y], x, y);
+                    MovePiece(pieces[x, y], x, y, false);
                 }
             }
         }

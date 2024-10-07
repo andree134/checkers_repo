@@ -12,32 +12,38 @@ public class GameSystemHandler : MonoBehaviour
     private GameObject player2Ref;
 
     [Header("Checker")]
-    [SerializeField] private checkersBoard checkerData; 
+     [SerializeField] private checkersBoard checkerData; 
 
     [Header("Acorn Event")]
-    [SerializeField] private GameObject[] spawnableObjects;
-    [SerializeField] private GameObject[] whiteSideSpawningREF;
-    [SerializeField] private GameObject[] blackSideSpawningREF;
+     [SerializeField] private GameObject[] spawnableObjects;
+     [SerializeField] private GameObject[] whiteSideSpawningREF;
+     [SerializeField] private GameObject[] blackSideSpawningREF;
      private GameObject spawningObject;
      private GameObject spawningLocRef;
-    private ShakeController shakeController;
+     private ShakeController shakeController;
 
     //Values of AcornFallingEvent;
     [Header("Timer Values")]
-    [SerializeField] private float maxTimerForStartGame = 10.0f;
-    [SerializeField] private float minTimerForStartGame = 7.0f;
-    [SerializeField] private float maxTimerForEarlyGame = 8.0f;
-    [SerializeField] private float minTimerForEarlyGame = 7.0f;
-    [SerializeField] private float maxTimerForMidGame = 8.0f;
-    [SerializeField] private float minTimerForMidGame = 5.0f;
-    [SerializeField] private float maxTimerForLateGame = 8.0f;
-    [SerializeField] private float minTimerForLateGame = 6.0f;
+     [SerializeField] private float maxTimerForStartGame = 10.0f;
+     [SerializeField] private float minTimerForStartGame = 7.0f;
+     [SerializeField] private float maxTimerForEarlyGame = 8.0f;
+     [SerializeField] private float minTimerForEarlyGame = 7.0f;
+     [SerializeField] private float maxTimerForMidGame = 8.0f;
+     [SerializeField] private float minTimerForMidGame = 5.0f;
+     [SerializeField] private float maxTimerForLateGame = 8.0f;
+     [SerializeField] private float minTimerForLateGame = 6.0f;
 
     [Header("Success Rates")]
-    [SerializeField] private float successRateForStartGame = 1.2f;
-    [SerializeField] private float successRateForEarlyGame = 0.9f;
-    [SerializeField] private float successRateForMidGame = 0.65f;
-    [SerializeField] private float successRateForLateGame = 0.5f;
+     [SerializeField] private float successRateForStartGame = 1.2f;
+     [SerializeField] private float successRateForEarlyGame = 0.9f;
+     [SerializeField] private float successRateForMidGame = 0.65f;
+     [SerializeField] private float successRateForLateGame = 0.5f;
+
+    [SerializeField] private AudioSource backGroundMusicAudioSource;
+    private bool eG = false;
+    [SerializeField] private AudioClip endgame;
+    private bool gO = false;
+    [SerializeField] private AudioClip gameOver;
 
 
     private float bonusProbabilityStack;
@@ -71,9 +77,15 @@ public class GameSystemHandler : MonoBehaviour
     }
 
     IEnumerator TryCallingSpawnAcorn(float delay){
-            if (delay != 0)
-                yield return new WaitForSeconds(delay);
 
+            if (checkerData.whitePieceLeft<=3 || checkerData.blackPieceLeft <=3){
+                PlayEndgamePhase();
+            }
+            if (delay != 0){
+                yield return new WaitForSeconds(5.0f);
+                isAcornEvent = false;
+                yield return new WaitForSeconds(delay - 5.0f);
+            }
             generatedProbability = Random.Range(0.0f , 1.0f);
             totalProbability = generatedProbability + bonusProbabilityStack;
 
@@ -166,9 +178,6 @@ public class GameSystemHandler : MonoBehaviour
                 }
             
             }
-
-            isAcornEvent = false;
-            Debug.Log("Acorn event false");
         }
 
         else if (acornEventHappenedTime > 2 && acornEventHappenedTime <= 8)
@@ -225,8 +234,6 @@ public class GameSystemHandler : MonoBehaviour
                 }
             
             }
-
-            isAcornEvent = false;
         }
 
         else if (acornEventHappenedTime > 8 && acornEventHappenedTime <= 15)
@@ -283,8 +290,6 @@ public class GameSystemHandler : MonoBehaviour
                 }
             
             }
-
-            isAcornEvent = false;
         }
 
         else 
@@ -341,8 +346,6 @@ public class GameSystemHandler : MonoBehaviour
                 }
             
             }
-
-            isAcornEvent = false;
         }
          //Acorns stop dropping.
 
@@ -374,7 +377,26 @@ public class GameSystemHandler : MonoBehaviour
         else
         {
             StartCoroutine(TryCallingSpawnAcorn(20.0f));  // start to genarate float to call acorn event again.
-        }           
+        }  
+
+
         
+    }
+
+    public void PlayEndgamePhase(){
+        if(eG == false){
+            eG = true;
+            backGroundMusicAudioSource.clip = endgame;
+            backGroundMusicAudioSource.Play();
+        }
+    }
+
+    public void PlayGameoverPhase(){
+        if(gO == false){
+            gO = true;
+            backGroundMusicAudioSource.clip = gameOver;
+            backGroundMusicAudioSource.loop = false;
+            backGroundMusicAudioSource.Play();
+        }
     }
 }
