@@ -3012,9 +3012,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Suing
-
-'
+  m_text: Call out cheat
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5ac83fcdb8d1dd64eba9880569f1456b, type: 2}
   m_sharedMaterial: {fileID: 8675840413152568369, guid: 5ac83fcdb8d1dd64eba9880569f1456b, type: 2}
@@ -3844,9 +3842,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Suing
-
-'
+  m_text: Call out cheat
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5ac83fcdb8d1dd64eba9880569f1456b, type: 2}
   m_sharedMaterial: {fileID: 8675840413152568369, guid: 5ac83fcdb8d1dd64eba9880569f1456b, type: 2}

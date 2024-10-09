@@ -480,6 +480,8 @@ MonoBehaviour:
   isMovingPiece: 0
   characterAudioSource: {fileID: 2799736623829780456}
   getHit: {fileID: 8300000, guid: 14f06731ef1361e4c84670d4d2e252f1, type: 3}
+  UIAudioSource: {fileID: 2799736623829780456}
+  lifeLose: {fileID: 8300000, guid: 95e6ae9c589a4eb4c9fc73f15fd87554, type: 3}
 --- !u!114 &2103681011526363809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -585,6 +587,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: d2c9d700-cd7f-4cc4-bb90-b2b8f10dba81
     m_ActionName: 3rdPerson/ModeSwitch
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 69c9a2f6-2236-464f-be86-042ab7b332fd
+    m_ActionName: Checkers/Callout[/XInputControllerWindows/buttonWest,/Keyboard/c]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Checkers

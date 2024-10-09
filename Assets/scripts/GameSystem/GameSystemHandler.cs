@@ -213,7 +213,8 @@ public class GameSystemHandler : MonoBehaviour
         Debug.Log("Acorn Event is true");
         acornEventHappenedTime ++;
         Debug.Log("Acorn event happens the" + acornEventHappenedTime.ToString()+" times");
-        shakeController.StartShaking(); 
+        shakeController.StartShaking();
+        checkerData.SaveBoardState();
 
         if (acornEventHappenedTime <= 2)
         {

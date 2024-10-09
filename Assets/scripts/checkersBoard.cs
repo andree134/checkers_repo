@@ -25,6 +25,7 @@ public class checkersBoard : MonoBehaviour
     public bool isWhite;
     private bool isWhiteTurn;
     private bool hasKilled;
+    private bool hasCheated; 
 
     //controller
     [SerializeField] Transform cursor1;
@@ -109,6 +110,7 @@ public class checkersBoard : MonoBehaviour
 
         isWhite = true;
         isWhiteTurn = true;
+        hasCheated = false;
         whitePieceLeft = 12;
         blackPieceLeft = 12;
         GenerateBoard();
@@ -159,6 +161,26 @@ public class checkersBoard : MonoBehaviour
                 {
                     TryMove((int)startDrag.x, (int)startDrag.y, x, y);
                 }
+
+                if (playerInput2 != null )
+                {
+                    if (playerInput2.actions["Callout"].WasPerformedThisFrame() && gameSystem.isAcornEvent)
+                    {
+                        if (hasCheated)
+                        {
+                            CallOutCheat();
+                            gameSystem.isAcornEvent = false;
+                            EndTurn();
+                            hasCheated = false; 
+                        }
+                        else
+                        {
+                            blackPlayerSystem.TakeDamage(1);
+                            Debug.Log("Red not cheating!");
+                            gameSystem.isAcornEvent = false;
+                        }
+                    }
+                }
             }
             else
             {
@@ -192,6 +214,23 @@ public class checkersBoard : MonoBehaviour
                 if (playerInput2.actions["Action"].WasReleasedThisFrame())
                 {
                     TryMove((int)startDrag.x, (int)startDrag.y, x2, y2);
+                }
+
+                if (playerInput.actions["Callout"].WasPerformedThisFrame() && gameSystem.isAcornEvent)
+                {
+                    if (hasCheated)
+                    {
+                        CallOutCheat();
+                        gameSystem.isAcornEvent = false;
+                        EndTurn();
+                        hasCheated = false; 
+                    }
+                    else
+                    {
+                        whitePlayerSystem.TakeDamage(1);
+                        Debug.Log("Blue not cheating!");
+                        gameSystem.isAcornEvent = false;
+                    }
                 }
             }
         //}
@@ -369,6 +408,10 @@ public class checkersBoard : MonoBehaviour
         
             if (selectedPiece.ValidMove(pieces, x1, y1, x2, y2))
             {
+                if (gameSystem.isAcornEvent)
+                    hasCheated = true;
+                else
+                    hasCheated = false; 
                 //was anything killed
                 //if the move involves a capture
 
@@ -645,7 +688,7 @@ public class checkersBoard : MonoBehaviour
     //////////////////////
 
     //save state
-    private void SaveBoardState()
+    public void SaveBoardState()
     {
         // Create a copy of the current board state
         savedBoardState = (Piece[,])pieces.Clone();
@@ -671,7 +714,7 @@ public class checkersBoard : MonoBehaviour
             }
         }
     }
-    void CallOutCheat()
+    private void CallOutCheat()
     {
         if (gameSystem.isAcornEvent)
         {

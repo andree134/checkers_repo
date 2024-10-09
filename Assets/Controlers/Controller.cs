@@ -53,6 +53,15 @@ public partial class @Controller: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Callout"",
+                    ""type"": ""Button"",
+                    ""id"": ""69c9a2f6-2236-464f-be86-042ab7b332fd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -165,6 +174,28 @@ public partial class @Controller: IInputActionCollection2, IDisposable
                     ""action"": ""ModeSwitch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""58a927c0-758f-433a-9e23-aad8b8291485"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Callout"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f3c7c814-fd53-4907-99a1-2f2d3d8f6fd5"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Callout"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -224,6 +255,7 @@ public partial class @Controller: IInputActionCollection2, IDisposable
         m_Checkers_Action = m_Checkers.FindAction("Action", throwIfNotFound: true);
         m_Checkers_Move = m_Checkers.FindAction("Move", throwIfNotFound: true);
         m_Checkers_ModeSwitch = m_Checkers.FindAction("ModeSwitch", throwIfNotFound: true);
+        m_Checkers_Callout = m_Checkers.FindAction("Callout", throwIfNotFound: true);
         // 3rdPerson
         m__3rdPerson = asset.FindActionMap("3rdPerson", throwIfNotFound: true);
         m__3rdPerson_Move = m__3rdPerson.FindAction("Move", throwIfNotFound: true);
@@ -292,6 +324,7 @@ public partial class @Controller: IInputActionCollection2, IDisposable
     private readonly InputAction m_Checkers_Action;
     private readonly InputAction m_Checkers_Move;
     private readonly InputAction m_Checkers_ModeSwitch;
+    private readonly InputAction m_Checkers_Callout;
     public struct CheckersActions
     {
         private @Controller m_Wrapper;
@@ -299,6 +332,7 @@ public partial class @Controller: IInputActionCollection2, IDisposable
         public InputAction @Action => m_Wrapper.m_Checkers_Action;
         public InputAction @Move => m_Wrapper.m_Checkers_Move;
         public InputAction @ModeSwitch => m_Wrapper.m_Checkers_ModeSwitch;
+        public InputAction @Callout => m_Wrapper.m_Checkers_Callout;
         public InputActionMap Get() { return m_Wrapper.m_Checkers; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -317,6 +351,9 @@ public partial class @Controller: IInputActionCollection2, IDisposable
             @ModeSwitch.started += instance.OnModeSwitch;
             @ModeSwitch.performed += instance.OnModeSwitch;
             @ModeSwitch.canceled += instance.OnModeSwitch;
+            @Callout.started += instance.OnCallout;
+            @Callout.performed += instance.OnCallout;
+            @Callout.canceled += instance.OnCallout;
         }
 
         private void UnregisterCallbacks(ICheckersActions instance)
@@ -330,6 +367,9 @@ public partial class @Controller: IInputActionCollection2, IDisposable
             @ModeSwitch.started -= instance.OnModeSwitch;
             @ModeSwitch.performed -= instance.OnModeSwitch;
             @ModeSwitch.canceled -= instance.OnModeSwitch;
+            @Callout.started -= instance.OnCallout;
+            @Callout.performed -= instance.OnCallout;
+            @Callout.canceled -= instance.OnCallout;
         }
 
         public void RemoveCallbacks(ICheckersActions instance)
@@ -406,6 +446,7 @@ public partial class @Controller: IInputActionCollection2, IDisposable
         void OnAction(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
         void OnModeSwitch(InputAction.CallbackContext context);
+        void OnCallout(InputAction.CallbackContext context);
     }
     public interface I_3rdPersonActions
     {
