@@ -478,6 +478,8 @@ MonoBehaviour:
   opponentSystem: {fileID: 0}
   gameSystemREF: {fileID: 0}
   isMovingPiece: 0
+  characterAudioSource: {fileID: 2799736623829780456}
+  getHit: {fileID: 8300000, guid: 14f06731ef1361e4c84670d4d2e252f1, type: 3}
 --- !u!114 &2103681011526363809
 MonoBehaviour:
   m_ObjectHideFlags: 0

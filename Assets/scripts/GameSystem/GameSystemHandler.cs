@@ -41,6 +41,7 @@ public class GameSystemHandler : MonoBehaviour
      [SerializeField] private float successRateForLateGame = 0.5f;
 
     [SerializeField] private AudioSource backGroundMusicAudioSource;
+    [SerializeField] private AudioClip normal;
     private bool eG = false;
     [SerializeField] private AudioClip endgame;
     private bool gO = false;
@@ -111,6 +112,8 @@ public class GameSystemHandler : MonoBehaviour
 
         //player1Ref = GameObject.Find("Player(Clone)");
         //player2Ref = GameObject.Find("Opponent(Clone)"); 
+        backGroundMusicAudioSource.clip = normal;
+        backGroundMusicAudioSource.Play();
     }
 
     // Update is called once per frame

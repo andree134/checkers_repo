@@ -22,6 +22,11 @@ public class Player_HealthSystem : MonoBehaviour
 
     private Player_Animation playerAnim;
 
+    [SerializeField] private AudioSource characterAudioSource;
+    [SerializeField] private AudioClip getHit;
+    [SerializeField] private AudioSource UIAudioSource;
+    [SerializeField] private AudioClip lifeLose;
+
     private void Awake()
     {
         
@@ -56,9 +61,14 @@ public class Player_HealthSystem : MonoBehaviour
         }
     }
 
-     public void TakeDamage (int healthDamage){
+    public void TakeDamage (int healthDamage){
         currentHP = currentHP - healthDamage;
         //Debug.Log("Player is damaged.");
+        characterAudioSource.clip = getHit;
+        characterAudioSource.pitch = UnityEngine.Random.Range(1.0f , 1.5f);
+        characterAudioSource.Play();
+        UIAudioSource.clip = lifeLose;
+        UIAudioSource.Play();
         state = characterState.KnockDown;
         StartCoroutine(Recovering());
         if(currentHP<=1){

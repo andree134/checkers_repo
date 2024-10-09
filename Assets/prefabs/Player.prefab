@@ -214,6 +214,8 @@ MonoBehaviour:
   opponentSystem: {fileID: 0}
   gameSystemREF: {fileID: 0}
   isMovingPiece: 0
+  characterAudioSource: {fileID: 8929114942264642898}
+  getHit: {fileID: 8300000, guid: 14f06731ef1361e4c84670d4d2e252f1, type: 3}
 --- !u!114 &4118197745093187383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -320,7 +322,7 @@ MonoBehaviour:
     m_ActionId: d2c9d700-cd7f-4cc4-bb90-b2b8f10dba81
     m_ActionName: 3rdPerson/ModeSwitch
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Default
+  m_DefaultControlScheme: 
   m_DefaultActionMap: Checkers
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}

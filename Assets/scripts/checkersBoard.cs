@@ -17,6 +17,7 @@ public class checkersBoard : MonoBehaviour
     //Jason's edit for recording the remain pieces
     public int whitePieceLeft;
     public int blackPieceLeft;
+    
 
     private Vector3 boardOffset = new Vector3(-4.0f, 0, -4.0f);  //offset for pieces to be on board
     private Vector3 pieceOffset = new Vector3(0.5f, 0, 0.5f);   //offset for pieces to match boxes
@@ -67,6 +68,10 @@ public class checkersBoard : MonoBehaviour
 
     [SerializeField] private PlayerInput playerInput;
     [SerializeField] private PlayerInput playerInput2;
+
+    //Audio
+    [SerializeField] private AudioSource checkerAudioSource;
+    [SerializeField] private AudioClip placingPiece;
 
     private void OnValidate()
     {
@@ -607,11 +612,17 @@ public class checkersBoard : MonoBehaviour
         if(p.isWhite == true && anim ==true)
         {
             StartCoroutine(WhiteIsMoveing());
+            checkerAudioSource.clip = placingPiece;
+            checkerAudioSource.pitch = UnityEngine.Random.Range(1.0f , 1.5f);
+            checkerAudioSource.Play();
         }
 
         else if(p.isWhite == false && anim ==true)
         {
              StartCoroutine(BlackIsMoveing());
+             checkerAudioSource.clip = placingPiece;
+             checkerAudioSource.pitch = UnityEngine.Random.Range(1.0f , 1.5f);
+             checkerAudioSource.Play();
         }
 
     }
