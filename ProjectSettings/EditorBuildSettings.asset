@@ -15,4 +15,4 @@ EditorBuildSettings:
     path: Assets/Scenes/CheckersDefault.unity
     guid: 0984ec5cf6c91fd4f95019ecb97243f6
   m_configObjects:
-    com.unity.input.settings: {fileID: 11400000, guid: 58f976d7433b6c84aab23ed04bc8905a, type: 2}
+    com.unity.input.settings: {fileID: 11400000, guid: 1fcd9530a441ca0438ddccbd9795ec8a, type: 2}

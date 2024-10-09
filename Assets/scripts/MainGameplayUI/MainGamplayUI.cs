@@ -24,15 +24,29 @@ public class MainGamplayUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        whitePlayer = GameObject.Find("Player");
+        blackPlayer = GameObject.Find("Opponent(Clone)");
+
         whitePlayerSystem = whitePlayer.GetComponent<Player_HealthSystem>();
+        if (blackPlayer != null)
         blackPlayerSystem = blackPlayer.GetComponent<Player_HealthSystem>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        UpdateBlackPlayerHealth();
+        if (blackPlayer != null)
+            UpdateBlackPlayerHealth();
+
         UpdateWhitePlayerHealth();
+
+        if (GameObject.Find("Opponent(Clone)") != null)
+            blackPlayer = GameObject.Find("Opponent(Clone)");
+
+        if (blackPlayer != null)
+        {
+            blackPlayerSystem = blackPlayer.GetComponent<Player_HealthSystem>();
+        }
     }
 
     void UpdateWhitePlayerHealth(){

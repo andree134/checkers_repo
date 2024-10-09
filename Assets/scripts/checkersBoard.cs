@@ -70,7 +70,7 @@ public class checkersBoard : MonoBehaviour
 
     private void OnValidate()
     {
-        playerInput = GameObject.Find("Player").GetComponent<PlayerInput>();  
+        //playerInput = GameObject.Find("Player(Clone)").GetComponent<PlayerInput>();
     }
 
     private void Awake()
@@ -80,6 +80,28 @@ public class checkersBoard : MonoBehaviour
 
     private void Start()
     {
+
+
+        playerInput = GameObject.Find("Player").GetComponent<PlayerInput>();
+        
+        cursor1 = GameObject.Find("MouseP1").transform;
+        
+
+        mainCamera = GameObject.Find("TopDownCamP1").GetComponent<Camera>();
+        p1Camera = GameObject.Find("TopDownCamP1").GetComponent<Camera>();
+        
+
+        whitePlayerSystem = GameObject.Find("Player").GetComponent<Player_HealthSystem>();
+        
+
+        if (GameObject.Find("Opponent(Clone)") != null)
+        {
+            cursor2 = GameObject.Find("MouseP2").transform;
+            playerInput2 = GameObject.Find("Opponent(Clone)").GetComponent<PlayerInput>();
+            p2Camera = GameObject.Find("TopDownCamP2").GetComponent<Camera>();
+            blackPlayerSystem = GameObject.Find("Opponent(Clone)").GetComponent<Player_HealthSystem>();
+        }
+
         isWhite = true;
         isWhiteTurn = true;
         whitePieceLeft = 12;
@@ -89,6 +111,11 @@ public class checkersBoard : MonoBehaviour
 
     private void Update()
     {
+        if(GameObject.Find("Opponent(Clone)") != null && blackPlayerSystem == null)
+        {
+            blackPlayerSystem = GameObject.Find("Opponent(Clone)").GetComponent<Player_HealthSystem>();
+            p2Camera = GameObject.Find("TopDownCamP2").GetComponent<Camera>();
+        }
         UpdateMouseOver();
         //Debug.Log(mouseOver); //board collider -0.08 from edges, change when replacing asset
         if((isWhite) ? isWhiteTurn : !isWhiteTurn)
@@ -118,7 +145,7 @@ public class checkersBoard : MonoBehaviour
                 //    TryMove((int)startDrag.x, (int)startDrag.y, x, y);
                 //}
 
-                if (playerInput.actions["Action"].IsPressed())
+                if (playerInput.actions["Action"].IsPressed() && selectedPiece == null)
                 {
                     SelectPiece(x, y);
                 }
@@ -130,7 +157,7 @@ public class checkersBoard : MonoBehaviour
             }
             else
             {
-                if (playerInput2 == null)
+                if (GameObject.Find("Opponent(Clone)") != null)
                     playerInput2 = GameObject.Find("Opponent(Clone)").GetComponent<PlayerInput>();
 
                 int x2 = (int)mouseOver2.x;
@@ -164,16 +191,18 @@ public class checkersBoard : MonoBehaviour
             }
         //}
 
-        //timer stuff
-        if (gameTimer.GetTimer() <= 0)
+            //timer stuff
+            if (gameTimer.GetTimer() <= 0)
             {
-                if (selectedPiece != null)
+                if (selectedPiece != null )
                 {
-                    TryMove((int)startDrag.x, (int)startDrag.y, x, y);
-                    return;
+                        TryMove((int)startDrag.x, (int)startDrag.y, x, y);
+                        return;
                 }
                 EndTurn();
             }
+           
+            
         }
         
     }
@@ -203,7 +232,7 @@ public class checkersBoard : MonoBehaviour
     
     private void UpdateMouseOver()
     {
-        if (cursor2 == null) //todo change this to stop exceptions
+        if (cursor2 == null && GameObject.Find("Opponent(Clone)") != null) //todo change this to stop exceptions
         {
             cursor2 = GameObject.Find("Opponent(Clone)").GetComponentInChildren<CursorMovement>().gameObject.transform;
         }
@@ -593,6 +622,11 @@ public class checkersBoard : MonoBehaviour
             return false;
         else
             return true;
+    }
+
+    public bool IsWhiteTurn()
+    {
+        return isWhiteTurn; 
     }
 
     ///////////////////////

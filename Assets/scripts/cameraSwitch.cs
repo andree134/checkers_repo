@@ -25,6 +25,7 @@ public class cameraSwitch : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        checkersBoard = GameObject.Find("Plane").GetComponent<checkersBoard>();
         secondCamera.enabled = false;
         inFirstPersonView = true;
     }
@@ -38,7 +39,7 @@ public class cameraSwitch : MonoBehaviour
             if(inFirstPersonView && !checkersBoard.IsPieceSelected())
             {
                 SwitchCamera();
-                //cursor.SetActive(false); 
+                cursor.SetActive(false); 
             }
             else if(!inFirstPersonView && ableToSwitchCamera){
                 

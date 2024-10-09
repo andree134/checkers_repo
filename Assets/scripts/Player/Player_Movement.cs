@@ -41,25 +41,38 @@ public class Player_Movement : MonoBehaviour
       private cameraSwitch cameraControlScript;
 
       [SerializeField] private PlayerInput playerInput;
+    [SerializeField] private int playerIndex; 
 
     private void OnValidate()
     {
         playerInput = GetComponent<PlayerInput>();
     }
 
-    // Start is called before the first frame update
+    
     void Awake()
     {        
-        characterController=GetComponent<CharacterController>();
-        playerSystem = GetComponent<Player_HealthSystem>();
-        cameraControlScript = GetComponent<cameraSwitch>();
-        playerAnim=GetComponent<Player_Animation>();
+        
 
         
     }
 
+    private void Start()
+    {
+        if (this.gameObject.name == "Player")
+            startPos = GameObject.Find("StartPos1").transform;
+        else
+            startPos = GameObject.Find("StartPos2").transform;
 
-    // Update is called once per frame
+        characterController = GetComponent<CharacterController>();
+        playerSystem = GetComponent<Player_HealthSystem>();
+        cameraControlScript = GetComponent<cameraSwitch>();
+        playerAnim = GetComponent<Player_Animation>();
+
+        playerIndex = this.GetComponent<PlayerInput>().playerIndex;
+    }
+
+
+    
     void Update()
     {
         GroundCheck();
@@ -88,22 +101,15 @@ public class Player_Movement : MonoBehaviour
         float horizontalInput=0f;
         float verticalInput=0f;
 
-        if (isWhitePlayer)
+        if (isWhitePlayer) //the conditional here maybe pointless will test later todo 
         {
-            //horizontalInput = Input.GetAxis("P1Horizontal");
-            //verticalInput = -Input.GetAxis("P1Vertical");
-
             horizontalInput = playerInput.actions["Move"].ReadValue<Vector2>().x;
             verticalInput = playerInput.actions["Move"].ReadValue<Vector2>().y;
         }
         else
         {
-            //horizontalInput = Input.GetAxis("P2Horizontal");
-            //verticalInput = -Input.GetAxis("P2Vertical");
-
             horizontalInput = playerInput.actions["Move"].ReadValue<Vector2>().x;
             verticalInput = playerInput.actions["Move"].ReadValue<Vector2>().y;
-
         }
 
         movementDirection =new Vector3(horizontalInput, 0, verticalInput);

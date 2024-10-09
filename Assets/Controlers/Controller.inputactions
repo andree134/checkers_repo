@@ -47,7 +47,7 @@
                 },
                 {
                     "name": "",
-                    "id": "6e0cf575-da7b-42b7-9e51-5bf19eba29f6",
+                    "id": "e68e904b-34ba-40d1-9d5e-d286b494b56f",
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
@@ -69,7 +69,7 @@
                 },
                 {
                     "name": "WASD",
-                    "id": "44cd480c-fab4-4960-a5b4-03dc5f9c2f68",
+                    "id": "29256ce6-26d3-4b08-8a96-12255f909b6a",
                     "path": "2DVector",
                     "interactions": "",
                     "processors": "",
@@ -80,7 +80,7 @@
                 },
                 {
                     "name": "up",
-                    "id": "8c9d49d8-b642-4369-aae1-6bbc1d12d883",
+                    "id": "766ec586-6c1a-47c4-bf25-0e48b8c16c24",
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
@@ -91,7 +91,7 @@
                 },
                 {
                     "name": "down",
-                    "id": "4c9e0273-b8e5-4342-be44-15ed0daf7909",
+                    "id": "8764b18a-00db-4f72-acd0-f5132504407b",
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
@@ -102,7 +102,7 @@
                 },
                 {
                     "name": "left",
-                    "id": "3c90e30b-146d-4a9a-ba6f-b286fc3b72d5",
+                    "id": "02da4d05-02fa-4a73-9a4e-89f16bedbcd1",
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
@@ -113,7 +113,7 @@
                 },
                 {
                     "name": "right",
-                    "id": "97a0116b-7553-48d6-91b8-7fe23317684a",
+                    "id": "6ec81487-b47d-4e3b-9fff-fc8a0238bea9",
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
@@ -135,7 +135,7 @@
                 },
                 {
                     "name": "",
-                    "id": "97357ac7-4466-4e7b-b265-184d3e8535cf",
+                    "id": "b07e9680-8c9c-43b5-9176-e7960eadbed6",
                     "path": "<Keyboard>/tab",
                     "interactions": "",
                     "processors": "",

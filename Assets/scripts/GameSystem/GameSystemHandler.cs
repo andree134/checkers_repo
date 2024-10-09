@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class GameSystemHandler : MonoBehaviour
 {
@@ -54,11 +55,49 @@ public class GameSystemHandler : MonoBehaviour
     public bool isAcornEvent;
     private int acornEventHappenedTime;
 
-    public static PlayerInputManager inputManager; 
+    public static PlayerInputManager inputManager; //for easy refs 
+    public static GameSystemHandler instance; 
+
+    [Header("UI Refs")]
+    private GameObject sueingButton1;
+    private GameObject sueingButton2;
+    [SerializeField] TextMeshProUGUI player1TurnText;
+    [SerializeField] TextMeshProUGUI player2TurnText;
+
+    private void Awake()
+    {
+        //Stuff to assign player controllers during runtime might come back to this later
+        //inputManager = GetComponent<PlayerInputManager>();
+
+        //InputDevice controller1 = Gamepad.all[0];
+        //InputDevice controller2 = Gamepad.all[1];
+
+        //Gamepad[] gamepads = Gamepad.all.ToArray();
+
+        //Debug.Log(controller1);
+        //Debug.Log(controller2);
+
+        //PlayerInput input1;
+        //PlayerInput input2;
+
+        //input1 = PlayerInput.Instantiate(player1Ref, 0, pairWithDevice: gamepads[0]);
+       // input2 = PlayerInput.Instantiate(player2Ref, 1, controlScheme: "Default", pairWithDevice: gamepads[1]);
+
+        //inputManager.JoinPlayer(controlScheme: "Default");
+        //inputManager.playerPrefab = player2Ref;
+        //inputManager.JoinPlayer(controlScheme: "Default");
+        //inputManager.enabled = true;
+
+
+        //Debug.Log(GameObject.Find("Player").GetComponent<PlayerInput>().user.valid);
+    }
 
     // Start is called before the first frame update
     void Start()
     {
+        
+        instance = this;
+
         shakeController = GetComponent<ShakeController>();
         bonusProbabilityStack = 1.2f;
         acornEventHappenedTime = 0;
@@ -66,14 +105,47 @@ public class GameSystemHandler : MonoBehaviour
         isAcornEvent = false;
         StartCoroutine(TryCallingSpawnAcorn(Random.Range(20.0f,30.0f)));
 
-        inputManager = GetComponent<PlayerInputManager>();
+        
+        sueingButton1 = GameObject.Find("Sue Button P1");
+        sueingButton2 = GameObject.Find("Sue Button P2");
+
+        //player1Ref = GameObject.Find("Player(Clone)");
+        //player2Ref = GameObject.Find("Opponent(Clone)"); 
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (checkerData.IsWhiteTurn() && isAcornEvent)
+        {
+            sueingButton1.SetActive(false);
+            sueingButton2.SetActive(true);
+        }
+        else if (isAcornEvent)
+        {
+            sueingButton1.SetActive(true);
+            sueingButton2.SetActive(false);
+        }
+        else
+        {
+            sueingButton1.SetActive(false);
+            sueingButton2.SetActive(false);
+        }
 
-            
+        if (checkerData.IsWhiteTurn())
+        {
+            player1TurnText.color = Color.red;
+            player2TurnText.color = Color.red;
+            player1TurnText.text = "Red's Turn";
+            player2TurnText.text = "Red's Turn";
+        }
+        else
+        {
+            player1TurnText.color = Color.blue;
+            player2TurnText.color = Color.blue;
+            player1TurnText.text = "Blue's Turn";
+            player2TurnText.text = "Blue's Turn";
+        }
     }
 
     IEnumerator TryCallingSpawnAcorn(float delay){

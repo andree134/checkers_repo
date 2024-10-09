@@ -21,10 +21,27 @@ public class Player_HealthSystem : MonoBehaviour
     public bool isMovingPiece = false;
 
     private Player_Animation playerAnim;
+
+    private void Awake()
+    {
+        
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        playerAnim=GetComponent<Player_Animation>();
+        if (this.gameObject.name == "Player" && GameObject.Find("Opponent(Clone)") != null)
+        {
+            opponentSystem = GameObject.Find("Opponent(Clone)").GetComponent<Player_HealthSystem>();
+        }
+        else if (GameObject.Find("Opponent(Clone)") != null)
+        {
+            opponentSystem = GameObject.Find("Player").GetComponent<Player_HealthSystem>();
+        }
+
+        gameSystemREF = GameSystemHandler.instance; 
+
+        playerAnim = GetComponent<Player_Animation>();
         currentHP = maxHP;
     }
 
@@ -32,6 +49,11 @@ public class Player_HealthSystem : MonoBehaviour
     void Update()
     {
         AnimatePlayer();
+
+        if (this.gameObject.name == "Player" && GameObject.Find("Opponent(Clone)") != null)
+        {
+            opponentSystem = GameObject.Find("Opponent(Clone)").GetComponent<Player_HealthSystem>();
+        }
     }
 
      public void TakeDamage (int healthDamage){
