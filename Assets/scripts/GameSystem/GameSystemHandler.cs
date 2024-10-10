@@ -121,7 +121,7 @@ public class GameSystemHandler : MonoBehaviour
         backGroundMusicAudioSource.clip = normal;
         backGroundMusicAudioSource.Play();
 
-        Invoke("PlayerGameOverScene", 3);
+        //Invoke("PlayerGameOverScene", 3);
     }
 
     // Update is called once per frame
