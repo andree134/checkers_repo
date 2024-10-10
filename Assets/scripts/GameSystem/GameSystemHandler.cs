@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameSystemHandler : MonoBehaviour
 {
@@ -65,6 +66,11 @@ public class GameSystemHandler : MonoBehaviour
     [SerializeField] TextMeshProUGUI player1TurnText;
     [SerializeField] TextMeshProUGUI player2TurnText;
 
+    [SerializeField] GameObject GameoverScene;
+    [SerializeField] TextMeshProUGUI winText;
+    [SerializeField] TextMeshProUGUI loseText;
+
+
     private void Awake()
     {
         //Stuff to assign player controllers during runtime might come back to this later
@@ -114,6 +120,8 @@ public class GameSystemHandler : MonoBehaviour
         //player2Ref = GameObject.Find("Opponent(Clone)"); 
         backGroundMusicAudioSource.clip = normal;
         backGroundMusicAudioSource.Play();
+
+        Invoke("PlayerGameOverScene", 3);
     }
 
     // Update is called once per frame
@@ -468,6 +476,8 @@ public class GameSystemHandler : MonoBehaviour
     }
 
     public void PlayGameoverPhase(){
+
+        PlayerGameOverScene();
         if(gO == false){
             gO = true;
             backGroundMusicAudioSource.clip = gameOver;
@@ -475,4 +485,32 @@ public class GameSystemHandler : MonoBehaviour
             backGroundMusicAudioSource.Play();
         }
     }
+
+    public void PlayerGameOverScene(){
+
+        if (checkerData.whitePieceLeft==0 || player1Ref.GetComponent<Player_HealthSystem>().currentHP <=0)
+        {
+            winText.text = "Player 2 wins!";
+            loseText.text = "Player 1 loses...";
+        }
+        else
+        {
+            winText.text = "Player 1 wins!";
+            loseText.text = "Player 2 loses...";
+        }
+    
+        GameoverScene.SetActive(true);
+    }
+
+
+    public void PlayGame ()
+    { // Load the checkers game scene
+        SceneManager.LoadScene("CheckersDefault");
+    }
+
+    public void BackToMainMenu ()
+    { // Load the checkers game scene
+        SceneManager.LoadScene("MainMenu");
+    }
+
 }
