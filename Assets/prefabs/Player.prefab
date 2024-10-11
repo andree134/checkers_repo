@@ -216,6 +216,8 @@ MonoBehaviour:
   isMovingPiece: 0
   characterAudioSource: {fileID: 8929114942264642898}
   getHit: {fileID: 8300000, guid: 14f06731ef1361e4c84670d4d2e252f1, type: 3}
+  UIAudioSource: {fileID: 0}
+  lifeLose: {fileID: 0}
 --- !u!114 &4118197745093187383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -761,7 +763,7 @@ Camera:
     width: 0.5
     height: 1
   near clip plane: 0.3
-  far clip plane: 2000
+  far clip plane: 50000
   field of view: 60
   orthographic: 0
   orthographic size: 5
