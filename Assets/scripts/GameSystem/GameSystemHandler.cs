@@ -117,8 +117,8 @@ public class GameSystemHandler : MonoBehaviour
         sueingButton1 = GameObject.Find("Sue Button P1");
         sueingButton2 = GameObject.Find("Sue Button P2");
 
-        //player1Ref = GameObject.Find("Player(Clone)");
-        //player2Ref = GameObject.Find("Opponent(Clone)");
+        player1Ref = GameObject.Find("Player(Clone)");
+        player2Ref = GameObject.Find("Opponent(Clone)");
         eG = false; 
         gO = false;
         backGroundMusicAudioSource.clip = normal;
@@ -160,13 +160,15 @@ public class GameSystemHandler : MonoBehaviour
             player1TurnText.text = "Blue's Turn";
             player2TurnText.text = "Blue's Turn";
         }
+
+        if (checkerData.whitePieceLeft<=3 || checkerData.blackPieceLeft <=3){
+                PlayEndgamePhase();
+            }
     }
 
     IEnumerator TryCallingSpawnAcorn(float delay){
 
-            if (checkerData.whitePieceLeft<=3 || checkerData.blackPieceLeft <=3){
-                PlayEndgamePhase();
-            }
+            
             if (delay != 0){
                 yield return new WaitForSeconds(5.0f);
                 isAcornEvent = false;
