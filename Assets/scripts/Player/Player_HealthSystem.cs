@@ -44,6 +44,11 @@ public class Player_HealthSystem : MonoBehaviour
             opponentSystem = GameObject.Find("Player").GetComponent<Player_HealthSystem>();
         }
 
+        if (this.gameObject.name == "Opponent(Clone)")
+        {
+            DontDestroyOnLoad(this.gameObject);
+        }
+
         gameSystemREF = GameSystemHandler.instance; 
 
         playerAnim = GetComponent<Player_Animation>();
@@ -76,6 +81,11 @@ public class Player_HealthSystem : MonoBehaviour
         }
         StartCoroutine(CheckDealth()); 
 
+    }
+
+    public void SetHealth(int health)
+    {
+        currentHP = health; 
     }
 
     IEnumerator Recovering(){

@@ -88,7 +88,7 @@ public class GameSystemHandler : MonoBehaviour
         //PlayerInput input2;
 
         //input1 = PlayerInput.Instantiate(player1Ref, 0, pairWithDevice: gamepads[0]);
-       // input2 = PlayerInput.Instantiate(player2Ref, 1, controlScheme: "Default", pairWithDevice: gamepads[1]);
+        // input2 = PlayerInput.Instantiate(player2Ref, 1, controlScheme: "Default", pairWithDevice: gamepads[1]);
 
         //inputManager.JoinPlayer(controlScheme: "Default");
         //inputManager.playerPrefab = player2Ref;
@@ -97,13 +97,14 @@ public class GameSystemHandler : MonoBehaviour
 
 
         //Debug.Log(GameObject.Find("Player").GetComponent<PlayerInput>().user.valid);
+        instance = this;
     }
 
     // Start is called before the first frame update
     void Start()
     {
         
-        instance = this;
+        
 
         shakeController = GetComponent<ShakeController>();
         bonusProbabilityStack = 1.2f;
@@ -498,13 +499,20 @@ public class GameSystemHandler : MonoBehaviour
             winText.text = "Player 1 wins!";
             loseText.text = "Player 2 loses...";
         }
-    
+        player1TurnText.gameObject.SetActive(false);
+        player2TurnText.gameObject.SetActive(false);
         GameoverScene.SetActive(true);
     }
 
 
     public void PlayGame ()
     { // Load the checkers game scene
+        if (GameObject.Find("Opponent(Clone)") != null)
+        {
+            GameObject.Find("Opponent(Clone)").GetComponent<Player_HealthSystem>().SetHealth(3);
+            GameObject.Find("Opponent(Clone)").GetComponent<Player_HealthSystem>().state = Player_HealthSystem.characterState.Idle;
+            GameObject.Find("Opponent(Clone)").GetComponent<Player_HealthSystem>().winState = Player_HealthSystem.winOrLose.Draw;
+        }
         SceneManager.LoadScene("CheckersDefault");
     }
 

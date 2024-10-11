@@ -83,6 +83,11 @@ public class Player_Movement : MonoBehaviour
 
         VerticalMovement();
         AnimatePlayer();
+
+        if (this.gameObject.name == "Opponent(Clone)" && startPos == null)
+        {
+            startPos = GameObject.Find("StartPos2").transform;
+        }
     }
 
     void GroundCheck(){
