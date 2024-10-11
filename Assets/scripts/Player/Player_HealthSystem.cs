@@ -70,10 +70,10 @@ public class Player_HealthSystem : MonoBehaviour
             opponentSystem = GameObject.Find("Player").GetComponent<Player_HealthSystem>();
         }
 
-        if (this.gameObject.name == "Player" && Input.GetKeyDown(KeyCode.P)) //debug only 
-        {
-            TakeDamage(3);
-        }
+        //if (this.gameObject.name == "Player" && Input.GetKeyDown(KeyCode.P)) //debug only 
+        //{
+        //    TakeDamage(3);
+        //}
     }
 
     public void TakeDamage (int healthDamage){
