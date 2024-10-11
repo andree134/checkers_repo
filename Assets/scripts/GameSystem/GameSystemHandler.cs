@@ -497,7 +497,7 @@ public class GameSystemHandler : MonoBehaviour
 
     public void PlayerGameOverScene(){
 
-        if (checkerData.whitePieceLeft==0 || player1Ref.GetComponent<Player_HealthSystem>().currentHP <=0)
+        if (checkerData.whitePieceLeft==0 || GameObject.Find("Player").GetComponent<Player_HealthSystem>().currentHP <=0)
         {
             winText.text = "Blue fly wins!";
             loseText.text = "Red fly loses ...";
