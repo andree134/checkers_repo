@@ -152,12 +152,13 @@ public class checkersBoard : MonoBehaviour
                 //    TryMove((int)startDrag.x, (int)startDrag.y, x, y);
                 //}
 
-                if (playerInput.actions["Action"].IsPressed() && selectedPiece == null)
+                if (playerInput.actions["Action"].WasPerformedThisFrame() && selectedPiece == null)
                 {
                     SelectPiece(x, y);
+                    return;
                 }
 
-                if (playerInput.actions["Action"].WasReleasedThisFrame())
+                if (playerInput.actions["Action"].WasPerformedThisFrame())
                 {
                     TryMove((int)startDrag.x, (int)startDrag.y, x, y);
                 }
@@ -206,12 +207,13 @@ public class checkersBoard : MonoBehaviour
                 //    TryMove((int)startDrag.x, (int)startDrag.y, x, y);
                 //}
 
-                if (playerInput2.actions["Action"].IsPressed())
+                if (playerInput2.actions["Action"].WasPerformedThisFrame() && selectedPiece == null)
                 {
                     SelectPiece(x2, y2);
+                    return; 
                 }
 
-                if (playerInput2.actions["Action"].WasReleasedThisFrame())
+                if (playerInput2.actions["Action"].WasPerformedThisFrame())
                 {
                     TryMove((int)startDrag.x, (int)startDrag.y, x2, y2);
                 }
