@@ -33,7 +33,6 @@ public class cameraSwitch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
         if (playerInput.actions["ModeSwitch"].WasPressedThisFrame()) 
         {
             if(inFirstPersonView && !checkersBoard.IsPieceSelected())
@@ -47,6 +46,11 @@ public class cameraSwitch : MonoBehaviour
                 SwitchCamera();
                 cursor.SetActive(true);
             }
+        }
+
+        if (this.gameObject.GetComponent<Player_HealthSystem>().GetHealth() <= 0)
+        {
+            cursor.SetActive(true);
         }
     }
     void SwitchCamera()

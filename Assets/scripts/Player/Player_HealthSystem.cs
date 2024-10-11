@@ -64,6 +64,16 @@ public class Player_HealthSystem : MonoBehaviour
         {
             opponentSystem = GameObject.Find("Opponent(Clone)").GetComponent<Player_HealthSystem>();
         }
+
+        if (this.gameObject.name == "Opponent(Clone)" && opponentSystem == null)
+        {
+            opponentSystem = GameObject.Find("Player").GetComponent<Player_HealthSystem>();
+        }
+
+        if (this.gameObject.name == "Opponent(Clone)" && Input.GetKeyDown(KeyCode.P)) //debug only 
+        {
+            TakeDamage(3);
+        }
     }
 
     public void TakeDamage (int healthDamage){
@@ -86,6 +96,11 @@ public class Player_HealthSystem : MonoBehaviour
     public void SetHealth(int health)
     {
         currentHP = health; 
+    }
+
+    public int GetHealth()
+    {
+        return currentHP; 
     }
 
     IEnumerator Recovering(){
