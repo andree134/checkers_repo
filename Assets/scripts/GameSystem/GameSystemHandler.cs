@@ -491,13 +491,13 @@ public class GameSystemHandler : MonoBehaviour
 
         if (checkerData.whitePieceLeft==0 || player1Ref.GetComponent<Player_HealthSystem>().currentHP <=0)
         {
-            winText.text = "Player 2 wins!";
-            loseText.text = "Player 1 loses...";
+            winText.text = "Red fly wins!";
+            loseText.text = "Blue fly loses ...";
         }
         else
         {
-            winText.text = "Player 1 wins!";
-            loseText.text = "Player 2 loses...";
+            winText.text = "Blue fly wins!";
+            loseText.text = "Red fly loses...";
         }
         player1TurnText.gameObject.SetActive(false);
         player2TurnText.gameObject.SetActive(false);
