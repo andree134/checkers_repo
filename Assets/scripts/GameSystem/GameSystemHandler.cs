@@ -118,7 +118,9 @@ public class GameSystemHandler : MonoBehaviour
         sueingButton2 = GameObject.Find("Sue Button P2");
 
         //player1Ref = GameObject.Find("Player(Clone)");
-        //player2Ref = GameObject.Find("Opponent(Clone)"); 
+        //player2Ref = GameObject.Find("Opponent(Clone)");
+        eG = false; 
+        gO = false;
         backGroundMusicAudioSource.clip = normal;
         backGroundMusicAudioSource.Play();
 
@@ -478,13 +480,15 @@ public class GameSystemHandler : MonoBehaviour
 
     public void PlayGameoverPhase(){
 
-        PlayerGameOverScene();
+        
         if(gO == false){
             gO = true;
             backGroundMusicAudioSource.clip = gameOver;
             backGroundMusicAudioSource.loop = false;
             backGroundMusicAudioSource.Play();
         }
+
+        PlayerGameOverScene();
     }
 
     public void PlayerGameOverScene(){
