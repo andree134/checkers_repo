@@ -45,6 +45,7 @@ public class cameraSwitch : MonoBehaviour
                 playerMovementScript.SetActorToCheckerLocation(); //Call the Set Actor Location function in the Player_Movement script.
                 SwitchCamera();
                 cursor.SetActive(true);
+                playerMovementScript.playerAnim.Play_State(0);
             }
         }
 

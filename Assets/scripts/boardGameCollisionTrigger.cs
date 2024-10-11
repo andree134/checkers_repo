@@ -52,6 +52,10 @@ public class boardGameCollisionTrigger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (GameSystemHandler.instance.isGameOver)
+        {
+            player1BoardViewText.SetActive(false);
+            player2BoardViewText.SetActive(false);
+        }
     }
 }

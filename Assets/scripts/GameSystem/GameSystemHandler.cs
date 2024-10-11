@@ -70,6 +70,8 @@ public class GameSystemHandler : MonoBehaviour
     [SerializeField] TextMeshProUGUI winText;
     [SerializeField] TextMeshProUGUI loseText;
 
+    public bool isGameOver; 
+
 
     private void Awake()
     {
@@ -508,6 +510,7 @@ public class GameSystemHandler : MonoBehaviour
         player1TurnText.gameObject.SetActive(false);
         player2TurnText.gameObject.SetActive(false);
         GameoverScene.SetActive(true);
+        isGameOver = true; 
     }
 
 
@@ -518,12 +521,17 @@ public class GameSystemHandler : MonoBehaviour
             GameObject.Find("Opponent(Clone)").GetComponent<Player_HealthSystem>().SetHealth(3);
             GameObject.Find("Opponent(Clone)").GetComponent<Player_HealthSystem>().state = Player_HealthSystem.characterState.Idle;
             GameObject.Find("Opponent(Clone)").GetComponent<Player_HealthSystem>().winState = Player_HealthSystem.winOrLose.Draw;
+            GameObject.Find("Opponent(Clone)").GetComponent<Player_Animation>().Play_State(0);
+            GameObject.Find("Opponent(Clone)").GetComponent<Player_Animation>().Play_WinOrLose(0); 
         }
         SceneManager.LoadScene("CheckersDefault");
     }
 
     public void BackToMainMenu ()
     { // Load the checkers game scene
+        if (GameObject.Find("Opponent(Clone)") != null)
+            Destroy(GameObject.Find("Opponent(Clone)"));
+
         SceneManager.LoadScene("MainMenu");
     }
 

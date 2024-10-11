@@ -27,7 +27,7 @@ public class Player_Movement : MonoBehaviour
       public bool IsFalling{ get {return _isFalling;} set {_isFalling=value;} }
       public bool IsGrounded = false;
 
-      private Player_Animation playerAnim;
+      public Player_Animation playerAnim;
 
       [SerializeField]
       private GameObject model;
@@ -153,7 +153,7 @@ public class Player_Movement : MonoBehaviour
 
       public void SetActorToCheckerLocation(){
            this.GetComponentInParent<Transform>().SetPositionAndRotation(startPos.position, startPos.rotation);
-           model.transform.rotation = startPos.rotation; 
+           model.transform.rotation = startPos.rotation;
       }
 
       void AnimatePlayer(){

@@ -70,7 +70,7 @@ public class Player_HealthSystem : MonoBehaviour
             opponentSystem = GameObject.Find("Player").GetComponent<Player_HealthSystem>();
         }
 
-        if (this.gameObject.name == "Opponent(Clone)" && Input.GetKeyDown(KeyCode.P)) //debug only 
+        if (this.gameObject.name == "Player" && Input.GetKeyDown(KeyCode.P)) //debug only 
         {
             TakeDamage(3);
         }
