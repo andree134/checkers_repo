@@ -526,14 +526,16 @@ public class checkersBoard : MonoBehaviour
                 selectedPiece.isKing = true;
                 //change mesh
 
-                selectedPiece.transform.Rotate(Vector3.right * 180);  //if rotate
+                selectedPiece.normalMesh.SetActive(false);
+                selectedPiece.kingMesh.SetActive(true);  //if rotate
             }
             else if(!selectedPiece.isWhite && !selectedPiece.isKing && y == 0)
             {
                 selectedPiece.isKing = true;
                 //change mesh
 
-                selectedPiece.transform.Rotate(Vector3.right * 180);  //if rotate
+                selectedPiece.normalMesh.SetActive(false);
+                selectedPiece.kingMesh.SetActive(true);  //if rotate
             }
         }
 
