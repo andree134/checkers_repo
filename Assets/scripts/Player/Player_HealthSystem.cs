@@ -29,7 +29,10 @@ public class Player_HealthSystem : MonoBehaviour
 
     private void Awake()
     {
-        
+        if (this.gameObject.name == "Player(Clone)")
+        {
+            this.gameObject.name = "Player"; 
+        }
     }
 
     // Start is called before the first frame update
@@ -44,10 +47,10 @@ public class Player_HealthSystem : MonoBehaviour
             opponentSystem = GameObject.Find("Player").GetComponent<Player_HealthSystem>();
         }
 
-        if (this.gameObject.name == "Opponent(Clone)")
-        {
-            DontDestroyOnLoad(this.gameObject);
-        }
+        //if (this.gameObject.name == "Opponent(Clone)")
+        //{
+        //    DontDestroyOnLoad(this.gameObject);
+        //}
 
         gameSystemREF = GameSystemHandler.instance; 
 

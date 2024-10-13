@@ -69,37 +69,37 @@ public class GameSystemHandler : MonoBehaviour
     [SerializeField] GameObject GameoverScene;
     [SerializeField] TextMeshProUGUI winText;
     [SerializeField] TextMeshProUGUI loseText;
-
+    ControllerSettings controllerSettings;
     public bool isGameOver; 
 
 
     private void Awake()
     {
-        //Stuff to assign player controllers during runtime might come back to this later
-        //inputManager = GetComponent<PlayerInputManager>();
-
-        //InputDevice controller1 = Gamepad.all[0];
-        //InputDevice controller2 = Gamepad.all[1];
-
-        //Gamepad[] gamepads = Gamepad.all.ToArray();
-
-        //Debug.Log(controller1);
-        //Debug.Log(controller2);
-
-        //PlayerInput input1;
-        //PlayerInput input2;
-
-        //input1 = PlayerInput.Instantiate(player1Ref, 0, pairWithDevice: gamepads[0]);
-        // input2 = PlayerInput.Instantiate(player2Ref, 1, controlScheme: "Default", pairWithDevice: gamepads[1]);
-
-        //inputManager.JoinPlayer(controlScheme: "Default");
-        //inputManager.playerPrefab = player2Ref;
-        //inputManager.JoinPlayer(controlScheme: "Default");
-        //inputManager.enabled = true;
-
-
-        //Debug.Log(GameObject.Find("Player").GetComponent<PlayerInput>().user.valid);
         instance = this;
+
+        InputDevice controller1 = Gamepad.all[0];
+        InputDevice controller2 = Gamepad.all[1];
+
+        if (FindFirstObjectByType<ControllerSettings>() != null)
+        {
+            controllerSettings = FindFirstObjectByType<ControllerSettings>();
+            if (controllerSettings.IsPlayerRed())
+            {
+                PlayerInput.Instantiate(player1Ref, 0, pairWithDevice: controller1);
+                PlayerInput.Instantiate(player2Ref, 1, pairWithDevice: controller2);
+            }
+            else
+            {
+                PlayerInput.Instantiate(player1Ref, 0, pairWithDevice: controller2);
+                PlayerInput.Instantiate(player2Ref, 1, pairWithDevice: controller1);
+            }
+        }
+        else
+        {
+            PlayerInput.Instantiate(player1Ref, 0, pairWithDevice: controller1);
+            PlayerInput.Instantiate(player2Ref, 1, pairWithDevice: controller2);
+        }
+       
     }
 
     // Start is called before the first frame update
@@ -119,7 +119,7 @@ public class GameSystemHandler : MonoBehaviour
         sueingButton1 = GameObject.Find("Sue Button P1");
         sueingButton2 = GameObject.Find("Sue Button P2");
 
-        player1Ref = GameObject.Find("Player(Clone)");
+        player1Ref = GameObject.Find("Player");
         player2Ref = GameObject.Find("Opponent(Clone)");
         eG = false; 
         gO = false;

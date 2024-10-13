@@ -216,8 +216,8 @@ MonoBehaviour:
   isMovingPiece: 0
   characterAudioSource: {fileID: 8929114942264642898}
   getHit: {fileID: 8300000, guid: 14f06731ef1361e4c84670d4d2e252f1, type: 3}
-  UIAudioSource: {fileID: 0}
-  lifeLose: {fileID: 0}
+  UIAudioSource: {fileID: 8929114942264642898}
+  lifeLose: {fileID: 8300000, guid: 95e6ae9c589a4eb4c9fc73f15fd87554, type: 3}
 --- !u!114 &4118197745093187383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,6 +240,7 @@ MonoBehaviour:
   isWhitePlayer: 1
   startPos: {fileID: 0}
   IsGrounded: 0
+  playerAnim: {fileID: 0}
   model: {fileID: 4954210903049789565}
   mainCamera: {fileID: 2493709631589226702}
   rotateSpeed: 7.5
