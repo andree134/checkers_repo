@@ -116,7 +116,7 @@ public class MenuController : MonoBehaviour
                 audioSource.Play();
             }
 
-            if (playerInput2.GetDevice<Gamepad>().dpad.left.wasPressedThisFrame)// && !player1IsBlue)
+            if (playerInput2.GetDevice<Gamepad>().dpad.right.wasPressedThisFrame)// && !player1IsBlue)
             {
                 currentLerp = 0.0f;
                 player2IsRed = false;
